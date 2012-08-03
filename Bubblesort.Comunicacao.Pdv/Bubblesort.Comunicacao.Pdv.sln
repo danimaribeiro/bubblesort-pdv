@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bubblesort.Comunicacao.Pdv", "Bubblesort.Comunicacao.Pdv.csproj", "{DFA6AD4F-D4ED-4772-A144-4B30F21C9342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bubblesort.Interface.Pdv", "..\Bubblesort.Interface.Pdv\Bubblesort.Interface.Pdv.csproj", "{62F0A1BD-9B91-422F-827D-2CAEA3F5E7E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62F0A1BD-9B91-422F-827D-2CAEA3F5E7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F0A1BD-9B91-422F-827D-2CAEA3F5E7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F0A1BD-9B91-422F-827D-2CAEA3F5E7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F0A1BD-9B91-422F-827D-2CAEA3F5E7E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DFA6AD4F-D4ED-4772-A144-4B30F21C9342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFA6AD4F-D4ED-4772-A144-4B30F21C9342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFA6AD4F-D4ED-4772-A144-4B30F21C9342}.Release|Any CPU.ActiveCfg = Release|Any CPU
