@@ -1,0 +1,894 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bematech.Perifericos</name>
+    </assembly>
+    <members>
+        <member name="T:Bematech.Perifericos.Teclados.PortaPS2">
+            <summary>
+            Classe de acesso à Porta PS2
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.MAX_PATH">
+            <summary>
+            Tamanho máximo da variável 'path'
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.GENERIC_READ">
+            <summary>
+            Constantes utilizadas na função CreateFile (para instanciação do Device Driver)
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.GENERIC_EXECUTE">
+            <summary>
+            Constantes utilizadas na abertura do serviço (Device Driver)
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.NULL">
+            <summary>
+            Nulo
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.IOCTL_WRITE_PORT_UCHAR">
+            <summary>
+            Constantes para leitura e escrita na porta, parâmetros 
+            válidos para o Device Driver hwinterface.sys
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.OPEN_EXISTING">
+            <summary>
+            Parâmetro do tipo de criação de arquivo (CreateFile)
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Teclados.PortaPS2.ERROR_ACCESS_DENIED">
+            <summary>
+            Representa o erro de acesso negado na instanciação do serviço do Device Driver
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.CreateFileW(System.String,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            The CreateFile function creates or opens any of the following 
+            objects and returns a handle that can be used to access the object: 
+            Consoles, Communications resources, Directories (open only), 
+            Disk devices, Files, Mailslots, Pipes 
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.WriteFileW(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            The WriteFile function writes data to a file and is designed for both 
+            synchronous and asynchronous operation. The function starts writing data 
+            to the file at the position indicated by the file pointer. After the write 
+            operation has been completed, the file pointer is adjusted by the number of 
+            bytes actually written, except when the file is opened with FILE_FLAG_OVERLAPPED. 
+            If the file handle was created for overlapped input and output (I/O), the 
+            application must adjust the position of the file pointer after the write 
+            operation is finished. 
+            This function is designed for both synchronous and asynchronous operation. 
+            The WriteFileEx function is designed solely for asynchronous operation. 
+            It lets an application perform other processing during a file write operation.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.CloseHandle(System.IntPtr)">
+            <summary>
+            The CloseHandle function closes an open object handle.
+            </summary>
+            <param name="hObject">[in, out] Handle to an open object. </param>
+            <returns>If the function succeeds, the return value is nonzero.
+            If the function fails, the return value is zero. To get extended error information, call GetLastError.
+            Closing an invalid handle raises an exception when the application is running under a debugger. This includes closing a handle twice, and using CloseHandle on a handle returned by the FindFirstFile function.
+            </returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.SaveResourceToFile(System.String)">
+            <summary>
+            Salva um embedded resource para um arquivo do disco
+            </summary>
+            <param name="strFileName">Caminho e nome do arquivo a salvar</param>
+            <example>SaveResourceToFile("c:\windows\system32\drivers\resource.sys");</example>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.OpenDriver">
+            <summary>
+            Abre o device driver
+            </summary>
+            <returns>Retorna 0 se a operação foi bem sucedida.</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.CloseDriver">
+            <summary>
+            Finaliza o handle do device driver.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.start">
+            <summary>
+            Starta o serviço
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.PortaPS2.Output(System.Int16,System.Int16)">
+            <summary>
+            Estabelece a comunicação com a porta especificada.
+            </summary>
+            <param name="PortAddress">Porta na qual será realizado o output.</param>
+            <param name="data">Dado a ser enviado para a porta.</param>
+        </member>
+        <member name="T:Bematech.Perifericos.PerifericosException">
+            <summary>
+            Exception gerada quando ocorre um erro genérico no periférico.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.PerifericosException.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe PerifericosException
+            com a mensagem de erro
+            </summary>
+            <param name="mensagem">Mensagem de erro</param>
+        </member>
+        <member name="M:Bematech.Perifericos.PerifericosException.#ctor(Bematech.BematechException.OrigemException,Bematech.BematechException.CodigoErro,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe PerifericosException
+            com a origem da exceção, o código e a mensagem de erro
+            </summary>
+            <param name="origem">Origem da exception</param>
+            <param name="codigo">Código de erro</param>
+            <param name="mensagem">Mensagem de erro</param>
+        </member>
+        <member name="T:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque">
+            <summary>
+            Classe ImpressoraCheque.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.#ctor(System.String)">
+            <summary>
+            Construtor da classe ImpressoraCheque
+            </summary>
+            <param name="nomePorta">Nome da porta serial à qual a impressora está conectada. Ex: "COM1"</param>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.AbrirPorta">
+            <summary>
+            Retorna um dataset com os cheques gravados no banco de dados.
+            </summary>
+            <returns>DataSet preenchido com os cheques do banco de dados</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ImprimirCopiaCheque">
+            <summary>
+            Imprime uma cópia do cheque atual
+            </summary>
+            <remarks>O modificador do método foi alterado, de public para internal</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.CancelarUltimoChequeImpresso">
+            <summary>
+            Cancela do relatório na memória da impressora o último cheque impresso
+            </summary>
+            <remarks>O modificador do método foi alterado, de public para internal</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.CancelarTodosChequesImpressos">
+            <summary>
+            Cancela do relatório na memória da impressora todos os cheques que foram 
+            impressos.
+            </summary>
+            <remarks>O modificador do método foi alterado, de public para internal</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.Configurar(System.Int16,System.Int16,System.Int16,System.Int16,System.Int16,System.Int16)">
+            <summary>
+            Configura a impressora.
+            </summary>
+            <param name="linhaChancela">Quantas linhas abaixo da data a chancela será impressa (1 a 9)</param>
+            <param name="caracterTracejado">Tipo de tracejado (0 a 9)</param>
+            <param name="velocidade">Taxa de transmissão (9, 4, 2 ou 1)</param>
+            <param name="numeroBits">Número de bits para a comunicação (1 = 8 bits, 0 = 7 bits)</param>
+            <param name="paridade">Indica a paridade (1 = com paridade ímpar, 0 = sem paridade)</param>
+            <param name="imprimeCentavos">Sempre igual a zero</param>
+            <remarks>O modificador do método foi alterado, de public para internal</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.Imprimir(Bematech.Perifericos.Cheque)">
+            <summary>
+            Imprime o cheque, de acordo com o parâmetro já instanciado Cheque
+            </summary>
+            <param name="cheque">Cheque a ser impresso</param>
+            <remarks>Para este método funcionar corretamente, é importante que a 
+            classe Cheque tenha sido instanciada corretamente.</remarks>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou problemas na impressão</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.RemoverFavorecido(System.Int32)">
+            <summary>
+            Remove um favorecido da memória da impressora.
+            </summary>
+            <param name="numero">Número do favorecido, no máximo 2 caracteres</param>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.RemoverTodosFavorecidos">
+            <summary>
+            Remove todos os favorecidos programados na impressora.
+            </summary>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ProgramarBanco(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Programa os parâmetros do banco.
+            </summary>
+            <param name="banco">Número do banco</param>
+            <param name="linhaValor">Linha do Valor</param>
+            <param name="colunaValor">Coluna do Valor</param>
+            <param name="linhaExtenso1">Linha do Extenso 1</param>
+            <param name="colunaExtenso1">Coluna do Extenso 1</param>
+            <param name="linhaExtenso2">Linha do Extenso 2</param>
+            <param name="colunaExtenso2">Coluna do Extenso 2</param>
+            <param name="linhaFavorecido">Linha do Favorecido</param>
+            <param name="colunaFavorecido">Coluna do Favorecido</param>
+            <param name="linhaCidadeData">Linha da Cidade e da Data</param>
+            <param name="colunaCidade">Coluna da Cidade</param>
+            <param name="colunaDia">Coluna do Dia</param>
+            <param name="colunaMes">Coluna do Mês</param>
+            <param name="colunaAno">Coluna do Ano</param>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ProgramarMoeda(System.String,System.String)">
+            <summary>
+            Programa a moeda na impressora
+            </summary>
+            <param name="moedaSingular">Moeda no Singular. Ex. "Real"</param>
+            <param name="moedaPlural">Moeda no Plural. Ex. "Reais"</param>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ProgramarFavorecido(System.Int32,System.String)">
+            <summary>
+            Programa o favorecido do cheque na impressora
+            </summary>
+            <param name="codigoFavorecido">Código do favorecido, com no máximo 2 caracteres</param>
+            <param name="nome">Nome do favorecido, com no máximo 47 caracteres</param>
+            <remarks>A impressora permite a programação de 100 favorecidos (de 0 a 99).</remarks>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ProgramarDigitosAno(System.Int32)">
+            <summary>
+            Programa o número de dígitos do ano que serão impressos
+            </summary>
+            <param name="digitos">Quantidade de dígitos do ano: 1, 2 ou 4</param>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.TravarDestravarDocumento(System.Boolean)">
+            <summary>
+            Trava / Destrava o documento inserido na impressora
+            </summary>
+            <param name="flag">True - Trava o documento
+            False - Destrava o documento</param>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.Imprimir(System.String)">
+            <summary>
+            Imprime um texto qualquer enviado para a impressora
+            </summary>
+            <param name="texto">Texto a ser impresso</param>
+            <remarks>Este método envia para a impressora um texto sem formatação.
+            Se o parâmetro travaDestravaDocumento for setado para false, 
+            antes de executar este método, deve-se executar o método TravaDestravaDocumento(true), 
+            travando o documento para então fazer a impressão. Após, deve ser
+            executado o comando TravaDestravaDocumento(false) para destravar o
+            documento.</remarks>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Parâmetro incorreto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.Imprimir(Bematech.Texto.TextoFormatado)">
+            <summary>
+            Imprime texto formatado
+            </summary>
+            <param name="texto">Texto a ser impresso</param>
+            <remarks>A impressora não suporta a impressão de texto sublinhado</remarks>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Erros na formatação do texto ou 
+            problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="M:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.AvancarLinha">
+            <summary>
+            Avança uma linha na impressão do cheque
+            </summary>
+            <exception cref="T:Bematech.Perifericos.PerifericosException">Problemas de comunicação com a impressora</exception>
+        </member>
+        <member name="P:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.NomePorta">
+            <summary>
+            Retorna ou configura o nome da porta serial. Ex: "COM1"
+            </summary>
+            <example>
+            public class Exemplo
+            {
+            	...
+            	private ImpressoraCheque printer;
+            	public Exemplo()
+            	{
+            		...
+            		printer.NomePorta = "COM1";
+            		...
+            	}
+            	...
+            }
+            </example>
+        </member>
+        <member name="P:Bematech.Perifericos.ImpressorasCheque.ImpressoraCheque.ControleTravamentoDocumentos">
+            <summary>
+            Retorna ou configura o controle de travamento de documentos.
+            </summary>
+            <remarks>Com esta variável habilitada, não é preciso executar
+            o comando TravarDestravarDocumento antes de executar as funções
+            AvancarLinha, DeslocarHorizontalmente e Imprimir (string)</remarks>
+        </member>
+        <member name="T:Bematech.Perifericos.Displays.CustomerDisplay">
+            <summary>
+            Classe de controle do Customer Display
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.#ctor(System.String)">
+            <summary>
+            Construtor da classe CustomerDisplay.
+            </summary>
+            <param name="nomeDaPorta">Nome da porta. Ex.: "COM1"</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.EnviarComando(System.Byte[])">
+            <summary>
+            Envia o comando para a porta serial.
+            </summary>
+            <param name="comando">Comando a ser enviado</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.ConfigurarCursor(Bematech.Perifericos.Displays.CursorCustomerDisplay)">
+            <summary>
+            Configura o tipo do cursor a ser exibido.
+            </summary>
+            <param name="cursor"></param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.PosicionarCursor(System.Int32,System.Int32)">
+            <summary>
+            Posiciona o cursor em determinado lugar do display.
+            </summary>
+            <param name="linha">Linha (de 1 a 2)</param>
+            <param name="coluna">Coluna (de 1 a 20)</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.String)">
+            <summary>
+            Envia um texto qualquer para o Customer Display
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.String,System.Int32)">
+            <summary>
+            Envia uma string para exibição no display, a partir da primeira coluna.
+            </summary>
+            <param name="texto">String a ser exibida</param>
+            <param name="linha">Linha na qual a string será exibida</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.String,System.Int32,System.Int32)">
+            <summary>
+            Envia uma string para exibição no display.
+            </summary>
+            <param name="texto">String a ser exibida</param>
+            <param name="linha">Linha na qual a string será exibida</param>
+            <param name="coluna">Coluna na qual a string será exibida</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.Byte[])">
+            <summary>
+            Envia um conjunto de bytes para exibição no display
+            </summary>
+            <param name="buffer">Buffer de bytes a ser exibido</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.Byte[],System.Int32)">
+            <summary>
+            Envia um conjunto de bytes para exibição no display
+            </summary>
+            <param name="buffer">Buffer de bytes a ser exibido</param>
+            <param name="linha">Linha na qual o buffer será exibido</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.Enviar(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Envia um conjunto de bytes para exibição no display
+            </summary>
+            <param name="buffer">Buffer de bytes a ser exibido</param>
+            <param name="linha">Linha na qual o buffer será exibido</param>
+            <param name="coluna">Coluna na qual ficará o primeiro byte do buffer</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.LimparDisplay">
+            <summary>
+            Limpa o Display
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.MoverCursorDireita">
+            <summary>
+            Move o cursor para a direita
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.MoverCursorEsquerda">
+            <summary>
+            Move o cursor para a esquerda.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.DeslocarDisplayEsquerda">
+            <summary>
+            Desloca o display inteiro um caracter para a esquerda
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Displays.CustomerDisplay.DeslocarDisplayDireita">
+            <summary>
+            Desloca o display inteiro um caracter para a esquerda
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Displays.CustomerDisplay.NomePorta">
+            <summary>
+            Retorna ou seta o nome da porta. 
+            Exemplo: "COM1"
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Leitores.LeituraCompletaHandler">
+            <summary>
+            Guarda um método de leitura completa (no caso um evento) que recebe um parâmetro string buffer
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Leitores.LeitorSerial">
+            <summary>
+            Classe de controle do Leitor Serial. Possui funções que estabelecem comunicação com a porta
+            serial.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe LeitorSerial.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.AbrirPorta">
+            <summary>
+            Abre a porta de comunicação
+            </summary>
+            <returns>Retorna true se abrir a porta</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.FecharPorta">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <returns>Retorna True se fechou</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.LerDados">
+            <summary>
+            Realiza a leitura dos dados.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.IniciarLeitura">
+            <summary>
+            Inicializa a leitura de dados provenientes da porta serial.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.FinalizarLeitura">
+            <summary>
+            Finaliza a leitura dos dados.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Leitores.LeitorSerial.VerificarSeLeituraTerminou">
+            <summary>
+            Verifica se a leitura de dados já foi finalizada.
+            </summary>
+            <returns>Retorna um valor bool que indica se a leitura já terminou ou não.</returns>
+        </member>
+        <member name="E:Bematech.Perifericos.Leitores.LeitorSerial.OnLeituraCompleta">
+            <summary>
+            Dispara um evento quando a o LeituraCompletaHandler for chamado.
+            Indica quando a leitura do buffer foi completa, devolvendo uma string com
+            o buffer retornado pela leitura.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Leitores.LeitorSerial.FlowControlHW">
+            <summary>
+            Handshaking cts/rts  (default é sem controle de fluxo)
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Leitores.LeitorSerial.NomePorta">
+            <summary>
+            Configura ou retorna o nome da porta de comunicação ao qual
+            o leitor está conectado.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Leitores.LeitorSerial.TempoParaLeitura">
+            <summary>
+            Retorna ou seta o timeout entre cada leitura serial.
+            O valor default é 150 milissegundos.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Leitores.LeitorSerial.ThreadAtiva">
+            <summary>
+            Retorna o atual estado da thread.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Leitores.LeitorSerial.PortaAberta">
+            <summary>
+            Retorna true se a porta de comunicação está aberta.
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Displays.CursorCustomerDisplay">
+            <summary>
+            Definição dos cursores disponíveis no Customer Display
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Displays.CursorCustomerDisplay.Desligado">
+            <summary>
+            Cursor Desligado
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Displays.CursorCustomerDisplay.Underline">
+            <summary>
+            Cursor com traço fixo ("_").
+            </summary>
+        </member>
+        <member name="F:Bematech.Perifericos.Displays.CursorCustomerDisplay.BlocoPiscante">
+            <summary>
+            Cursor Bloco Piscante
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Teclados.Teclado">
+            <summary>
+            A classe Teclado controla as funcionalidades do Teclado Gertec 
+            modelo TEC 65 DIS com LCM (Leitor de Cartão Magnético)
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.#ctor">
+            <summary>
+            Construtor da classe Teclado.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.TransmitToKeyboardCtrl(System.Int16)">
+            <summary>
+            Transmite um comando de controle ao teclado (porta 0x64).
+            </summary>
+            <param name="cmd">[in] Comando a ser enviado para o teclado.</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.TransmitToKeyboard(System.Int16)">
+            <summary>
+            Transmite um comando ao teclado.
+            </summary>
+            <param name="cmd">[in] Comando a ser enviado para o teclado.</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.ReadFromKeyboard">
+            <summary>
+            Realiza uma leitura de status do teclado.
+            </summary>
+            <returns>Valor da leitura.</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.ConfigurarDisplay(System.Boolean)">
+            <summary>
+            Ativar / Desativar display
+            </summary>
+            <param name="OnOff">Ativado / Desativado</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.WrapLine">
+            <summary>
+            Pula para a primeira coluna da próxima linha.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.WriteOnDisplay(System.Byte[])">
+            <summary>
+            Escreve no display um conjunto de caracteres.
+            </summary>
+            <param name="msg">Mensagem a ser escrita</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.AtivarDesativarBeepContinuo(System.Boolean)">
+            <summary>
+            Liga / Desliga o Beep contínuo do teclado.
+            </summary>
+            <param name="onOff">[true]= Beep Ligado - [false]= Beep Desligado</param>
+            <remarks>Este beep, quando ativado, emite um som contínuo, que será cessado
+            somente quando executar esta função passando o parâmetro [false].</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.AtivarDesativarBeepTeclas(System.Boolean)">
+            <summary>
+            Liga / Desliga o beep das teclas.
+            </summary>
+            <param name="onOff">[true]= Beep Ligado - [false]= Beep Desligado</param>
+            <remarks>Com o beep de teclas ativado, a cada vez que for pressionada uma 
+            tecla, o teclado emitirá um beep.</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.DesativarTeclado">
+            <summary>
+            Finaliza o teclado, liberando os recursos por ele ocupados.
+            </summary>
+            <remarks>Esta função deve ser executada obrigatoriamente ao término do programa (fim da utilização do teclado).</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.AtivarTeclado">
+            <summary>
+            Inicializa o teclado.
+            </summary>
+            <remarks>Esta função deve ser executada obrigatoriamente antes de o teclado ser utilizado.</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.LimparDisplay">
+            <summary>
+            Limpa a tela do teclado.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.Resetar">
+            <summary>
+            Reseta o teclado.
+            </summary>
+            <remarks>Ao executar esta função, todas as funcionalidades configuradas serão perdidas.
+            Por exemplo, se o Beep de Teclas está ativado, ao executar este método, ele 
+            será desativado.</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.SaltarLinha">
+            <summary>
+            Salta uma linha no display.
+            </summary>
+            <remarks>Se o cursor estiver na primeira linha, salta para a segunda linha. Caso esteja na segunda linha, mantém o cursor na mesma.</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.Backspace">
+            <summary>
+            Apaga o caracter anterior à posição do cursor.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.CarryReturn">
+            <summary>
+            Posiciona o cursor no início da linha.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.AtivarDesativarLeitorCartao(System.Boolean)">
+            <summary>
+            Liga / Desliga o Leitor de Cartão Magnético (LCM).
+            </summary>
+            <param name="flag">[true]= Ativa o cartão - [false]= Desativa o cartão</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.PosicionarCursor(System.Int32,System.Int32)">
+            <summary>
+            Posiciona o cursor na linha e coluna indicados.
+            </summary>
+            <param name="coluna">Coluna na qual o cursor será posicionado.</param>
+            <param name="linha">Linha na qual o cursor será posicionado.</param>
+            <remarks>Como o display do teclado possui apenas 2 linhas e 40 colunas,
+            não serão aceitos valores fora desses limites.</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.EscreverNoDisplay(System.String)">
+            <summary>
+            Escreve uma mensagem no display.
+            </summary>
+            <param name="mensagem">[in]Mensagem a ser escrita no display</param>
+            <remarks>O tamanho da mensagem a ser escrita no display não pode superar
+            80 caracteres. Caso o tamanho da mensagem supere o número de caracteres
+            restantes na linha e coluna onde o cursor está posicionado, os caracteres
+            que superarem o limite serão escritos na linha seqüente do display.
+            Por exemplo, se o cursor se encontra na linha 1, coluna 35, e envia-se uma
+            mensagem "Teste de escrita", as últimas 5 colunas da linha 1 conterão os caracteres
+            "Teste", enquanto as primeiras 11 colunas da linha 2 conterão os caracteres
+            " de escrita".</remarks>
+        </member>
+        <member name="M:Bematech.Perifericos.Teclados.Teclado.EscreverNoDisplay(System.String,System.Int32,System.Int32)">
+            <summary>
+            Escreve no display, iniciando a mensagem a partir da linha e coluna especificadas.
+            </summary>
+            <param name="mensagem">Mensagem a ser escrita.</param>
+            <param name="linha">Linha na qual o cursor será posicionado para escrita da mensagem.</param>
+            <param name="coluna">Coluna na qual o cursor será posicionado para escrita da mensagem.</param>
+            <remarks>O tamanho da mensagem a ser escrita no display não pode superar
+            80 caracteres. Caso o tamanho da mensagem supere o número de caracteres
+            restantes na linha e coluna onde o cursor está posicionado, os caracteres
+            que superarem o limite serão escritos na linha seqüente do display.
+            Por exemplo, se o cursor se encontra na linha 1, coluna 35, e envia-se uma
+            mensagem "Teste de escrita", as últimas 5 colunas da linha 1 conterão os caracteres
+            "Teste", enquanto as primeiras 11 colunas da linha 2 conterão os caracteres
+            " de escrita".</remarks>
+        </member>
+        <member name="P:Bematech.Perifericos.Teclados.Teclado.LinhaCursor">
+            <summary>
+            Linha na qual o cursor está localizado
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Teclados.Teclado.ColunaCursor">
+            <summary>
+            Coluna na qual o cursor está localizado
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Balancas.LeituraCompletaHandler">
+            <summary>
+            Guarda um método de leitura completa (no caso um evento) que recebe um parâmetro string buffer
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Balancas.Balanca">
+            <summary>
+            Classe de controle da balança.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.#ctor(System.String,Bematech.ModeloBalanca)">
+            <summary>
+            Inicializa uma nova instância da Classe Balanca, com o nome 
+            da porta e modelo da balança.
+            </summary>
+            <param name="nomePorta">Nome da porta. Ex: "COM1"</param>
+            <param name="modelo"> Modelo da balança. Ex: ModeloBalanca.CS15 </param>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.AbrirPorta">
+            <summary>
+            Abre a porta de comunicação
+            </summary>
+            <returns>Retorna true se abrir a porta</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.FecharPorta">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <returns>True se ok</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.LerDadosBalanca">
+            <summary>
+            Este método realiza a leitura dos dados da balança.
+            </summary>
+            <returns>String com os dados da pesagem</returns>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.StartThread">
+            <summary>
+            Cria e inicia a thread da balança.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.WatchThread">
+            <summary>
+            Loop que realiza a execução do método LerDadosBalanca().
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.AtivarMonitoramentoPeso">
+            <summary>
+            Ativa o monitoramento de peso da balança. Se não for possível estabelecer 
+            comunicação, será retornado um buffer vazio.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.DesativarMonitoramentoPeso">
+            <summary>
+            Finaliza o monitoramento dos dados da pesagem.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Balancas.Balanca.VerificarPeso">
+            <summary>
+            Realiza uma leitura do peso atual
+            </summary>
+            <returns>
+            String com os dados da leitura
+            </returns>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.Porta">
+            <summary>
+            Retorna / Configura a porta serial utilizada pela balança.
+            </summary>
+            <example>
+            ...
+            Balanca balanca = new Balanca("COM1",ModeloBalanca.DP20);
+            balanca.Porta = "COM4";
+            ...
+            </example>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.PrecoPorKg">
+            <summary>
+            Retorna o preço por Kg.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.Peso">
+            <summary>
+            Retorna o peso referente à última pesagem.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.PrecoTotal">
+            <summary>
+            Retorna o Total.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.EmMonitoramento">
+            <summary>
+            Retorna o status atual do monitoramento de peso
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Balancas.Balanca.Modelo">
+            <summary>
+            Retorna ou configura o modelo da balanca.
+            </summary>
+        </member>
+        <member name="E:Bematech.Perifericos.Balancas.Balanca.OnLeituraCompleta">
+            <summary>
+            Indica quando a leitura do buffer foi completa, devolvendo uma string com
+            o buffer retornado pela leitura.
+            </summary>
+        </member>
+        <member name="T:Bematech.Perifericos.Cheque">
+            <summary>
+            Classe que encapsula um cheque.
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Cheque.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe Cheque
+            </summary>
+        </member>
+        <member name="M:Bematech.Perifericos.Cheque.#ctor(System.Int32,System.Decimal)">
+            <summary>
+            Inicializa uma nova instância da classe Cheque com 
+            o número do banco e o valor do cheque
+            </summary>
+            <param name="numeroBanco">Número do banco</param>
+            <param name="valor">Valor do cheque</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Cheque.#ctor(System.Int32,System.Decimal,System.String,System.String,System.DateTime,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe Cheque com número do banco, 
+            valor, favorecido, cidade, data e mensagem
+            </summary>
+            <param name="numeroBanco">Número do banco</param>
+            <param name="valor">Valor do cheque</param>
+            <param name="favorecido">Nome do favorecido do cheque</param>
+            <param name="cidade">Nome da cidade</param>
+            <param name="data">Data do cheque</param>
+            <param name="mensagem">Mensagem ou texto a ser impresso no cheque</param>
+        </member>
+        <member name="M:Bematech.Perifericos.Cheque.Preparar">
+            <summary>
+            Prepara o cheque no layout que deve ser enviado para a impressora. 
+            </summary>
+            <returns>Array de bytes no formato a ser enviado para a impressora</returns>
+            <remarks>Para executar este método, deve-se assegurar que todas as 
+            propriedades já estejam configuradas (ModeloImpressora ModeloImpressora, 
+            DateTime Data, int NumeroBanco, string Cidade, string ArquivoLayoutBanco, 
+            decimal Valor, string Favorecido, string ValorPorExtenso, 
+            string Mensagem, string MoedaSingular, 
+            string MoedaPlural, string CentavoSingular, string CentavoPlural, 
+            int digitosAno)</remarks>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.ValorPorExtenso">
+            <summary>
+            Retorna o valor por extenso do cheque
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.Data">
+            <summary>
+            Retorna ou configura a data do cheque.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.NumeroBanco">
+            <summary>
+            Retorna ou configura o número do Banco.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.Cidade">
+            <summary>
+            Retorna ou configura a cidade.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.Valor">
+            <summary>
+            Retorna ou configura o valor do cheque.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.Favorecido">
+            <summary>
+            Retorna ou configura o nome do favorecido.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.Mensagem">
+            <summary>
+            Retorna ou configura a mensagem a ser impressa no rodapé do cheque.
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.MoedaSingular">
+            <summary>
+            Retorna ou configura a moeda por extenso no singular. Ex: “real”
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.MoedaPlural">
+            <summary>
+            Retorna ou configura a moeda por extenso no plural. Ex: “reais”
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.CentavoSingular">
+            <summary>
+            Retorna ou configura a expressão dos centavos no singular. Ex: “centavo”
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.CentavoPlural">
+            <summary>
+            Retorna ou configura a expressão dos centavos no plural. Ex: "centavos"
+            </summary>
+        </member>
+        <member name="P:Bematech.Perifericos.Cheque.DigitosAno">
+            <summary>
+            Retorna ou configura o número de dígitos do ano a serem impressos. 
+            Ex: DigitosAno = 4 => Na impressão sairá: "Curitiba, 01 de janeiro de 2006"
+            Ex: DigitosAno = 2 => Na impressão sairá: "Curitiba, 01 de janeiro de 06"
+            </summary>
+        </member>
+    </members>
+</doc>

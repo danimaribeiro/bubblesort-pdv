@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Bematech>
+	<ConfiguracoesCheques>
+		<ModeloImpressora modelo="mp40FI">
+			<Cheque codigoBanco="000">
+				<Coluna valorNumerico="51" extenso1="04" extenso2="01" favorecido="05" cidade="06" dia="60"
+					mes="65" ano="81"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="001">
+				<Coluna valorNumerico="90" extenso1="10" extenso2="01" favorecido="06" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="003">
+				<Coluna valorNumerico="49" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="004">
+				<Coluna valorNumerico="52" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="006">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="05" cidade="15" dia="43"
+					mes="48" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="008">
+				<Coluna valorNumerico="56" extenso1="17" extenso2="01" favorecido="07" cidade="18" dia="50"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="021">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="022">
+				<Coluna valorNumerico="52" extenso1="07" extenso2="01" favorecido="04" cidade="15" dia="44"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="024">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="027">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="06" cidade="18" dia="45"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="028">
+				<Coluna valorNumerico="55" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="029">
+				<Coluna valorNumerico="55" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="031">
+				<Coluna valorNumerico="55" extenso1="13" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="69"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="032">
+				<Coluna valorNumerico="56" extenso1="14" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="033">
+				<Coluna valorNumerico="48" extenso1="17" extenso2="01" favorecido="06" cidade="18" dia="46"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="034">
+				<Coluna valorNumerico="49" extenso1="14" extenso2="01" favorecido="04" cidade="15" dia="45"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="035">
+				<Coluna valorNumerico="59" extenso1="07" extenso2="01" favorecido="06" cidade="18" dia="52"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="036">
+				<Coluna valorNumerico="58" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="037">
+				<Coluna valorNumerico="58" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="038">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="04" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="039">
+				<Coluna valorNumerico="49" extenso1="24" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="56" ano="70"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="041">
+				<Coluna valorNumerico="56" extenso1="09" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="61" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="047">
+				<Coluna valorNumerico="52" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="048">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="68"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="059">
+				<Coluna valorNumerico="50" extenso1="15" extenso2="01" favorecido="05" cidade="18" dia="55"
+					mes="59" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="070">
+				<Coluna valorNumerico="54" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="104">
+				<Coluna valorNumerico="56" extenso1="13" extenso2="01" favorecido="04" cidade="18" dia="48"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="04" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="106">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="151">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="153">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="168">
+				<Coluna valorNumerico="53" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="200">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="201">
+				<Coluna valorNumerico="52" extenso1="11" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="51" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="206">
+				<Coluna valorNumerico="56" extenso1="14" extenso2="01" favorecido="06" cidade="18" dia="53"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="207">
+				<Coluna valorNumerico="50" extenso1="04" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="211">
+				<Coluna valorNumerico="48" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="215">
+				<Coluna valorNumerico="55" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="220">
+				<Coluna valorNumerico="56" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="230">
+				<Coluna valorNumerico="50" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="231">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="237">
+				<Coluna valorNumerico="50" extenso1="01" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="244">
+				<Coluna valorNumerico="48" extenso1="14" extenso2="01" favorecido="04" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="254">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="275">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="46"
+					mes="52" ano="68"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="282">
+				<Coluna valorNumerico="56" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="291">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="294">
+				<Coluna valorNumerico="50" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="302">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="51" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="308">
+				<Coluna valorNumerico="57" extenso1="11" extenso2="01" favorecido="06" cidade="18" dia="47"
+					mes="50" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="320">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="48"
+					mes="51" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="334">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="341">
+				<Coluna valorNumerico="54" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="12" cidadeData="15"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="346">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="347">
+				<Coluna valorNumerico="53" extenso1="15" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="51" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="351">
+				<Coluna valorNumerico="52" extenso1="14" extenso2="01" favorecido="05" cidade="18" dia="55"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="353">
+				<Coluna valorNumerico="52" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="356">
+				<Coluna valorNumerico="52" extenso1="11" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="369">
+				<Coluna valorNumerico="47" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="370">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="372">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="46"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="376">
+				<Coluna valorNumerico="54" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="388">
+				<Coluna valorNumerico="46" extenso1="09" extenso2="01" favorecido="06" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="389">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="392">
+				<Coluna valorNumerico="49" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="394">
+				<Coluna valorNumerico="51" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="399">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="52"
+					mes="57" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="409">
+				<Coluna valorNumerico="55" extenso1="12" extenso2="01" favorecido="04" cidade="23" dia="52"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="04" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="415">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="06" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="420">
+				<Coluna valorNumerico="54" extenso1="08" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="422">
+				<Coluna valorNumerico="58" extenso1="17" extenso2="03" favorecido="07" cidade="18" dia="52"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="424">
+				<Coluna valorNumerico="58" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="434">
+				<Coluna valorNumerico="56" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="453">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="456">
+				<Coluna valorNumerico="48" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="464">
+				<Coluna valorNumerico="51" extenso1="16" extenso2="01" favorecido="05" cidade="18" dia="56"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="472">
+				<Coluna valorNumerico="53" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="10" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="477">
+				<Coluna valorNumerico="55" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="57" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="479">
+				<Coluna valorNumerico="53" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="483">
+				<Coluna valorNumerico="52" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="487">
+				<Coluna valorNumerico="58" extenso1="17" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="494">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="602">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="03" cidade="18" dia="47"
+					mes="52" ano="66"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="603">
+				<Coluna valorNumerico="52" extenso1="05" extenso2="01" favorecido="02" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="13" cidadeData="17"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="607">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="610">
+				<Coluna valorNumerico="55" extenso1="15" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="630">
+				<Coluna valorNumerico="49" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="718">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="756">
+				<Coluna valorNumerico="51" extenso1="10" extenso2="01" favorecido="06" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="995">
+				<Coluna valorNumerico="44" extenso1="10" extenso2="01" favorecido="03" cidade="32" dia="30"
+					mes="30" ano="25"></Coluna>
+				<Linha valorNumerico="20" extenso1="04" extenso2="06" favorecido="09" cidadeData="10"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="996">
+				<Coluna valorNumerico="61" extenso1="10" extenso2="01" favorecido="03" cidade="57" dia="30"
+					mes="30" ano="25"></Coluna>
+				<Linha valorNumerico="16" extenso1="04" extenso2="06" favorecido="09" cidadeData="02"></Linha>
+			</Cheque>
+		</ModeloImpressora>
+		<ModeloImpressora modelo="mp6000">
+			<Cheque codigoBanco="000">
+				<Coluna valorNumerico="51" extenso1="04" extenso2="01" favorecido="05" cidade="06" dia="60"
+					mes="65" ano="81"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="001">
+				<Coluna valorNumerico="44" extenso1="03" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="003">
+				<Coluna valorNumerico="42" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="004">
+				<Coluna valorNumerico="45" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="006">
+				<Coluna valorNumerico="49" extenso1="03" extenso2="01" favorecido="01" cidade="08" dia="36"
+					mes="41" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="008">
+				<Coluna valorNumerico="49" extenso1="10" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="021">
+				<Coluna valorNumerico="45" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="42"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="022">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="08" dia="37"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="024">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="027">
+				<Coluna valorNumerico="45" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="028">
+				<Coluna valorNumerico="48" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="029">
+				<Coluna valorNumerico="48" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="031">
+				<Coluna valorNumerico="48" extenso1="06" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="032">
+				<Coluna valorNumerico="49" extenso1="07" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="033">
+				<Coluna valorNumerico="41" extenso1="10" extenso2="01" favorecido="01" cidade="11" dia="39"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="034">
+				<Coluna valorNumerico="42" extenso1="07" extenso2="01" favorecido="01" cidade="08" dia="38"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="035">
+				<Coluna valorNumerico="52" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="036">
+				<Coluna valorNumerico="51" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="037">
+				<Coluna valorNumerico="51" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="038">
+				<Coluna valorNumerico="49" extenso1="03" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="039">
+				<Coluna valorNumerico="42" extenso1="17" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="041">
+				<Coluna valorNumerico="49" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="54" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="047">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="048">
+				<Coluna valorNumerico="47" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="059">
+				<Coluna valorNumerico="43" extenso1="08" extenso2="01" favorecido="01" cidade="11" dia="48"
+					mes="52" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="070">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="104">
+				<Coluna valorNumerico="49" extenso1="06" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="04" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="106">
+				<Coluna valorNumerico="45" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="151">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="153">
+				<Coluna valorNumerico="44" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="168">
+				<Coluna valorNumerico="46" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="200">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="201">
+				<Coluna valorNumerico="45" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="44" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="206">
+				<Coluna valorNumerico="49" extenso1="07" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="207">
+				<Coluna valorNumerico="43" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="211">
+				<Coluna valorNumerico="41" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="215">
+				<Coluna valorNumerico="48" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="220">
+				<Coluna valorNumerico="49" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="42"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="230">
+				<Coluna valorNumerico="43" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="231">
+				<Coluna valorNumerico="45" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="237">
+				<Coluna valorNumerico="43" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="244">
+				<Coluna valorNumerico="41" extenso1="07" extenso2="01" favorecido="01" cidade="11" dia="42"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="254">
+				<Coluna valorNumerico="44" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="275">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="39"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="282">
+				<Coluna valorNumerico="49" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="291">
+				<Coluna valorNumerico="45" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="294">
+				<Coluna valorNumerico="43" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="302">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="44" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="308">
+				<Coluna valorNumerico="50" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="320">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="44" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="334">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="341">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="12" cidadeData="15"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="346">
+				<Coluna valorNumerico="47" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="347">
+				<Coluna valorNumerico="46" extenso1="08" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="44" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="351">
+				<Coluna valorNumerico="45" extenso1="07" extenso2="01" favorecido="01" cidade="11" dia="48"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="353">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="356">
+				<Coluna valorNumerico="45" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="38"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="369">
+				<Coluna valorNumerico="40" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="370">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="372">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="39"
+					mes="42" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="376">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="388">
+				<Coluna valorNumerico="39" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="389">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="392">
+				<Coluna valorNumerico="42" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="47"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="394">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="399">
+				<Coluna valorNumerico="47" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="409">
+				<Coluna valorNumerico="48" extenso1="05" extenso2="01" favorecido="01" cidade="16" dia="45"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="04" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="415">
+				<Coluna valorNumerico="47" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="420">
+				<Coluna valorNumerico="47" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="422">
+				<Coluna valorNumerico="51" extenso1="10" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="424">
+				<Coluna valorNumerico="51" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="48" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="434">
+				<Coluna valorNumerico="49" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="453">
+				<Coluna valorNumerico="47" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="456">
+				<Coluna valorNumerico="41" extenso1="04" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="464">
+				<Coluna valorNumerico="44" extenso1="09" extenso2="01" favorecido="01" cidade="11" dia="49"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="472">
+				<Coluna valorNumerico="46" extenso1="05" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="10" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="477">
+				<Coluna valorNumerico="48" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="45"
+					mes="50" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="479">
+				<Coluna valorNumerico="46" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="483">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="43" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="487">
+				<Coluna valorNumerico="51" extenso1="10" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="494">
+				<Coluna valorNumerico="44" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="602">
+				<Coluna valorNumerico="49" extenso1="03" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="603">
+				<Coluna valorNumerico="45" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="44"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="13" cidadeData="17"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="607">
+				<Coluna valorNumerico="44" extenso1="02" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="49" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="610">
+				<Coluna valorNumerico="48" extenso1="08" extenso2="01" favorecido="01" cidade="11" dia="46"
+					mes="51" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="630">
+				<Coluna valorNumerico="42" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="40"
+					mes="45" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="718">
+				<Coluna valorNumerico="44" extenso1="01" extenso2="01" favorecido="01" cidade="11" dia="41"
+					mes="46" ano="64"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="756">
+				<Coluna valorNumerico="44" extenso1="03" extenso2="01" favorecido="01" cidade="11" dia="43"
+					mes="47" ano="64"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="995">
+				<Coluna valorNumerico="37" extenso1="03" extenso2="01" favorecido="01" cidade="25" dia="23"
+					mes="23" ano="18"></Coluna>
+				<Linha valorNumerico="20" extenso1="04" extenso2="06" favorecido="09" cidadeData="10"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="996">
+				<Coluna valorNumerico="54" extenso1="03" extenso2="01" favorecido="01" cidade="50" dia="23"
+					mes="23" ano="18"></Coluna>
+				<Linha valorNumerico="16" extenso1="04" extenso2="06" favorecido="09" cidadeData="02"></Linha>
+			</Cheque>
+		</ModeloImpressora>
+		<ModeloImpressora modelo="DP20">
+			<Cheque codigoBanco="000">
+				<Coluna valorNumerico="51" extenso1="04" extenso2="01" favorecido="05" cidade="06" dia="60"
+					mes="65" ano="81"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="001">
+				<Coluna valorNumerico="95" extenso1="20" extenso2="05" favorecido="06" cidade="54" dia="80"
+					mes="90" ano="115"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="003">
+				<Coluna valorNumerico="49" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="004">
+				<Coluna valorNumerico="52" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="006">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="05" cidade="15" dia="43"
+					mes="48" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="008">
+				<Coluna valorNumerico="56" extenso1="17" extenso2="01" favorecido="07" cidade="18" dia="50"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="021">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="022">
+				<Coluna valorNumerico="52" extenso1="07" extenso2="01" favorecido="04" cidade="15" dia="44"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="024">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="027">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="06" cidade="18" dia="45"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="028">
+				<Coluna valorNumerico="55" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="029">
+				<Coluna valorNumerico="55" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="031">
+				<Coluna valorNumerico="55" extenso1="13" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="69"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="032">
+				<Coluna valorNumerico="56" extenso1="14" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="033">
+				<Coluna valorNumerico="48" extenso1="17" extenso2="01" favorecido="06" cidade="18" dia="46"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="034">
+				<Coluna valorNumerico="49" extenso1="14" extenso2="01" favorecido="04" cidade="15" dia="45"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="035">
+				<Coluna valorNumerico="59" extenso1="07" extenso2="01" favorecido="06" cidade="18" dia="52"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="036">
+				<Coluna valorNumerico="58" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="037">
+				<Coluna valorNumerico="58" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="038">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="04" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="039">
+				<Coluna valorNumerico="49" extenso1="24" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="56" ano="70"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="041">
+				<Coluna valorNumerico="56" extenso1="09" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="61" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="047">
+				<Coluna valorNumerico="52" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="048">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="68"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="059">
+				<Coluna valorNumerico="50" extenso1="15" extenso2="01" favorecido="05" cidade="18" dia="55"
+					mes="59" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="070">
+				<Coluna valorNumerico="54" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="104">
+				<Coluna valorNumerico="56" extenso1="13" extenso2="01" favorecido="04" cidade="18" dia="48"
+					mes="53" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="04" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="106">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="151">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="153">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="168">
+				<Coluna valorNumerico="53" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="200">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="201">
+				<Coluna valorNumerico="52" extenso1="11" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="51" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="206">
+				<Coluna valorNumerico="56" extenso1="14" extenso2="01" favorecido="06" cidade="18" dia="53"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="207">
+				<Coluna valorNumerico="50" extenso1="04" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="211">
+				<Coluna valorNumerico="48" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="215">
+				<Coluna valorNumerico="55" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="220">
+				<Coluna valorNumerico="56" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="230">
+				<Coluna valorNumerico="50" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="231">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="237">
+				<Coluna valorNumerico="50" extenso1="01" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="244">
+				<Coluna valorNumerico="48" extenso1="14" extenso2="01" favorecido="04" cidade="18" dia="49"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="254">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="08" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="275">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="46"
+					mes="52" ano="68"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="282">
+				<Coluna valorNumerico="56" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="291">
+				<Coluna valorNumerico="52" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="294">
+				<Coluna valorNumerico="50" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="56" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="302">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="51" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="308">
+				<Coluna valorNumerico="57" extenso1="11" extenso2="01" favorecido="06" cidade="18" dia="47"
+					mes="50" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="320">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="48"
+					mes="51" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="334">
+				<Coluna valorNumerico="54" extenso1="06" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="341">
+				<Coluna valorNumerico="54" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="12" cidadeData="15"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="346">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="57" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="347">
+				<Coluna valorNumerico="53" extenso1="15" extenso2="01" favorecido="04" cidade="18" dia="47"
+					mes="51" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="351">
+				<Coluna valorNumerico="52" extenso1="14" extenso2="01" favorecido="05" cidade="18" dia="55"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="353">
+				<Coluna valorNumerico="52" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="356">
+				<Coluna valorNumerico="52" extenso1="11" extenso2="01" favorecido="04" cidade="18" dia="45"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="369">
+				<Coluna valorNumerico="47" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="370">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="372">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="46"
+					mes="49" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="376">
+				<Coluna valorNumerico="54" extenso1="07" extenso2="01" favorecido="04" cidade="18" dia="54"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="388">
+				<Coluna valorNumerico="46" extenso1="09" extenso2="01" favorecido="06" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="389">
+				<Coluna valorNumerico="52" extenso1="06" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="07" extenso2="09" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="392">
+				<Coluna valorNumerico="49" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="54"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="394">
+				<Coluna valorNumerico="51" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="09" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="399">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="52"
+					mes="57" ano="72"></Coluna>
+				<Linha valorNumerico="01" extenso1="05" extenso2="07" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="409">
+				<Coluna valorNumerico="55" extenso1="12" extenso2="01" favorecido="04" cidade="23" dia="52"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="04" extenso1="07" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="415">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="06" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="420">
+				<Coluna valorNumerico="54" extenso1="08" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="422">
+				<Coluna valorNumerico="58" extenso1="17" extenso2="03" favorecido="07" cidade="18" dia="52"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="424">
+				<Coluna valorNumerico="58" extenso1="12" extenso2="01" favorecido="04" cidade="18" dia="50"
+					mes="55" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="434">
+				<Coluna valorNumerico="56" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="54" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="453">
+				<Coluna valorNumerico="54" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="10" favorecido="12" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="456">
+				<Coluna valorNumerico="48" extenso1="11" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="464">
+				<Coluna valorNumerico="51" extenso1="16" extenso2="01" favorecido="05" cidade="18" dia="56"
+					mes="58" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="472">
+				<Coluna valorNumerico="53" extenso1="12" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="09" favorecido="10" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="477">
+				<Coluna valorNumerico="55" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="52"
+					mes="57" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="07" extenso2="09" favorecido="11" cidadeData="14"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="479">
+				<Coluna valorNumerico="53" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="483">
+				<Coluna valorNumerico="52" extenso1="08" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="50" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="09" cidadeData="11"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="487">
+				<Coluna valorNumerico="58" extenso1="17" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="52" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="11" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="494">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="50"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="602">
+				<Coluna valorNumerico="56" extenso1="10" extenso2="01" favorecido="03" cidade="18" dia="47"
+					mes="52" ano="66"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="07" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="603">
+				<Coluna valorNumerico="52" extenso1="05" extenso2="01" favorecido="02" cidade="18" dia="51"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="03" extenso1="08" extenso2="10" favorecido="13" cidadeData="17"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="607">
+				<Coluna valorNumerico="51" extenso1="09" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="56" ano="72"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="610">
+				<Coluna valorNumerico="55" extenso1="15" extenso2="01" favorecido="05" cidade="18" dia="53"
+					mes="58" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="630">
+				<Coluna valorNumerico="49" extenso1="05" extenso2="01" favorecido="05" cidade="18" dia="47"
+					mes="52" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="718">
+				<Coluna valorNumerico="51" extenso1="07" extenso2="01" favorecido="05" cidade="18" dia="48"
+					mes="53" ano="71"></Coluna>
+				<Linha valorNumerico="01" extenso1="06" extenso2="08" favorecido="10" cidadeData="13"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="756">
+				<Coluna valorNumerico="51" extenso1="10" extenso2="01" favorecido="06" cidade="18" dia="50"
+					mes="54" ano="71"></Coluna>
+				<Linha valorNumerico="02" extenso1="05" extenso2="08" favorecido="10" cidadeData="12"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="995">
+				<Coluna valorNumerico="44" extenso1="10" extenso2="01" favorecido="03" cidade="32" dia="30"
+					mes="30" ano="25"></Coluna>
+				<Linha valorNumerico="20" extenso1="04" extenso2="06" favorecido="09" cidadeData="10"></Linha>
+			</Cheque>
+			<Cheque codigoBanco="996">
+				<Coluna valorNumerico="61" extenso1="10" extenso2="01" favorecido="03" cidade="57" dia="30"
+					mes="30" ano="25"></Coluna>
+				<Linha valorNumerico="16" extenso1="04" extenso2="06" favorecido="09" cidadeData="02"></Linha>
+			</Cheque>
+		</ModeloImpressora>
+	</ConfiguracoesCheques>
+
+</Bematech>

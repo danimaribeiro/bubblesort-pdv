@@ -30,6 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bematech, Version=1.5.0.0, Culture=neutral, PublicKeyToken=922112168328d899, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Bematech\Bematech.dll</HintPath>
+    </Reference>
+    <Reference Include="Bematech.Fiscal, Version=1.5.0.0, Culture=neutral, PublicKeyToken=922112168328d899, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Bematech\Bematech.Fiscal.dll</HintPath>
+    </Reference>
+    <Reference Include="Bematech.MiniImpressoras, Version=1.5.0.0, Culture=neutral, PublicKeyToken=922112168328d899, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Bematech\Bematech.MiniImpressoras.dll</HintPath>
+    </Reference>
+    <Reference Include="Bematech.Perifericos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=922112168328d899, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Bematech\Bematech.Perifericos.dll</HintPath>
+    </Reference>
+    <Reference Include="Bematech.Relatorios, Version=1.5.0.0, Culture=neutral, PublicKeyToken=922112168328d899, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Bematech\Bematech.Relatorios.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,8 +59,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="ConfiguracoesImpressora.cs" />
+    <Compile Include="CupomFiscal.cs" />
+    <Compile Include="Impressora.cs" />
+    <Compile Include="ItemCupom.cs" />
+    <Compile Include="Metodos.cs" />
+    <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Bematech\bancos.xml" />
+    <Content Include="lib\Bematech\Bema.inf" />
+    <Content Include="lib\Bematech\BemaConfig.xml" />
+    <Content Include="lib\Bematech\Bematech.dll" />
+    <Content Include="lib\Bematech\Bematech.Fiscal.dll" />
+    <Content Include="lib\Bematech\Bematech.Fiscal.xml" />
+    <Content Include="lib\Bematech\Bematech.MiniImpressoras.dll" />
+    <Content Include="lib\Bematech\Bematech.MiniImpressoras.xml" />
+    <Content Include="lib\Bematech\Bematech.Perifericos.dll" />
+    <Content Include="lib\Bematech\Bematech.Perifericos.xml" />
+    <Content Include="lib\Bematech\Bematech.Relatorios.dll" />
+    <Content Include="lib\Bematech\Bematech.Relatorios.xml" />
+    <Content Include="lib\Bematech\Bematech.xml" />
+    <Content Include="lib\Bematech\Trabalhando LPT no Windows 2000 ou XP.txt" />
+    <Content Include="lib\Bematech\UsbApi.dll" />
+    <Content Include="lib\Daruma\DarumaFrameWork.dll" />
+    <Content Include="lib\Daruma\lebin.dll" />
+    <Content Include="lib\Daruma\LEIAME.txt" />
+    <Content Include="lib\Daruma\LeituraMFDBin.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\Bematech\Bemapar.sys" />
+    <None Include="lib\Bematech\Bematech Flash Builder.chm" />
+    <None Include="lib\Daruma\hwinterface.sys" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

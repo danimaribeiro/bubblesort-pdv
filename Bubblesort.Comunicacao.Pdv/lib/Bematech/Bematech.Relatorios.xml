@@ -1,0 +1,3274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bematech.Relatorios</name>
+    </assembly>
+    <members>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo60I">
+            <summary>
+            Registro tipo 60 - Item.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroSintegra">
+            <summary>
+            Classe abstrata que os registros sintegra implementam
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroSintegra.IsMatch(System.String,System.String)">
+            <summary>
+            Valida uma string utilizando a classe REGEX.
+            </summary>
+            <param name="valor">Valor a ser validado.</param>
+            <param name="regexValues">String de validação. (regular expression)</param>
+            <returns>True: caso tenha validado.</returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroSintegra.FormataValor(System.Decimal,System.Int32,System.Boolean)">
+            <summary>
+            Formata um valor decimal
+            </summary>
+            <param name="valor">Valor a ser formatado</param>
+            <param name="tamanhoSaida">tamanho da saida</param>
+            <param name="tresCasasDecimais">Numero de casas decimais</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.IRegistroSintegra">
+             <summary>
+             Interface que os registros sintegras devem implementar
+             </summary>
+            <stereotype>interface</stereotype>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.IRegistroSintegra.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.ISortRegistro">
+            <summary>
+            Interface para ordenação dos registros sintegra
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60I.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60I.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.DataEmissao">
+            <summary>
+            Data de emissão dos documentos fiscais.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.NumeroSerie">
+            <summary>
+            Numero de série de fabricação do equipamento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.NumeroOrdem">
+            <summary>
+            Número do contador de ordem de operação (COO)
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.NumeroItem">
+            <summary>
+            Número de Ordem do item no Documento Fiscal.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.CodigoProduto">
+            <summary>
+            Código do produto ou serviço do informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.Quantidade">
+            <summary>
+            Quantidade comercializada do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.ValorProduto">
+            <summary>
+            Valor bruto do produto - Valor acumulado do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.BaseCalculoICMS">
+            <summary>
+            Base de cálculo do ICMS - Valor acumulado no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.TotalICMS">
+            <summary>
+            Montante do imposto.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60I.Situacao">
+            <summary>
+            Identificador da Situação Tributária.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo11">
+            <summary>
+            Dados complementares do informante.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo11.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo11.#ctor(System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="contato"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo11.#ctor(System.String,System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="contato"></param>
+            <param name="telefone"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo11.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Logradouro">
+            <summary>
+            Logradouro do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Numero">
+            <summary>
+            Numero do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Complemento">
+            <summary>
+            Complemento do endereço
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Bairro">
+            <summary>
+            Bairro do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.CEP">
+            <summary>
+            CEP
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Contato">
+            <summary>
+            Pessoa responsável para contatos.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo11.Telefone">
+            <summary>
+            Numero do telefone para contatos.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo10">
+            <summary>
+            Registro Mestre do estabelecimento, destinado a identificaçao do mesmo.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo10.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo10.#ctor(System.Int32)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="Month">mês da geração</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo10.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="Year">Ano da geração</param>
+            <param name="Month">Mês da geração</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo10.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.DataInicial">
+            <summary>
+            Data Inicial do relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.DataFinal">
+            <summary>
+            Data Final do relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.Convenio">
+            <summary>
+            Identificação do Convênio.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.Operacao">
+            <summary>
+            Identificação da Natureza das Operaçoes
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.ArquivoMagnetico">
+            <summary>
+            Finalidade do arquivo Magnético.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.CNPJ">
+            <summary>
+            CNPJ do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.InscricaoEstadual">
+            <summary>
+            Inscrição Estadual do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.RazaoSocial">
+            <summary>
+            Razão Social do estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.Cidade">
+            <summary>
+            Município onde está domiciliado o estabelecimento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.Estado">
+            <summary>
+            Unidade da Federação
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo10.FAX">
+            <summary>
+            Numero do FAX
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo10.IdentificacaoConvenio">
+            <summary>
+            Código de identificação do Convênio.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.IdentificacaoConvenio.ICMS3199">
+            <summary>
+            Convênio ICMS 31/99
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.IdentificacaoConvenio.ICMSxx02">
+            <summary>
+            Convêio ICMS xx/02
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.IdentificacaoConvenio.ICMSxx04">
+            <summary>
+            Convêio ICMS xx/02
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo10.NaturezaOperacao">
+            <summary>
+            Código e identificação da natureza das operações.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.NaturezaOperacao.SubstituicaoTributarias">
+            <summary>
+            Interestaduais - Somente sujeitas ao regime de Substituição Tributária.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.NaturezaOperacao.ComOuSemSubstituicaoTributarias">
+            <summary>
+            Interestaduais - Operações com ou sem Substituição Tributária.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.NaturezaOperacao.Totalidade">
+            <summary>
+            Totalidade das operações.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo10.FinalidadeArquivoMagnetico">
+            <summary>
+            Finalidade do arquivo magnético.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.FinalidadeArquivoMagnetico.Normal">
+            <summary>
+            Normal.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.FinalidadeArquivoMagnetico.RetificacaoTotal">
+            <summary>
+            Retificação total do arquivo: Substituição total de informações
+            pretadas pelo contribuinte referentes a este período.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.FinalidadeArquivoMagnetico.RetificacaoAditiva">
+            <summary>
+            Retificação aditiva de arquivo: acréscimo de informação não incluida em arquivos já apresentados.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo10.FinalidadeArquivoMagnetico.Desfazimento">
+            <summary>
+            Desfazimento: Arquivo de informação referente a operações/prestações não efetivadas.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo75">
+            <summary>
+            Código de produto ou serviço
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo75.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo75.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.DataInicial">
+            <summary>
+            Data inicial do periodo de validade das informações
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.DataFinal">
+            <summary>
+            Data final do periodo de validade das informações
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.CodigoProduto">
+            <summary>
+            Código do produto ou serviço utilizado pelo contribuinte.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.NCM">
+            <summary>
+            Codificação na nomeclatura comum do Mercosul
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.Descricao">
+            <summary>
+            Descrição do produto ou serviço
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.UnidadeMedida">
+            <summary>
+            Unidade de medida de comercialização do produto.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.AliquotaIPI">
+            <summary>
+            Alíquota do IPI do produto
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.AliquotaICMS">
+            <summary>
+            Alíquota de ICMS aplicavel a mercadoria ou serviçoas operações ou 
+            prestações internas ou naquelas que se tiverem iniciado no exterior
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.ReducaoBase">
+            <summary>
+            % de redução na base de calculo do ICMS, nas operações internas.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo75.BaseCalculoICMS">
+            <summary>
+            Base de calculo do ICMS de substituição tributária.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo60D">
+            <summary>
+            Registro de produto ou serviço registrado em documento fiscal emitido por terminal.	
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60D.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60D.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.DataEmissao">
+            <summary>
+            Data de emissão dos documentos fiscais.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.NumeroSerie">
+            <summary>
+            Numero de série de fabricação do equipamento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.CodigoProduto">
+            <summary>
+            Código do produto ou serviço do informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.Quantidade">
+            <summary>
+            Quantidade comercializada do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.ValorProduto">
+            <summary>
+            Valor bruto do produto - Valor acumulado do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.BaseCalculoICMS">
+            <summary>
+            Base de cálculo do ICMS - Valor acumulado no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.TotalICMS">
+            <summary>
+            Montante do imposto.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60D.Situacao">
+            <summary>
+            Identificador da Situação Tributária.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo74">
+            <summary>
+            Registro tipo 74 - Inventário
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo74.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo74.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.DataEmissao">
+            <summary>
+            Data do inventário.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.CodigoProduto">
+            <summary>
+            Código do produto do informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.Quantidade">
+            <summary>
+            Quantidade do produto
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.ValorBrutoProduto">
+            <summary>
+            Valor bruto do produto
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.Posse">
+            <summary>
+            Código de Posse das Mercadorias Inventariadas.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.CNPJ">
+            <summary>
+            CNPJ do possuidor da mercadoria de propriedade do informante, ou
+            do proprietário da mercadoria em poder do informante.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.InscricaoEstadual">
+            <summary>
+            Inscrição Estadual do possuidor da mercadoria de propriedade do informante, ou
+            do proprietário da mercadoria em poder do informante.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo74.Estado">
+            <summary>
+            Unidade da Federação do possuidor da mercadoria de propriedade do informante, ou
+            do proprietário da mercadoria em poder do informante.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo74.CodigoPosse">
+            <summary>
+            Código de Posse das Mercadorias Inventariadas
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo74.CodigoPosse.PropInfoPoderProprio">
+            <summary>
+            Mercadorias de propriedade do informante e em seu poder.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo74.CodigoPosse.PropInfoPoderTerceiros">
+            <summary>
+            Mercadorias de propriedade do informante em poder de terceiros.
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo74.CodigoPosse.PropTerceirosPoderInfo">
+            <summary>
+            Mercadorias de propriedade de terceiros em porder do informante.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.GeradorRelatorio">
+            <summary>
+            Classe factory de relatórios prontos.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.ListaDeProdutos(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de produtos cadastrados no banco de dados.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarDescricao">Caso true será ordenado por descrição, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.ListaDeClientes(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de clientes cadastrados no banco de dados.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarNome">Caso true será ordenado por nome, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.ListaDeVendedores(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de vendedores cadastrados no banco de dados.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarNome">Caso true será ordenado por nome, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorPeriodo(Bematech.Relatorios.DataSetRelatorios,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            Relatório de vendas do período.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="inicio">Data inicial do relatórios</param>
+            <param name="final">Data Final do relatório</param>
+            <param name="ordenarDescricao">Caso true será ordenado por descrição, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorCliente(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatórios de vendas por clientes.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarNome">Caso true será ordenado por nome, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorProduto(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de vendas por produto.
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarDescricao">Caso true será ordenado por descrição, senão será ordenado por codigo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorVendedor(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de vendas por vendedor
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarNome">Caso true será ordenado por nome, senão será ordenado por código</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorECF(Bematech.Relatorios.DataSetRelatorios,System.Boolean)">
+            <summary>
+            Relatório de vendas por ECF
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <param name="ordenarNumeroSerie">Caso true será ordenado por número de série, senão será ordenado por código</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.VendasPorAliquota(Bematech.Relatorios.DataSetRelatorios)">
+            <summary>
+            Relatório de vendas por aliquota
+            </summary>
+            <param name="dadosRelatorio">Informações que serão utilizadas para montar o relatório</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.GeradorRelatorio.GerarDataSetRelatorio(System.Data.IDbConnection,System.DateTime,System.DateTime,System.Data.IDbDataAdapter)">
+            <summary>
+            Gera um data set, com dados limitador por um certo periodo, para ser utilizado
+            na geração dos relatórios.
+            </summary>
+            <param name="conexao">Conexao para o banco de dados</param>
+            <param name="inicio">data de inicio da pesquisa</param>
+            <param name="fim">data de fim da pesquisa</param>
+            <param name="adapter">DataAdapter do tipo especifico do cliente: SqlDataAdapter, MySqlDataAdapter, OdbcDataAdapter</param>
+            <returns>objeto do tipo DataSetRelatorios, o qual é um dataSet tipado esperado
+            pela pelo método Gerar da classe RelatorioSintegra.</returns>
+            <exception cref="T:Bematech.Relatorios.RelatoriosException"> Exceção levantado caso ocorra algum 
+            erro na geração do dataset</exception>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.GeradorRelatorio.CulturaInfo">
+            <summary>
+            Parametrização da cultura especifica ao banco
+            </summary>
+            <example>
+            //Exemplo de CultureInfo Formatação
+            
+            CultureInfo cultura = new CultureInfo(CultureInfo.CurrentCulture.LCID,false);
+            this.cultura.NumberFormat.NumberDecimalSeparator = ".";
+            this.cultura.DateTimeFormat.ShortDatePattern = "$dd/MM/yyyy$";
+            this.cultura.DateTimeFormat.LongTimePattern  = "";
+            
+            /*
+            Essa formatação cria uma saida no seguinte formato
+            Datas: '16/01/2005'  --> O Horario não será exibido e data será colocada entre ASPAS
+            Decimal: 152.03     --> O caracter de separação será um ponto.
+            */
+            </example>
+            <remarks>O simbolo $ será substituido por aspas nas formatações de datas</remarks>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Desenho">
+            <summary>
+            Classe que implementa/define os métodos e propriedades necessárias para um desenho básico.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Desenho.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Desenho.DesenharBordas(System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Desenha as bordas de um objeto
+            </summary>
+            <param name="ev"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Desenho.Desenhar(System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Desenha um objeto.
+            </summary>
+            <param name="ev"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Desenho.Borda">
+            <summary>
+            Bordas a serem desenhadas.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Desenho.PontoA">
+            <summary>
+            ponto Absoluto que respresenta o local de desenho
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Desenho.PontoB">
+            <summary>
+            ponto Absoluto que respresenta o local de desenho
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo60R">
+            <summary>
+            Registro tipo 60 - Resumo Diário
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60R.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60R.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.DataEmissao">
+            <summary>
+            Data de emissão dos documentos fiscais.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.CodigoProduto">
+            <summary>
+            Código do produto ou serviço do informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.Quantidade">
+            <summary>
+            Quantidade comercializada do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.ValorProduto">
+            <summary>
+            Valor bruto do produto - Valor acumulado do produto no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.BaseCalculoICMS">
+            <summary>
+            Base de cálculo do ICMS - Valor acumulado no dia.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60R.Situacao">
+            <summary>
+            Identificador da Situação Tributária.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo60A">
+            <summary>
+            Identificador de cada Situação Tributáriano final do dia de cada equipamento emissor de cupom fiscal.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60A.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60A.#ctor(System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dataEmissao">Data de emissão</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60A.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60A.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60A.DataEmissao">
+            <summary>
+            Data de emissão dos documentos fiscais.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60A.NumeroSerie">
+            <summary>
+            Número de série de fabricação do equipamento.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60A.Situacao">
+            <summary>
+            Identificador da situação tributária / alíquotado ICMS		
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60A.ValorAcumulado">
+            <summary>
+            Valor acumulado no final do dia no totalizador parcial da situação
+            alíquota indicada no campo 06 (com 2 decimais)
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo50">
+            <summary>
+            Registro total de nota fiscal.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo50.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo50.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.CNPJ">
+            <summary>
+            CNPJ do estabelecimento informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.InscricaoEstadual">
+            <summary>
+            Inscrição estadual do estabelecimento informante
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Estado">
+            <summary>
+            Unidade da federação
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.DataEmissao">
+            <summary>
+            Data de emissão na saída ou recebimento na entrada
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Modelo">
+            <summary>
+            Código do modelo da nota fiscal.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Serie">
+            <summary>
+            Série da nota fiscal.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Numero">
+            <summary>
+            Número da nota fiscal
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.CFOP">
+            <summary>
+            Código Fiscal de Operação e Prestação
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Emitente">
+            <summary>
+            Emitente da nota fiscal.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.ValorTotal">
+            <summary>
+            Valor total da nota fiscal
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.BaseCalculoICMS">
+            <summary>
+            Base de cálculo do ICMS
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.ValorICMS">
+            <summary>
+            Montante do imposto
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Isenta">
+            <summary>
+            Valor amparado por insenção ou não incidência
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Outras">
+            <summary>
+            Valor que não confira débito ou crédito do ICMS.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Aliquota">
+            <summary>
+            Aliquota do ICMS.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo50.Situacao">
+            <summary>
+            Situação da nota fiscal quanto ao cancelamento.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo50.EmitenteNota">
+            <summary>
+            Emitente da Nota Fiscal
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo50.EmitenteNota.Proprio">
+            <summary>
+            Proprio
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Sintegra.RegistroTipo50.EmitenteNota.Terceiros">
+            <summary>
+            Terceiros
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.RelatoriosException">
+            <summary>
+            Erro criado durante a geração de relatórios
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.DBTexto">
+            <summary>
+            Classe que representa um texto em uma linha.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Texto">
+            <summary>
+            Classe que representa um texto no relatório
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="texto">Texto a ser impresso.</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.String,System.Drawing.Font)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="texto">Texto a ser impresso.</param>
+            <param name="fonte">Fonte que será utiliza na impressão.</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="texto">Texto a ser impresso.</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.Int32,System.Int32,System.String,System.Drawing.Font)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="texto">Texto a ser impresso.</param>
+            <param name="fonte">Fonte que será utiliza na impressão.</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="altura">Altura</param>
+            <param name="largura">Largura</param>
+            <param name="autoAjustar">Ajustar ao tamanho do texto</param>
+            <param name="quebrarLinha">Quebrar linha. a opção autoSize de ser false.</param>
+            <param name="texto">Texto a ser impresso</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.String,System.Drawing.Font)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="altura">Altura</param>
+            <param name="largura">Largura</param>
+            <param name="autoAjustar">Ajustar ao tamanho do texto</param>
+            <param name="quebrarLinha">Quebrar linha. a opção autoSize de ser false.</param>
+            <param name="texto">Texto a ser impresso</param>
+            <param name="fonte">Fonte que será utiliza na impressão.</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Texto.Desenhar(System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Desenha o Texto
+            </summary>
+            <param name="ev"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.PontoA">
+            <summary>
+            O ponto que representa Top-Left
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.PontoB">
+            <summary>
+            O ponto que representa Bottom-Rigth //É estraido do height e width da fonte.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.Fonte">
+            <summary>
+            Fonte que será utilizada na impressão.		
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.PosicaoY">
+            <summary>
+            Localização superior dentro da Linha
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.PosicaoX">
+            <summary>
+            Localização esquerda dentro da Linha
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.Descricao">
+            <summary>
+            Texto que será mostrado no relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.Borda">
+            <summary>
+            Formatação da borda da linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.CorFundo">
+            <summary>
+            Cor de fundo
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.QuebrarLinha">
+            <summary>
+            Quebrar linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.AutoAjustar">
+            <summary>
+            Ajustar ao tamanho do texto
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.Altura">
+            <summary>
+            Altura
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Texto.Largura">
+            <summary>
+            Largura
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.DBTexto.#ctor(System.Data.DataColumn)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="coluna">Coluna que será utilizada para preencher o DBTexto</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.DBTexto.#ctor(System.Int32,System.Int32,System.Data.DataColumn)">
+            <summary>
+             Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="coluna">Coluna que será utilizada para preencher o DBTexto</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.DBTexto.#ctor(System.Int32,System.Int32,System.Data.DataColumn,System.Drawing.Font)">
+            <summary>
+             Construtor
+            </summary>
+            <param name="posicaoY">Localização superior dentro da Linha</param>
+            <param name="posicaoX">Localização esquerda dentro da Linha</param>
+            <param name="coluna">Coluna que será utilizada para preencher o DBTexto</param>
+            <param name="fonte">Fonte utilizada na impressão</param>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.DBTexto.Descricao">
+            <summary>
+            Texto que será mostrado no relatório. Será o valor que estiver na coluna passada no construtor.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.DBTexto.Coluna">
+            <summary>
+            Coluna que representa a informação a ser mostrada.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ShouldSerializeTables">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ShouldSerializeRelations">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ReadXmlSerializable(System.Xml.XmlReader)">
+            <summary>
+            
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.GetSchemaSerializable">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDOR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ECFRowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.VENDEDORRowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CLIENTERowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.PRODUTORowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CUPOMRowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ITEMRowChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ECFDataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.AddECFRow(Bematech.Relatorios.DataSetRelatorios.ECFRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.AddECFRow(System.String,System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="NUMERO_SERIE"></param>
+            <param name="NUMERO_CAIXA"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.FindByCOD_ECF(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="COD_ECF"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.NewECFRow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.RemoveECFRow(Bematech.Relatorios.DataSetRelatorios.ECFRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.ECFRowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.ECFRowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.ECFRowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ECFDataTable.ECFRowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ECFRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFRow.IsNUMERO_CAIXANull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFRow.SetNUMERO_CAIXANull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFRow.GetINFO_DIARIARows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFRow.GetCUPOMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFRow.COD_ECF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFRow.NUMERO_SERIE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFRow.NUMERO_CAIXA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ECFRowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ECFRowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.ECFRow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFRowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ECFRowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.AddINFO_DIARIARow(Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.AddINFO_DIARIARow(Bematech.Relatorios.DataSetRelatorios.ECFRow,System.Int32,System.Int32,System.Decimal,System.Decimal,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="parentECFRowByECFINFO_DIARIA"></param>
+            <param name="CONT_REDUCAO_Z"></param>
+            <param name="CONT_REINICIO_OPERACAO"></param>
+            <param name="VENDA_BRUTA"></param>
+            <param name="GRANDE_TOTAL"></param>
+            <param name="DATA"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.FindByCOD_ECFDATA(System.Int32,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="COD_ECF"></param>
+            <param name="DATA"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.NewINFO_DIARIARow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.RemoveINFO_DIARIARow(Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.INFO_DIARIARowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.INFO_DIARIARowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.INFO_DIARIARowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIADataTable.INFO_DIARIARowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.GetCUPOMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.COD_ECF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.CONT_REDUCAO_Z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.CONT_REINICIO_OPERACAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.VENDA_BRUTA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.GRANDE_TOTAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.DATA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow.ECFRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.INFO_DIARIARowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.AddVENDEDORRow(Bematech.Relatorios.DataSetRelatorios.VENDEDORRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.AddVENDEDORRow(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="NOME"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.NewVENDEDORRow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.RemoveVENDEDORRow(Bematech.Relatorios.DataSetRelatorios.VENDEDORRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.VENDEDORRowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.VENDEDORRowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.VENDEDORRowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.VENDEDORDataTable.VENDEDORRowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.VENDEDORRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORRow.GetCUPOMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORRow.COD_VENDEDOR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORRow.NOME">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.VENDEDORRowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.VENDEDORRowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.VENDEDORRow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORRowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.VENDEDORRowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.AddCLIENTERow(Bematech.Relatorios.DataSetRelatorios.CLIENTERow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.AddCLIENTERow(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="CPF_CGC"></param>
+            <param name="NOME"></param>
+            <param name="ENDERECO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.NewCLIENTERow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.RemoveCLIENTERow(Bematech.Relatorios.DataSetRelatorios.CLIENTERow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.CLIENTERowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.CLIENTERowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.CLIENTERowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CLIENTEDataTable.CLIENTERowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CLIENTERow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.IsNOMENull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.SetNOMENull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.IsENDERECONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.SetENDERECONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.GetCUPOMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.COD_CLIENTE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.CPF_CGC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.NOME">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERow.ENDERECO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CLIENTERowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CLIENTERowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.CLIENTERow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CLIENTERowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.AddPRODUTORow(Bematech.Relatorios.DataSetRelatorios.PRODUTORow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.AddPRODUTORow(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="DESCRICAO"></param>
+            <param name="UNIDADE_MEDIDA"></param>
+            <param name="COD_BARRAS"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.NewPRODUTORow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.RemovePRODUTORow(Bematech.Relatorios.DataSetRelatorios.PRODUTORow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.PRODUTORowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.PRODUTORowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.PRODUTORowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.PRODUTODataTable.PRODUTORowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.PRODUTORow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTORow.GetITEMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORow.COD_PRODUTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORow.DESCRICAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORow.UNIDADE_MEDIDA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORow.COD_BARRAS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.PRODUTORowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.PRODUTORowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.PRODUTORow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.PRODUTORowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.AddCUPOMRow(Bematech.Relatorios.DataSetRelatorios.CUPOMRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.AddCUPOMRow(Bematech.Relatorios.DataSetRelatorios.ECFRow,System.Int32,System.Decimal,System.Decimal,System.DateTime,System.String,Bematech.Relatorios.DataSetRelatorios.CLIENTERow,Bematech.Relatorios.DataSetRelatorios.VENDEDORRow)">
+            <summary>
+            
+            </summary>
+            <param name="parentECFRowByECFCUPOM"></param>
+            <param name="NUMERO"></param>
+            <param name="ACRESCIMO"></param>
+            <param name="DESCONTO"></param>
+            <param name="DATA"></param>
+            <param name="STATUS"></param>
+            <param name="parentCLIENTERowByCLIENTECUPOM"></param>
+            <param name="parentVENDEDORRowByVENDEDORCUPOM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.NewCUPOMRow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.RemoveCUPOMRow(Bematech.Relatorios.DataSetRelatorios.CUPOMRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.CUPOMRowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.CUPOMRowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.CUPOMRowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.CUPOMDataTable.CUPOMRowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CUPOMRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.IsACRESCIMONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.SetACRESCIMONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.IsDESCONTONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.SetDESCONTONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.IsCOD_CLIENTENull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.SetCOD_CLIENTENull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.IsCOD_VENDEDORNull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.SetCOD_VENDEDORNull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.GetITEMRows">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.COD_CUPOM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.COD_ECF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.NUMERO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.ACRESCIMO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.DESCONTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.DATA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.STATUS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.COD_CLIENTE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.COD_VENDEDOR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.INFO_DIARIARowParent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.ECFRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.CLIENTERow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRow.VENDEDORRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.CUPOMRowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.CUPOMRowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.CUPOMRow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.CUPOMRowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.AddITEMRow(Bematech.Relatorios.DataSetRelatorios.ITEMRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.AddITEMRow(Bematech.Relatorios.DataSetRelatorios.CUPOMRow,Bematech.Relatorios.DataSetRelatorios.PRODUTORow,System.Int16,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.String,System.String,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="parentCUPOMRowByCUPOMITEM"></param>
+            <param name="parentPRODUTORowByPRODUTOITEM"></param>
+            <param name="NUMERO_SEQUENCIAL"></param>
+            <param name="QUANTIDADE"></param>
+            <param name="VALOR_UNITARIO"></param>
+            <param name="ACRESCIMO"></param>
+            <param name="DESCONTO"></param>
+            <param name="VALOR_ALIQUOTA"></param>
+            <param name="TIPO_ALIQUOTA"></param>
+            <param name="STATUS"></param>
+            <param name="TOTAL_RATEIO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.NewITEMRow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.NewRowFromBuilder(System.Data.DataRowBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.GetRowType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.RemoveITEMRow(Bematech.Relatorios.DataSetRelatorios.ITEMRow)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.ITEMRowChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.ITEMRowChanging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.ITEMRowDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.DataSetRelatorios.ITEMDataTable.ITEMRowDeleting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ITEMRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.IsACRESCIMONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.SetACRESCIMONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.IsDESCONTONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.SetDESCONTONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.IsVALOR_ALIQUOTANull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.SetVALOR_ALIQUOTANull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.IsTOTAL_RATEIONull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRow.SetTOTAL_RATEIONull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.COD_ITEM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.COD_CUPOM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.COD_PRODUTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.NUMERO_SEQUENCIAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.QUANTIDADE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.VALOR_UNITARIO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.ACRESCIMO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.DESCONTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.VALOR_ALIQUOTA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.TIPO_ALIQUOTA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.STATUS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.TOTAL_RATEIO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.CUPOMRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRow.PRODUTORow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.DataSetRelatorios.ITEMRowChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.DataSetRelatorios.ITEMRowChangeEvent.#ctor(Bematech.Relatorios.DataSetRelatorios.ITEMRow,System.Data.DataRowAction)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="action"></param>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRowChangeEvent.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.DataSetRelatorios.ITEMRowChangeEvent.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Linha">
+            <summary>
+            Classe que representa uma linha do relatório.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.#ctor(System.Int32)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="altura">Altura da linha</param>		
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.#ctor(Bematech.Relatorios.Administrativos.Texto)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="texto">Texto a ser adicionado na linha</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.#ctor(System.Int32,Bematech.Relatorios.Administrativos.Texto)">
+            <summary>
+            
+            </summary>
+            <param name="altura">Altura da linha</param>
+            <param name="texto">Texto a ser adicionado na linha</param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.AdicionarTexto(Bematech.Relatorios.Administrativos.Texto)">
+            <summary>
+            Adiciona um Texto à linha.
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.Desenhar(System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Desenha a linha e todos os textos dentre dela.
+            </summary>
+            <param name="ev"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Linha.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Bematech.Relatorios.Administrativos.Linha.AntesImpressao">
+            <summary>
+            Evento que será disparado antes da impressão de uma linha.
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.Administrativos.Linha.DepoisImpressao">
+            <summary>
+            Evento que será disparado depois da impressão de uma linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.PontoA">
+            <summary>
+            O ponto que representa Top-Left
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.PontoB">
+            <summary>
+            O ponto que representa Bottom-Rigth
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.SetaParent">
+            <summary>
+            Configura o parente.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Row">
+            <summary>
+            DataRow associada a linha
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Altura">
+            <summary>
+            Altura da linha
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Borda">
+            <summary>
+            Formatação da borda da linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Fonte">
+            <summary>
+            Fonte que será utilizada para todos os Texto associados a linha que não tenham uma fonte.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.CorFundo">
+            <summary>
+            Cor de fundo da linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Margens">
+            <summary>
+            Margens da linha.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Linha.Item(System.Int32)">
+            <summary>
+            Digite o indice do objeto que deseja acessar.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Linha.AntesImpressaoLinhaHandler">
+            <summary>
+            Define o evento de BeforePrintLineHandler.
+            Utiliza os seguintes parâmetros:
+            	1 - Linha line: Linha que será impressa.
+            	2 - DataRow row: DataRow associada a linha.
+            	3 - bool printLine: Permite cancelar a impressão da linha. O default é True(imprimir)
+            	4 - Linha[] insertLines: Permite inserir novas linhas para serem impressas após a linha Atual.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Linha.DepoisImpressaoLinhaHandler">
+            <summary>
+            Define o evento de AfterPrintLineHandler.
+            Utiliza os seguintes parâmetros:
+            	1 - Linha line: Linha que foi impressa.
+            	2 - DataRow row: DataRow associada a linha.
+            	3 - Linha[] insertLines: Permite inserir novas linhas para serem impressas.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo90">
+            <summary>
+            Registro tipo 90 - Totalização do Arquivo
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo90.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo90.CNPJ">
+            <summary>
+            CNPJ do possuidor da mercadoria de propriedade do informante, ou
+            do proprietário da mercadoria em poder do informante.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo90.InscricaoEstadual">
+            <summary>
+            Inscrição Estadual do possuidor da mercadoria de propriedade do informante, ou
+            do proprietário da mercadoria em poder do informante.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo90.TipoTotalizado">
+            <summary>
+            Tipo de registro que será totalizado pelo próximo campo
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo90.TotalRegistros">
+            <summary>
+            Total de registros do tipo informado no campo anterior
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo90.NumeroRegistros">
+            <summary>
+            Número de registros tipo 90
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RegistroTipo60M">
+            <summary>
+            Identificador do equipamento
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60M.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60M.#ctor(System.DateTime)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60M.GerarRegistro">
+            <summary>
+            Retorna uma string na formatação exigida pelo relatório
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RegistroTipo60M.CompareTo(System.Object)">
+            <summary>
+            Compara os valores de ordenação de dois objetos e retorna um inteiro relativo ao seus valores. 
+            </summary>
+            <param name="Value">Objeto a ser comparado</param>
+            <returns>1, 0 ou -1</returns>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.DataEmissao">
+            <summary>
+            Data de emissão dos documentos fiscais.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.NumeroSerie">
+            <summary>
+            Número de séie de fabricação do equipamento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.NumeroOrdem">
+            <summary>
+            Número atribuído pelo estabelecimento ao equipamento
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.COOInicial">
+            <summary>
+            Número do primeiro documento fiscal emitido no dia.
+            (Número do Contador de Ordem de Operação - COO)
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.COOFinal">
+            <summary>
+            Número do ultimo documento fiscal emitido no dia.
+            (Número do Contador de Ordem de Operação - COO)
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.ContadorReducaoZ">
+            <summary>
+            Número do contador de Redução Z 
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.ContadorReinicioOperacao">
+            <summary>
+            Valor acumulado no Contador de Reinício de Operação
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.VendaBruta">
+            <summary>
+            Valor acumulado no totalizador de Venda Bruta.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RegistroTipo60M.TotalizadorGeral">
+            <summary>
+            Valor acumulado no totalizador Geral.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.RelatorioAdministrativo">
+            <summary>
+            Classe que representa um relatório.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.AntesImpressao">
+            <summary>
+            Evento que será disparado antes da impressão do relatório.
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.DepoisImpressao">
+            <summary>
+            Evento que será disparado depois da impressão do relatório.
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.OnRelatorioErro">
+            <summary>
+            Evendo que será disparado caso ocorrer algum erro durante a impressão do relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.PontoA">
+            <summary>
+            Deslocamento Vertical
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Documento">
+            <summary>
+            Retorna um PrintDocument, que pode ser utilizado para impressão ou visualização do relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.ConfiguracaoPagina">
+            <summary>
+            Configurações da página.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Fonte">
+            <summary>
+            Fonte padrão.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Cabecalho">
+            <summary>
+            Define um cabeçalho para o relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Rodape">
+            <summary>
+            Define um rodapé para o relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Linha">
+            <summary>
+             Define a linha que será impressa.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.NumeroColunas">
+            <summary>
+            Seta o número de colunas do relatório.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Dados">
+            <summary>
+            Seta as DataRows que serão utilizadas para a impressão.
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.RelatorioHandler">
+            <summary>
+            Define o evento de PrintReportHandler
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.RelatorioErroHandler">
+            <summary>
+            Define o evento de ReportErroHandler
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Columns">
+            <summary>
+            Define o numero de colunas do relatório
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Columns.OneColumns">
+            <summary>
+            Uma coluna
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Columns.TwoColumns">
+            <summary>
+            Duas colunas
+            </summary>
+        </member>
+        <member name="F:Bematech.Relatorios.Administrativos.RelatorioAdministrativo.Columns.ThreeColumns">
+            <summary>
+            três colunas
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Administrativos.Borda">
+            <summary>
+            Define a formatação das bordas das classes de desenho.
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Administrativos.Borda.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Borda.Superior">
+            <summary>
+            Define a borda superior
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Borda.Esquerda">
+            <summary>
+            Define a borda esquerda
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Borda.Direita">
+            <summary>
+            Define a borda direita
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Borda.Inferior">
+            <summary>
+            Define a borda inferior
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Administrativos.Borda.Espessura">
+            <summary>
+            Define a espessura
+            </summary>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RelatorioSintegra">
+            <summary>
+            Classe para geração do síntegra. 
+            Oferece classes utilitárias para que podem ser tanto previamente criadas/populadas pelo 
+            desenvolvedor (TODAS) e algumas que podem ser criadas automáticmanete pelo framework 
+            ( tipo60, tipo90, tipo75)</summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.GerarRegistros(Bematech.Relatorios.DataSetRelatorios)">
+            <summary>
+            Cria todos os registros. A ordem de criação é importante.
+            </summary>
+            <param name="dados"></param>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.AdicionarRegistro(Bematech.Relatorios.Sintegra.IRegistroSintegra)">
+            <summary>
+            Permite adicionar registros ao relatório que será gerado
+            </summary>
+            <param name="field">Registro a ser adicionado</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.Gerar(System.String)">
+            <summary>
+            Gerar o relatório sintegra e salva em um arquivo.
+            </summary>
+            <param name="fileName">Nome do arquivo de destino</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.Gerar(System.IO.TextWriter)">
+            <summary>
+            Gerar o relatório sintegra e usa um TextWriter para escrever
+            </summary>
+            <param name="fileOut">TextWriter fileOut</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.Gerar(Bematech.Relatorios.DataSetRelatorios,System.String)">
+            <summary>
+            Gera o relatório sintegra apartir de um DataSetRelatorios e salva em um arquivo
+            </summary>
+            <param name="dadosSintegra">DataSetRelatorios com informações do sintegra</param>
+            <param name="fileName">Nome do arquivo de saida</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.Gerar(Bematech.Relatorios.DataSetRelatorios,System.IO.TextWriter)">
+            <summary>
+            Gera o relatório sintegra apartir de um DataSetRelatorios e usa um TextWriter para escrever
+            </summary>
+            <param name="dadosSintegra">DataSetRelatorios com informações do sintegra</param>
+            <param name="fileOut">TextWriter fileOut</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.ClearAllRegistros">
+            <summary>
+            Remove todos os registros da memória
+            </summary>
+        </member>
+        <member name="M:Bematech.Relatorios.Sintegra.RelatorioSintegra.GerarDataSetSintegra(System.Data.IDbConnection,System.DateTime,System.DateTime,System.Data.IDbDataAdapter)">
+            <summary>
+            Gera um data set, com dados limitador por um certo periodo, para ser utilizado
+            na geração dos registros sintegras.
+            </summary>
+            <param name="conexao"></param>		
+            <param name="inicio">data de inicio da pesquisa </param>
+            <param name="fim">data de fim da pesquisa </param>
+            <param name="adapter">DataAdapter do tipo especifico do cliente: SqlDataAdapter, MySqlDataAdapter, OdbcDataAdapter </param>
+            <returns>objeto do tipo DataSetRelatorios</returns>
+            <exception cref="T:Bematech.Relatorios.RelatoriosException"> Exceção levantado caso ocorra algum 
+            erro na geração do dataset</exception>			
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro60A">
+            <summary>
+            Define se o Registro 60A será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro60D">
+            <summary>
+            Define se o Registro 60R será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro60I">
+            <summary>
+            Define se o Registro 60I será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro60M">
+            <summary>
+            Define se o Registro 60M será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro60R">
+            <summary>
+            Define se o Registro 60R será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraRegistro75">
+            <summary>
+            Define se o Registro 75 será gerado
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.LimpaRegistrosAposGerarRelatorios">
+            <summary>
+            Remove todos os registros gerados da memória apos salvar o arquivo do sintegra.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.Registro10">
+            <summary>
+            Registro destinado a identificação do estabelecimento.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.Registro11">
+            <summary>
+            Registro com dados complementares do informante
+            </summary>
+        </member>
+        <member name="E:Bematech.Relatorios.Sintegra.RelatorioSintegra.ProgressStatus">
+            <summary>
+            Evento de status da geração do sintegra
+            </summary>				
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.ListaErros">
+            <summary>
+            Lista e erros ocorridos durante a geração do sintegra.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.GeraException">
+            <summary>
+            Caso true, será levantada uma exception quando encontrar o primeiro erro.
+            </summary>
+        </member>
+        <member name="P:Bematech.Relatorios.Sintegra.RelatorioSintegra.CulturaInfo">
+            <summary>
+            Parametrização da cultura especifica ao banco
+            </summary>
+            <example>
+            //Exemplo de CultureInfo Formatação
+            
+            CultureInfo cultura = new CultureInfo(CultureInfo.CurrentCulture.LCID,false);
+            this.cultura.NumberFormat.NumberDecimalSeparator = ".";
+            this.cultura.DateTimeFormat.ShortDatePattern = "$dd/MM/yyyy$";
+            this.cultura.DateTimeFormat.LongTimePattern  = "";
+            
+            /*
+            Essa formatação cria uma saida no seguinte formato
+            Datas: '16/01/2005'  --> O Horario não será exibido e data será colocada entre ASPAS
+            Decimal: 152.03     --> O caracter de separação será um ponto.
+            */
+            </example>
+            <remarks>O simbolo $ será substituido por aspas nas formatações de datas</remarks>
+        </member>
+        <member name="T:Bematech.Relatorios.Sintegra.RelatorioSintegra.ProgressStatusHandler">
+            <summary>
+            Evento de status da geração do sintegra
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios">
+             <summary>
+            Represents a strongly typed in-memory cache of data.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ECFDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.INFO_DIARIADataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.VENDEDORDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CLIENTEDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.PRODUTODataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CUPOMDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ITEMDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ECFRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.INFO_DIARIARow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.VENDEDORRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CLIENTERow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.PRODUTORow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CUPOMRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ITEMRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ECFRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.INFO_DIARIARowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.VENDEDORRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CLIENTERowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.PRODUTORowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.CUPOMRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Bematech.Fiscal.Sintegra.Geracao.DataSetRelatorios.ITEMRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+    </members>
+</doc>

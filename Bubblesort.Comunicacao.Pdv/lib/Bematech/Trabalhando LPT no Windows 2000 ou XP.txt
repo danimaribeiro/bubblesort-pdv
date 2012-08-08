@@ -1,0 +1,10 @@
+=================================================================
+PARA TRABALHAR COM A PORTA PARALELA EM WUNDOWS 2000 OU WINDOWS XP
+=================================================================
+
+1) Execute o aplicativo Installer.exe.
+
+2) Selecione "Bematech International" na lista de fabricantes e "Bematech Class Driver"
+   na lista de modelos. 
+
+3) Clique em Avançar e Concluir para as próximas janelas.

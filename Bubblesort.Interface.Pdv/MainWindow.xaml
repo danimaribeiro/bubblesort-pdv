@@ -1,8 +1,42 @@
 ﻿<Window x:Class="Bubblesort.Interface.Pdv.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Open Source - PDV" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Menu Height="39" VerticalAlignment="Top">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF6F6F6" Offset="0.071"/>
+                    <GradientStop Color="#FFEAE8E8" Offset="0.058"/>
+                    <GradientStop Color="#FFDCD9D9" Offset="0.865"/>
+                    <GradientStop Color="White" Offset="0.418"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="Arquivo" FontSize="16" Margin="0,6,0,0"/>
+            <MenuItem Header="Configurações" FontSize="16" Margin="0,6,0,0" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Supervisor" FontSize="16" Margin="0,6,0,0"/>
+            <MenuItem x:Name="menuCadastros" FontSize="16" Header="Cadastros" Margin="0,6,0,0" Click="menuCadastros_Click">
+                <MenuItem x:Name="menuCadastroProduto" Header="Produtos" Click="MenuItem_Click_2"/>
+                <MenuItem x:Name="menuCadastroCliente" Header="Clientes" Click="menuCadastroCliente_Click_1"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid Margin="29,58,0,90" HorizontalAlignment="Left" Width="608">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Item"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Produto"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Valor"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Produto:"  VerticalAlignment="Bottom" Margin="29,0,0,44" HorizontalAlignment="Left" Width="55"/>
+        <Label Content="Valor:"  VerticalAlignment="Bottom" Margin="29,0,0,10" HorizontalAlignment="Left" Width="40"/>
+        <TextBox  TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="108,0,0,44" HorizontalAlignment="Left" Width="232"/>
+        <TextBox  TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="108,0,0,13" HorizontalAlignment="Left" Width="232"/>
+        <Label Content="Total:"  VerticalAlignment="Bottom" Margin="474,0,0,44" HorizontalAlignment="Left" Width="39"/>
+        <Label Content="Total da Venda:" Margin="421,0,0,13" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92"/>
+        <TextBox  TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="518,0,0,15" HorizontalAlignment="Left" Width="232"/>
+        <TextBox  TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="518,0,0,48" HorizontalAlignment="Left" Width="232"/>
+        <Button Content="Finalizar item" Height="36" VerticalAlignment="Bottom" Margin="760,0,0,15" HorizontalAlignment="Left" Width="124"/>
+        <Button Content="Confirmar" Height="27" VerticalAlignment="Bottom" Margin="345,0,0,41" HorizontalAlignment="Left" Width="71"/>
+
     </Grid>
 </Window>

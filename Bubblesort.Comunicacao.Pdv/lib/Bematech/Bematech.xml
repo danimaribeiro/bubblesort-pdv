@@ -1,0 +1,4582 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bematech</name>
+    </assembly>
+    <members>
+        <member name="T:Bematech.CodigosDeBarras.MSI">
+            <summary>
+            Representa um código de barras no padrão MSI
+            </summary>
+            <remarks>
+            Aceita digitos de 0-9.
+            </remarks>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CodigoBarras">
+            <summary>
+            Representa um código de barras, suportado pelas impressoras térmicas
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.IMensagem">
+            <summary>
+            Interface para impressão de textos/códigos barras na impressão
+            </summary>
+            <remarks> Objetos que implementam essa interface são esperados como
+            parâmetros para diversos métodos do framework. Deve ser implementado pelo
+            desenvolvedor caso se queira customizar alguma impressão para a impressora que 
+            não seja atendida pelas classes TExtoFormatado ou de código de barras</remarks>
+        </member>
+        <member name="M:Bematech.Texto.IMensagem.Preparar(Bematech.ModeloImpressora)">
+            <summary>
+            Prepara a "mensagem" para ser enviada à impressora fiscal.
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Dados prontos para serem enviados à impressora</returns>
+            <remarks>A Mensagem pode ser um texto simples, um texto formatado, 
+            um código de barras, etc. O método preparar deve deixar os dados 
+            prontos para serem enviados à impressora no padrão que ela espera. 
+            Por exemplo: se for enviar um texto em negrito para a impressora, 
+            esse método deve preparar os dados já com o comando que habilita e 
+            desabilita o modo negrito na impressora e o texto que será impresso.</remarks>
+        </member>
+        <member name="T:Bematech.Texto.IMensagemImpressoraNaoFiscal">
+            <summary>
+            Interface para impressão de textos sem formatação, textos com formatação e 
+            códigos de barras
+            </summary>
+            <remarks> Objetos que implementam essa interface são esperados como
+            parâmetros em diversos métodos do framework. Deve ser implementado pelo
+            desenvolvedor caso se queira customizar alguma impressão que não seja 
+            atendida pelas classes TextoFormatado ou CodigoBarras</remarks>
+        </member>
+        <member name="M:Bematech.Texto.IMensagemImpressoraNaoFiscal.Preparar(Bematech.ModeloImpressoraNaoFiscal)">
+            <summary>
+            Prepara a "mensagem" para ser enviada à impressora não fiscal.
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Dados prontos para serem enviados à impressora</returns>
+            <remarks>A Mensagem pode ser um texto simples, um texto formatado, 
+            um código de barras, etc. O método preparar deve deixar os dados 
+            prontos para serem enviados à impressora no padrão que ela espera. 
+            Por exemplo: se for enviar um texto em negrito para a impressora, 
+            esse método deve preparar os dados já com o comando que habilita e 
+            desabilita o modo negrito na impressora e o texto que será impresso.</remarks>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.TAMANHO_MAXIMO_MARGEM">
+            <summary>
+            tamanho máximo para a margem esquerda
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_altura">
+            <summary>
+            altura das barras: 1-255 ( default 162)
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_largura">
+            <summary>
+            largura das barras:  default média
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_fonte">
+            <summary>
+            fonte da legenda: FonteLegenda.[Normal ou Condensada] ( default é Normal)
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_posicao">
+            <summary>
+            posicao da legenda: PosicaoLegenda.[Abaixo,Acima,AcimaAbaixo,Nenhuma] ( default é abaixo)
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_margem">
+            <summary>
+            margem esquerda para o código 
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_codigo">
+            <summary>
+            m_codigo
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_validado">
+            <summary>
+            flag que indica se o m_codigo já foi m_validado ou não
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.m_codigoFormatado">
+            <summary>
+            buffer com o código já pronto
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.#ctor">
+            <summary>
+            construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.ValidarCodigo">
+            <summary>
+            Valida o código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.Preparar(Bematech.ModeloImpressora)">
+            <summary>
+            Prepara o código de barras para ser impresso
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Os "escapes" de impressão do código de barras no
+            formato que tem que ser enviado para a impressora</returns>
+            <exception cref="T:Bematech.BematechException">Parâmetro inválido ou 
+            código de barras inexistente no modelo de impressora informado.</exception>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.Preparar(Bematech.ModeloImpressoraNaoFiscal)">
+            <summary>
+            Prepara o código de barras para ser impresso
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Os "escapes" de impressão do código de barras no
+            formato que tem que ser enviado para a impressora</returns>
+            <exception cref="T:Bematech.BematechException">Parâmetro inválido ou 
+            código de barras inexistente no modelo de impressora informado.</exception>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.Validar">
+            <summary>
+            Valida o código de barra configurado
+            </summary>
+            <returns>enum ValidacaoCodigo contendo o status da validação</returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CodigoBarras.ToString">
+            <summary>
+            Representação textual para o código de barras passada
+            </summary>
+            <returns>string com descrição do código montado</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.TamanhoMaximoGrossa">
+            <summary>
+            tamanho maximo para barras grossas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.ByteComando">
+            <summary>
+            byte indentificador do código de barras
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.TamanhoComando">
+            <summary>
+            tamanho do comando a ser enviado para a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.NullTerminated">
+            <summary>
+            Informação do código é terminada com null ou não
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.CodigoFormatado">
+            <summary>
+            Retorna array com o código já formatado, pronto para o envio à impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Codigo">
+            <summary>
+            Ajusta/Retorna o código a ser impresso
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Altura">
+            <summary>
+            Ajusta/Retorna a altura do código
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Margem">
+            <summary>
+            Ajusta/Retorna a posição da margem
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Largura">
+            <summary>
+            Ajusta/Retorna a largura da barra
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Posicao">
+            <summary>
+            Ajusta/Retorna a posição da legenda
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CodigoBarras.Fonte">
+            <summary>
+            Ajusta/retorna a fonte da legenda
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo">
+            <summary>
+            Enum descrevendo os retornos da validação do código
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo.Sucesso">
+            <summary>
+            Codigo para validação com sucesso
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo.TamanhoExcedido">
+            <summary>
+            Codigo para erro de validação devido a tamanho máximo do código excedido
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo.MargemExcedida">
+            <summary>
+            Codigo para erro de validação devido a tamanho máximo para margem excedida
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo.AlturaExcedida">
+            <summary>
+            Codigo para erro de validação devido a tamanho máximo da altura excedida
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.ValidacaoCodigo.FormatoIncorreto">
+            <summary>
+            Codigo para erro de validação devido a formato inválido para o código
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CodigoBarras.LarguraBarra">
+            <summary>
+            Enum descrevendo as larguras possíveis para a barra
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.LarguraBarra.Fina">
+            <summary>
+            Largura fina
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.LarguraBarra.Media">
+            <summary>
+            Largura Media
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.LarguraBarra.Grossa">
+            <summary>
+            Largura Grossa
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CodigoBarras.FonteLegenda">
+            <summary>
+            Enum descrevendo as fontes possíveis para a legenda
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.FonteLegenda.Normal">
+            <summary>
+            Fonte normal
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.FonteLegenda.Condensada">
+            <summary>
+            Fonte condensada
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CodigoBarras.PosicaoLegenda">
+            <summary>
+            Enum descrevendo as posições possíveis para a legenda
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.PosicaoLegenda.Nenhuma">
+            <summary>
+            Sem legenda
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.PosicaoLegenda.Acima">
+            <summary>
+            Legenda acima do código
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.PosicaoLegenda.Abaixo">
+            <summary>
+            Legenda abaixo do código
+            </summary>
+        </member>
+        <member name="F:Bematech.CodigosDeBarras.CodigoBarras.PosicaoLegenda.AcimaAbaixo">
+            <summary>
+            Legenda acima e abaixo do código
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.MSI.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.MSI.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.MSI.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.MSI.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.MSI.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.MSI.TamanhoMaximoGrossa">
+            <summary>
+            tamanho maximo para barras grossas
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CODABAR">
+            <summary>
+            Representa um código de barras no padrão CODABAR
+            </summary>
+            <remarks>
+            Aceita dígitos entre 0 à 9. 
+            Aceita as letras A, B, C e D (maiúsculas ou minúsculas). 
+            Aceita os caracteres: "$", "+", "-", ".", "/" e ":". 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODABAR.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODABAR.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODABAR.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODABAR.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODABAR.TamanhoMaximoMedia">
+            <summary>
+            tamanho máximo para barras médias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODABAR.TamanhoMaximoGrossa">
+            <summary>
+            tamanho máximo para barras grossas
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Serialization.BinaryFormatterBematech">
+            <summary>
+            Classe utilizada para fazer a serialization de objetos
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.BinaryFormatterBematech.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.BinaryFormatterBematech.#ctor(System.Boolean)">
+            <summary>
+            Função utilizada para desabilitar o check do atribuito de serialização
+            </summary>
+            <param name="useSerializableAttribute"></param>
+        </member>
+        <member name="M:System.Runtime.Serialization.BinaryFormatterBematech.Deserialize(System.IO.Stream)">
+            <summary>
+            Função para deserializar uma stream.
+            </summary>
+            <param name="serializationStream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Runtime.Serialization.BinaryFormatterBematech.Serialize(System.IO.Stream,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="serializationStream"></param>
+            <param name="graph"></param>
+        </member>
+        <member name="P:System.Runtime.Serialization.BinaryFormatterBematech.Binder">
+            <summary>
+            Não implementada.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.Serialization.BinaryFormatterBematech.UseSerializableAttribute">
+            <summary>
+            Propriedade UseSerializableAttribute
+            </summary>
+        </member>
+        <member name="P:System.Runtime.Serialization.BinaryFormatterBematech.Context">
+            <summary>
+            Não implementada.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.Serialization.BinaryFormatterBematech.SurrogateSelector">
+            <summary>
+             Não implementada.
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CODE39">
+            <summary>
+            Representa um código de barras no padrão CODE39
+            </summary>
+            <remarks>
+            Aceita dígitos entre 0 à 9. 
+            Aceita letras de A à Z (maiúsculas ou minúsculas). 
+            Aceita os caracteres: "espaço em branco", "$", "%", "+", "-", "." e "/". 
+            As letras não podem se maiúsculas e minúsculas simultaneamente. 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE39.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE39.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE39.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE39.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE39.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE39.TamanhoMaximoGrossa">
+            <summary>
+            tamanho máximo para barras grossas
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.DadoRecebidoPortaHandler">
+            <summary>
+            Delegate para eventos de Dados Recebidos gerados pela classe PortaSerial
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.ErroPorta">
+            <summary>
+            Enumeração descrevendo os códigos de erro da porta de comunicacao
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ErroPorta.Success">
+            <summary>
+            Sucesso
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ErroPorta.Generic">
+            <summary>
+            Erro genérico
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ErroPorta.AccessDenied">
+            <summary>
+            Acesso negado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ErroPorta.Unavailable">
+            <summary>
+            Indisponível
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.Parity">
+            <summary>
+            Enumeração descrevendo os valores suportados para paridade
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Parity.None">
+            <summary>
+            Sem bits de paridade.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Parity.Odd">
+            <summary>
+            Paridade impar.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Parity.Even">
+            <summary>
+            Paridade par
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Parity.Mark">
+            <summary>
+            O bit de paridade é sempre 1.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Parity.Space">
+            <summary>
+            O bit de paridade é sempre 0.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.DataBits">
+            <summary>
+            Enumeração descrevendo o tamanho dos bytes de dados.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.DataBits.Five">
+            <summary>
+            5 bits por byte de dado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.DataBits.Six">
+            <summary>
+            6 bits por byte de dado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.DataBits.Seven">
+            <summary>
+            7 bits por byte de dado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.DataBits.Eight">
+            <summary>
+            8 bits por byte de dado
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.StopBits">
+            <summary>
+            Enumeração descrevendo os bits de parada
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.StopBits.One">
+            <summary>
+            1 bit de parada
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.StopBits.OneFive">
+            <summary>
+            1.5 bits de parada
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.StopBits.Two">
+            <summary>
+            2 bits de parada
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.BaudRate">
+            <summary>
+            Enumeração descrevendo os valores de taxa de transmissão (baud rate) 
+            suportados.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_110">
+            <summary>
+            110
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_300">
+            <summary>
+            300
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_600">
+            <summary>
+            600
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_1200">
+            <summary>
+            1200
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_2400">
+            <summary>
+            2400
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_4800">
+            <summary>
+            4800
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_9600">
+            <summary>
+            9600
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_14400">
+            <summary>
+            14400
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_19200">
+            <summary>
+            19200
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_38400">
+            <summary>
+            38400
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_56000">
+            <summary>
+            56000
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_57600">
+            <summary>
+            57600
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_115200">
+            <summary>
+            115200
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_128000">
+            <summary>
+            128000
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.BaudRate.CBR_256000">
+            <summary>
+            256000
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.Handshake">
+            <summary>
+            Enumeração descrevendo os valores suportados para handshake.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Handshake.None">
+            <summary>
+            Sem handshaking
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Handshake.CtsRts">
+            <summary>
+            Handshaking de hardware usando os sinais CTS(in)/RTS(out)
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Handshake.DsrDtr">
+            <summary>
+            Handshaking de hardware usando os sinais DSR(in)/DTR(out)
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.Handshake.XonXoff">
+            <summary>
+            Handshaking por software usando Xon/Xoff
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.ComAPI">
+            <summary>
+            Classe de encapsulamento das declarações de imports utilizadas
+            na porta serial.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.EV_CTS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.EscapeCommFunctionW(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommBreakW(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitForSingleObjectW(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateEventW(System.IntPtr,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitCommEventW(System.IntPtr,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.ClearComErrorW(System.Int32,System.Int32,Bematech.Comunicacao.ComAPI.COMSTAT)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommMaskW(System.IntPtr,System.Int32@)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommMaskW(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommMaskWInt32(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateFileW(System.String,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            The CreateFile function creates or opens any of the following 
+            objects and returns a handle that can be used to access the object: 
+            Consoles, Communications resources, Directories (open only), 
+            Disk devices, Files, Mailslots, Pipes 
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CloseHandleW(System.IntPtr)">
+            <summary>
+            The CloseHandle function closes an open object handle.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.ReadFileW(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            The ReadFile function reads data from a file, starting at the 
+            position indicated by the file pointer. After the read operation 
+            has been completed, the file pointer is adjusted by the number 
+            of bytes actually read, unless the file handle is created with the 
+            overlapped attribute. If the file handle is created for overlapped 
+            input and output (I/O), the application must adjust the position of 
+            the file pointer after the read operation. 
+            This function is designed for both synchronous and asynchronous 
+            operation. The ReadFileEx function is designed solely for asynchronous 
+            operation. It lets an application perform other processing during a 
+            file read operation.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WriteFileW(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            The WriteFile function writes data to a file and is designed for both 
+            synchronous and asynchronous operation. The function starts writing data 
+            to the file at the position indicated by the file pointer. After the write 
+            operation has been completed, the file pointer is adjusted by the number of 
+            bytes actually written, except when the file is opened with FILE_FLAG_OVERLAPPED. 
+            If the file handle was created for overlapped input and output (I/O), the 
+            application must adjust the position of the file pointer after the write 
+            operation is finished. 
+            This function is designed for both synchronous and asynchronous operation. 
+            The WriteFileEx function is designed solely for asynchronous operation. 
+            It lets an application perform other processing during a file write operation.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommStateW(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            The GetCommState function retrieves the current control settings for 
+            a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommStateW(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            The SetCommState function configures a communications device according to the 
+            specifications in a device control block (a DCB structure). The function 
+            reinitializes all hardware and control settings, but it does not empty output 
+            or input queues.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommTimeoutsW(System.IntPtr,Bematech.Comunicacao.ComAPI.COMMTIMEOUTS@)">
+            <summary>
+            The GetCommTimeouts function retrieves the time-out parameters for
+            all read and write operations on a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommTimeoutsW(System.IntPtr,Bematech.Comunicacao.ComAPI.COMMTIMEOUTS@)">
+            <summary>
+            The SetCommTimeouts function sets the time-out parameters for all read and 
+            write operations on a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.PurgeCommW(System.IntPtr,System.Int32)">
+            <summary>
+            The PurgeComm function discards all characters from the output or input buffer 
+            of a specified communications resource. It can also terminate pending read or 
+            write operations on the resource.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommModemStatusW(System.IntPtr,System.Int32@)">
+            <summary>
+            retrieves modem control-register values
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.EscapeCommFunctionCE(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommBreakCE(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitForSingleObjectCE(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateEventCE(System.IntPtr,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitCommEventCE(System.IntPtr,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommMaskCE(System.IntPtr,System.Int32@)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommMaskCE(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateFileCE(System.String,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            The CreateFile function creates or opens any of the following 
+            objects and returns a handle that can be used to access the object: 
+            Consoles, Communications resources, Directories (open only), 
+            Disk devices, Files, Mailslots, Pipes 
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CloseHandleCE(System.IntPtr)">
+            <summary>
+            The CloseHandle function closes an open object handle.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.ReadFileCE(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            The ReadFile function reads data from a file, starting at the 
+            position indicated by the file pointer. After the read operation 
+            has been completed, the file pointer is adjusted by the number 
+            of bytes actually read, unless the file handle is created with the 
+            overlapped attribute. If the file handle is created for overlapped 
+            input and output (I/O), the application must adjust the position of 
+            the file pointer after the read operation. 
+            This function is designed for both synchronous and asynchronous 
+            operation. The ReadFileEx function is designed solely for asynchronous 
+            operation. It lets an application perform other processing during a 
+            file read operation.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WriteFileCE(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            The WriteFile function writes data to a file and is designed for both 
+            synchronous and asynchronous operation. The function starts writing data 
+            to the file at the position indicated by the file pointer. After the write 
+            operation has been completed, the file pointer is adjusted by the number of 
+            bytes actually written, except when the file is opened with FILE_FLAG_OVERLAPPED. 
+            If the file handle was created for overlapped input and output (I/O), the 
+            application must adjust the position of the file pointer after the write 
+            operation is finished. 
+            This function is designed for both synchronous and asynchronous operation. 
+            The WriteFileEx function is designed solely for asynchronous operation. 
+            It lets an application perform other processing during a file write operation.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommStateCE(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            The GetCommState function retrieves the current control settings for 
+            a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommStateCE(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            The SetCommState function configures a communications device according to the 
+            specifications in a device control block (a DCB structure). The function 
+            reinitializes all hardware and control settings, but it does not empty output 
+            or input queues.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommTimeoutsCE(System.IntPtr,Bematech.Comunicacao.ComAPI.COMMTIMEOUTS@)">
+            <summary>
+            The GetCommTimeouts function retrieves the time-out parameters for
+            all read and write operations on a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommTimeoutsCE(System.IntPtr,Bematech.Comunicacao.ComAPI.COMMTIMEOUTS@)">
+            <summary>
+            The SetCommTimeouts function sets the time-out parameters for all read and 
+            write operations on a specified communications device.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.PurgeCommCE(System.IntPtr,System.Int32)">
+            <summary>
+            The PurgeComm function discards all characters from the output or input buffer 
+            of a specified communications resource. It can also terminate pending read or 
+            write operations on the resource.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommModemStatusCE(System.IntPtr,System.Int32@)">
+            <summary>
+            retrieves modem control-register values
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.EscapeCommFunction(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hHandle"></param>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommBreak(System.IntPtr)">
+            <summary>
+            SetCommBreak
+            </summary>
+            <param name="hHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitForSingleObject(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hHandle"></param>
+            <param name="dwMilliseconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateEvent(System.IntPtr,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="lpSecurityAttributes"></param>
+            <param name="bManualReset"></param>
+            <param name="bInitialState"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WaitCommEvent(System.IntPtr,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <param name="dwFlags"></param>
+            <param name="lpOverlapped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommMask(System.IntPtr,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommMask(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommMask(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CreateFile(System.String,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="lpFileName"></param>
+            <param name="dwDesiredAccess"></param>
+            <param name="dwShareMode"></param>
+            <param name="lpSecurityAttributes"></param>
+            <param name="dwCreationDisposition"></param>
+            <param name="dwFlagsAndAttributes"></param>
+            <param name="hTemplateFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.CloseHandle(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.ReadFile(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hFile"></param>
+            <param name="lpBuffer"></param>
+            <param name="nNumberOfBytesToRead"></param>
+            <param name="nNumberOfBytesRead"></param>
+            <param name="lpOverlapped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.WriteFile(System.IntPtr,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="fFile"></param>
+            <param name="lpBuffer"></param>
+            <param name="nNumberOfBytesToWrite"></param>
+            <param name="lpNumberOfBytesWritten"></param>
+            <param name="lpOverlapped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommState(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            
+            </summary>
+            <param name="hFile"></param>
+            <param name="lpDCB"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.SetCommState(System.IntPtr,Bematech.Comunicacao.ComAPI.DCB@)">
+            <summary>
+            
+            </summary>
+            <param name="hFile"></param>
+            <param name="lpDCB"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.PurgeComm(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hFile"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.GetCommModemStatus(System.IntPtr,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="hFile"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.ComAPI.DeviceIoControl(System.IntPtr,System.Int32,System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32@,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hDevice"></param>
+            <param name="dwIoControlCode"></param>
+            <param name="lpInBuffer"></param>
+            <param name="nInBufferSize"></param>
+            <param name="lpOutBuffer"></param>
+            <param name="nOutBufferSize"></param>
+            <param name="lpBytesReturned"></param>
+            <param name="lpOverlapped"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bematech.Comunicacao.ComAPI.COMMTIMEOUTS">
+            <summary>
+            The COMMTIMEOUTS structure is used in the SetCommTimeouts and GetCommTimeouts 
+            functions to set and query the time-out parameters for a communications device. 
+            The parameters determine the behavior of ReadFile, WriteFile, ReadFileEx, and 
+            WriteFileEx operations on the device.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.ComAPI.OVERLAPPED">
+            <summary>
+            
+            </summary>
+            		[StructLayout( LayoutKind.Sequential )]
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.OVERLAPPED.Internal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.OVERLAPPED.InternalHigh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.OVERLAPPED.Offset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.OVERLAPPED.OffsetHigh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.OVERLAPPED.hEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.ComAPI.DCB">
+            <summary>
+            The DCB structure defines the control setting for a serial communications device. 
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.DCBLength">
+            <summary>
+            Length, in bytes, of the DCB structure
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.BaudRate">
+            <summary>
+            Baud rate at which the communications device operates.
+            Supported Rates: 110, 300, 600, 1200, 2400, 4800, 9600
+            14400, 19200, 38400, 56000, 57600, 115200, 128000, 256000
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.Bitfield">
+            <summary>
+            Packed bitfield from win32 struct. 
+            </summary>
+            fBinary:1 - Indicates whether binary mode is enabled. 
+            Windows does not support nonbinary mode transfers, so this member must be TRUE.
+              
+            fParity:1 - Indicates whether parity checking is enabled. 
+            If this member is TRUE, parity checking is performed and errors are reported. 
+            
+            fOutxCtsFlow:1 - Indicates whether the CTS (clear-to-send) signal is monitored 
+            for output flow control. If this member is TRUE and CTS is turned off, output 
+            is suspended until CTS is sent again. 
+            
+            fOutxDsrFlow:1 - Indicates whether the DSR (data-set-ready) signal is monitored 
+            for output flow control. If this member is TRUE and DSR is turned off, output is 
+            suspended until DSR is sent again. 
+            
+            fDtrControl:2 - DTR (data-terminal-ready) flow control. This member can be one 
+            of the following values. 
+            	DTR_CONTROL_DISABLE		Disables the DTR line when the device is opened and
+            							leaves it disabled. 
+            	DTR_CONTROL_ENABLE		Enables the DTR line when the device is opened and
+            							leaves it on. 
+            	DTR_CONTROL_HANDSHAKE	Enables DTR handshaking. If handshaking is enabled,
+            							it is an error for the application to adjust the line
+            							by using the EscapeCommFunction function. 
+            
+            fDsrSensitivity:1 - Indicates whether the communications driver is sensitive to 
+            the state of the DSR signal. If this member is TRUE, the driver ignores any bytes 
+            received, unless the DSR modem input line is high. 
+            
+            fTXContinueOnXoff:1 - Indicates whether transmission stops when the input buffer 
+            is full and the driver has transmitted the XoffChar character. If this member is 
+            TRUE, transmission continues after the input buffer has come within XoffLim bytes 
+            of being full and the driver has transmitted the XoffChar character to stop 
+            receiving bytes. If this member is FALSE, transmission does not continue until 
+            the input buffer is within XonLim bytes of being empty and the driver has 
+            transmitted the XonChar character to resume reception. 
+            
+            fOutX:1 - Indicates whether XON/XOFF flow control is used during transmission. 
+            If this member is TRUE, transmission stops when the XoffChar character is received 
+            and starts again when the XonChar character is received.
+            
+            fInX:1 -  Indicates whether XON/XOFF flow control is used during reception. 
+            If this member is TRUE, the XoffChar character is sent when the input buffer 
+            comes within XoffLim bytes of being full, and the XonChar character is sent 
+            when the input buffer comes within XonLim bytes of being empty. 
+            
+            fErrorChar: 1 -  Indicates whether bytes received with parity errors are replaced 
+            with the character specified by the ErrorChar member. If this member is TRUE and 
+            the fParity member is TRUE, replacement occurs.
+            
+            fNull:1 - Indicates whether null bytes are discarded. If this member is TRUE, 
+            null bytes are discarded when received.
+            
+            fRtsControl:2 - RTS (request-to-send) flow control. This member can be one of the 
+            following values.
+            	RTS_CONTROL_DISABLE		Disables the RTS line when the device is opened and 
+            							leaves it disabled. 
+            	RTS_CONTROL_ENABLE		Enables the RTS line when the device is opened and 
+            							leaves it on. 
+            	RTS_CONTROL_HANDSHAKE	Enables RTS handshaking. The driver raises the RTS line
+            							when the "type-ahead" (input) buffer is less than 1/2 
+            							full and lowers the RTS line when the buffer is more than
+            							three-quarters full. If handshaking is enabled, it is 
+            							an error for the application to adjust the line by using
+            							the EscapeCommFunction function.
+            	RTS_CONTROL_TOGGLE		Windows NT/2000/XP: Specifies that the RTS line will be
+            							high if bytes are available for transmission. After all
+            							buffered bytes have been sent, the RTS line will be low. 
+            
+            fAbortOnError:1 - Indicates whether read and write operations are terminated if an 
+            error occurs. If this member is TRUE, the driver terminates all read and write 
+            operations with an error status if an error occurs. The driver will not accept 
+            any further communications operations until the application has acknowledged the 
+            error by calling the ClearCommError function.
+            
+            fDummy2:17 - Reserved; do not use. 
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.Reserved">
+            <summary>
+            Reserved; must be zero.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.XonLim">
+            <summary>
+            Minimum number of bytes allowed in the input buffer before flow control 
+            is activated to inhibit the sender. Note that the sender may transmit 
+            characters after the flow control signal has been activated, so this value 
+            should never be zero. This assumes that either XON/XOFF, RTS, or DTR input 
+            flow control is specified in fInX, fRtsControl, or fDtrControl.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.XoffLim">
+            <summary>
+            Maximum number of bytes allowed in the input buffer before flow control 
+            is activated to allow transmission by the sender. This assumes that either 
+            XON/XOFF, RTS, or DTR input flow control is specified in fInX, fRtsControl, 
+            or fDtrControl. The maximum number of bytes allowed is calculated by 
+            subtracting this value from the size, in bytes, of the input buffer.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.ByteSize">
+            <summary>
+            Number of bits in the bytes transmitted and received. 
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.Parity">
+            <summary>
+            Parity scheme to be used. This member can be one of the following values.
+            Even, Mark, None, Odd, Space 
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.StopBits">
+            <summary>
+            Number of stop bits to be used. This member can be 1, 1.5, or 2 stop bits.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.XonChar">
+            <summary>
+            Value of the XON character for both transmission and reception. 
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.XoffChar">
+            <summary>
+            Value of the XOFF character for both transmission and reception. 
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.ErrorChar">
+            <summary>
+            Value of the character used to replace bytes received with a parity error.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.EofChar">
+            <summary>
+            Value of the character used to signal the end of data.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.EvtChar">
+            <summary>
+            Value of the character used to signal an event.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.ComAPI.DCB.Reserved1">
+            <summary>
+            Reserved; do not use.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaSerial">
+            <summary>
+            Classe de encapsulamento de todas as operações relativas
+            à porta serial( Abertura, fechamento, leitura, escrita, etc)
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.handle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.m_baudRate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.#ctor">
+            <summary>
+            Inicializa as configurações da porta com valores default: 
+            COM1:,9600,N,8,1,Handshake habilitado
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Finalize">
+            <summary>
+            Destrutor
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Initialize">
+            <summary>
+            Inicializa a configuração da porta serial com valores default.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.SetTimeouts">
+            <summary>
+            Atualiza as configurações da porta
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.SetFlowControl(Bematech.Comunicacao.Handshake)">
+            <summary>
+            Configura o Handshake
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.SetDCB">
+            <summary>
+            Configura a estrutura DCB
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.StartEventWatch">
+            <summary>
+            Cria uma thread de monitoramento da porta serial e inicia sua execução.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.SuspendEventWatch">
+            <summary>
+            Suspende o monitoramento de eventos, abortando a thread.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Open(System.String)">
+            <summary>Abre a porta serial com configurações 9600,N,8,1 e handshake CTS/RTS</summary>
+            <param name="portName">Nome da porta serial. Ex: COM1:</param>
+            <returns>ErroPorta</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Open(System.String,Bematech.Comunicacao.BaudRate,Bematech.Comunicacao.Parity,Bematech.Comunicacao.DataBits,Bematech.Comunicacao.StopBits,Bematech.Comunicacao.Handshake)">
+            <summary>Abre a porta serial</summary>
+            <param name="portName">Nome da porta serial. Ex: COM1:</param>
+            <param name="baudRate">Baud rate</param>
+            <param name="parity">Paridade</param>
+            <param name="dataBits">Data bits</param>
+            <param name="stopBits">Stop bits</param>
+            <param name="handshake">Handshake</param>
+            <returns>ErroPorta</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Close">
+            <summary>
+            Fecha a porta serial
+            </summary>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Write(System.Byte[],System.Int32)">
+            <summary>
+            Escreve dados na porta serial
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <param name="numeroBytesEscrever">Numero de bytes a ser escrito.</param>
+            <returns>True if executed successfully.</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Write(System.String,System.Int32)">
+            <summary>
+            Escreve dados na porta serial
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <param name="numeroBytesEscrever">Numero de bytes a ser escrito.</param>
+            <returns>True se executado com sucesso.</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Write(System.Byte[])">
+            <summary>
+            Escreve dados na porta serial
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <returns>True se executado com sucesso.</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Read(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            Lê dados na porta serial.
+            </summary>
+            <param name="buffer">Buffer para receber os dados lidos</param>
+            <param name="numeroBytesLer">Numero de bytes que devem ser lidos</param>
+            <param name="numeroBytesLidos">Numero de bytes lidos</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Read(System.Byte@,System.Int32@)">
+            <summary>
+            Lê dados na porta serial.
+            </summary>
+            <param name="Byte">parametro de saida para o byte lido</param>
+            <param name="numeroBytesLidos">numero de bytes lido (0 u 1)</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaSerial.Purge">
+            <summary>
+            Purge na porta
+            </summary>
+        </member>
+        <member name="E:Bematech.Comunicacao.PortaSerial.DadoRecebido">
+            <summary>
+            Evento disparado quando algum dado é recebido pela porta serial.
+            </summary>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaSerial.EnviaBytesAntesLeitura">
+            <summary>
+            Envia bytes antes de fazer a leitura, durante o monitoramento do evento.
+            </summary>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaSerial.TimeBetweenSpan">
+            <summary>
+            Velocidade de resposta da leitura.
+            Quanto mais rápido for a máquina, menor pode ser o tempo.
+            O padrão é 100 ms.
+            </summary>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaSerial.IsOpen">
+            <summary>
+            Verifica se a porta está aberta
+            </summary>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaSerial.IsCTSOn">
+            <summary>
+            Verifica se o CTS está On
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaSerial.Porta">
+            <summary>
+            Enumeração descrevendo as portas seriais suportadas
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM1">
+            <summary>
+            COM1
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM2">
+            <summary>
+            COM2
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM3">
+            <summary>
+            COM3
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM4">
+            <summary>
+            COM4
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM5">
+            <summary>
+            COM5
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM6">
+            <summary>
+            COM6
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM7">
+            <summary>
+            COM7
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM8">
+            <summary>
+            COM8
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.Porta.COM9">
+            <summary>
+            COM9
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaSerial.DTRControl">
+            <summary>
+            Enumeração descrevendo os estados suportados para o sinal DTR
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.DTRControl.Disable">
+            <summary>
+            Desabilitado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.DTRControl.Enable">
+            <summary>
+            Habilitado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.DTRControl.Handshake">
+            <summary>
+            Habilitado por handshaking.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaSerial.RTSControl">
+            <summary>
+            Enumeração descrevendo os estados suportados para o sinal RTS
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.RTSControl.Disable">
+            <summary>
+            Desabilitado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.RTSControl.Enable">
+            <summary>
+            Habilitado
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.RTSControl.Handshake">
+            <summary>
+            Habilitado por handshaking.
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaSerial.RTSControl.Toggle">
+            <summary>
+            Especifica que a linha RTS estará alta quando ouver dados para
+            serem transmitidos. Após os dados serem transmitidos a linha
+            estará baixa.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaSerial.CtrlChar">
+            <summary>
+            Byte type with enumeration constants for ASCII control codes.
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.PLESSEY">
+            <summary>
+            Representa um código de barras no padrão PLESSEY
+            </summary>
+            <remarks>
+            Aceita digitos de 0-9
+            Aceita letras abcdef ou ABCDEF
+            Caracteres não podem misturar maiúsculas com minúsculas
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.PLESSEY.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.PLESSEY.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PLESSEY.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PLESSEY.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PLESSEY.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PLESSEY.TamanhoMaximoGrossa">
+            <summary>
+            tamanho maximo para barras grossas
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.EAN8">
+            <summary>
+            Representa um código de barras no padrão EAN8
+            </summary>
+            <remarks>
+            Aceita dígitos entre 0 à 9, com tamanho FIXO em 7 caracteres. 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN8.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN8.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN8.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.EAN8.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="T:Bematech.Util.Conversoes">
+            <summary>
+            Classe que encapsula varios metodos de conversão.
+            </summary>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.#ctor">
+            <summary>
+            Construtor da classe Conversoes
+            </summary>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.StringToArray(System.String)">
+            <summary>
+            Converte uma string para um array de bytes utilizando code page 850.
+            </summary>
+            <param name="str">String a ser convertida.</param>
+            <returns>Os bytes convertidos</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.StringToArray(System.String,System.Text.Encoding)">
+            <summary>
+            Converte uma string para um array de bytes com um Encoding específico
+            </summary>
+            <param name="str">String a ser convertida.</param>
+            <param name="encoding">Encoding para o qual os bytes devem ser convertidos</param>
+            <returns>Os bytes convertidos</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.StringToArrayABICOMP(System.String)">
+            <summary>
+            Converte uma string para array de bytes utilizando a 
+            tabela de caracteres ABICOMP das impressoras não fiscais 
+            </summary>
+            <param name="texto">Texto a ser convertido</param>
+            <returns>Array de bytes com o texto convertido</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.ArrayListToString(System.Collections.ArrayList)">
+            <summary>
+            Converte um arrayList em string
+            </summary>
+            <param name="buffer">Buffer a ser convertido</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.ArrayToString(System.Byte[])">
+            <summary>
+            Converte um array de bytes em string.
+            </summary>
+            <param name="buffer">Array a ser convertido.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.StringAlphanumericToNumeric(System.String)">
+            <summary>
+            Converte uma string alfa numérica para string numérica
+            </summary>
+            <param name="buffer">String a ser convertida</param>
+            <returns>String numérica</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.StringNumericToDecimal(System.String)">
+            <summary>
+            Converte uma string numérica para um valor decimal
+            </summary>
+            <param name="buffer">String a ser convertida</param>
+            <returns>Decimal com duas casas</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.RemoverAcentuacao(System.Char[])">
+            <summary>
+            Remove os acentos da palavra
+            </summary>
+            <param name="palavra">Array de char s ser convertido</param>
+            <returns>Array de char</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.ConverterStringToArrayChar(System.String)">
+            <summary>
+            Converte uma string para array de char
+            </summary>
+            <param name="palavra">String contendo a palavra a ser convertida</param>
+            <returns>Array de char com a palavra convertida</returns>
+        </member>
+        <member name="M:Bematech.Util.Conversoes.ConverterArrayCharToString(System.Char[])">
+            <summary>
+            Converte um array de char para uma string
+            </summary>
+            <param name="palavra">Array de char contendo a palavra a ser convertida</param>
+            <returns>String com a palavra convertida</returns>
+        </member>
+        <member name="T:Bematech.Texto.IMensagemImpressoraCheque">
+            <summary>
+            Interface para impressão de textos sem formatação, textos com formatação e 
+            códigos de barras
+            </summary>
+            <remarks> Objetos que implementam essa interface são esperados como
+            parâmetros em diversos métodos do framework. Deve ser implementado pelo
+            desenvolvedor caso se queira customizar alguma impressão que não seja 
+            atendida pelas classes TextoFormatado ou CodigoBarras</remarks>
+        </member>
+        <member name="M:Bematech.Texto.IMensagemImpressoraCheque.Preparar(Bematech.ModeloImpressoraCheque)">
+            <summary>
+            Prepara a "mensagem" para ser enviada à impressora de cheque.
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Dados prontos para serem enviados à impressora</returns>
+            <remarks>A Mensagem pode ser um texto simples, um texto formatado, 
+            etc. O método preparar deve deixar os dados prontos para serem 
+            enviados à impressora no padrão que ela espera. 
+            Por exemplo: se for enviar um texto em negrito para a impressora, 
+            esse método deve preparar os dados já com o comando que habilita e 
+            desabilita o modo negrito na impressora e o texto que será impresso.</remarks>
+        </member>
+        <member name="T:Bematech.ModeloImpressora">
+            <summary>
+            Descreve os modelos de impressora suportados
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP20FI">
+            <summary>
+            Impressora fiscal MP-20 FI II
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP40FI">
+            <summary>
+            Impressora fiscal MP-40 FI II
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP25FI">
+            <summary>
+            Impressora fiscal MP-25 FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP50FI">
+            <summary>
+            Impressora fiscal MP-50 FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP2000FI">
+            <summary>
+            Impressora fiscal MP-2000 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP6000FI">
+            <summary>
+            Impressora fiscal MP-6000 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP2100FI">
+            <summary>
+            Impressora fiscal MP-2100 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP6100FI">
+            <summary>
+            Impressora fiscal MP-6100 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP3000FI">
+            <summary>
+            Impressora fiscal MP-3000 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP7000FI">
+            <summary>
+            Impressora fiscal MP-7000 TH FI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressora.MP4000FI">
+            <summary>
+            Impressora fiscal MP-4000 TH FI
+            </summary>
+        </member>
+        <member name="T:Bematech.ModeloImpressoraNaoFiscal">
+            <summary>
+            Descreve os modelos de impressora não fiscal (mini-impressoras)
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP20CI">
+            <summary>
+            Impressora não fiscal MP20 CI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP20MI">
+            <summary>
+            Impressora não fiscal MP20 MI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP20TH">
+            <summary>
+            Impressora não fiscal MP20 TH
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP2000CI">
+            <summary>
+            Impressora não fiscal MP-2000 CI
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP2000TH">
+            <summary>
+            Impressora não fiscal MP-2000 TH
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP2100TH">
+            <summary>
+            Impressora não fiscal MP-2100 TH
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraNaoFiscal.MP4000TH">
+            <summary>
+            Impressora não fiscal MP-4000 TH
+            </summary>
+        </member>
+        <member name="T:Bematech.ModeloImpressoraCheque">
+            <summary>
+            Descreve os modelos de impressoras de cheques
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloImpressoraCheque.DP20">
+            <summary>
+            DP20
+            </summary>
+        </member>
+        <member name="T:Bematech.ModeloBalanca">
+            <summary>
+            Modelos de Balanças
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloBalanca.T9094">
+            <summary>
+            Balança 9094 Pesadora (Display: Peso)
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloBalanca.BP6">
+            <summary>
+            Balança BP6 (Display: Peso)
+            </summary>
+        </member>
+        <member name="F:Bematech.ModeloBalanca.CS15">
+            <summary>
+            Balança CS15 (Display: Peso, Preço/Kg e Total) 
+            </summary>
+        </member>
+        <member name="T:Bematech.TabelaASC">
+            <summary>
+            Enumeração com os principais codigos ASC.
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.NULL">
+            <summary>
+            NULL = 0x00
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SOH">
+            <summary>
+            SOH	= 0x01
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.STX">
+            <summary>
+            STX	= 0x02
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.ETX">
+            <summary>
+            ETX	= 0x03
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.EOT">
+            <summary>
+            EOT	= 0x04
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.ENQ">
+            <summary>
+            ENQ	= 0x05
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.ACK">
+            <summary>
+            ACK	= 0x06
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.BELL">
+            <summary>
+            BELL = 0x07
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.BS">
+            <summary>
+            BS = 0x08
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.HT">
+            <summary>
+            HT = 0x09
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.LF">
+            <summary>
+            LF = 0x0A
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.VT">
+            <summary>
+            VT = 0x0B,
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.FF">
+            <summary>
+            FF = 0x0C
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.CR">
+            <summary>
+            CR = 0x0D
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SO">
+            <summary>
+            SO = 0x0E
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SI">
+            <summary>
+            SI = 0x0F
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DLE">
+            <summary>
+            DLE	=0x10
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DC1">
+            <summary>
+            DC1 = 0x11
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DC2">
+            <summary>
+            DC2 = 0x12
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DC3">
+            <summary>
+            DC3	= 0x13
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DC4">
+            <summary>
+            DC4 = 0x14
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.NAK">
+            <summary>
+            NAK = 0x15
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SYN">
+            <summary>
+            SYN	= 0x16
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.ETB">
+            <summary>
+            ETB	= 0x17
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.CAN">
+            <summary>
+            CAN	= 0x18
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.EM">
+            <summary>
+            EM = 0x19
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SUB">
+            <summary>
+            SUB	= 0x1A
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.ESC">
+            <summary>
+            ESC = 0x1B
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.FS">
+            <summary>
+            FS = 0x1C
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.GS">
+            <summary>
+            GS = 0x1D
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.RS">
+            <summary>
+            RS = 0x1E
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.US">
+            <summary>
+            US = 0x1F
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.SP">
+            <summary>
+            SP = 0x20
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaASC.DEL">
+            <summary>
+            DEL = 0x7F
+            </summary>
+        </member>
+        <member name="T:Bematech.UnidadeFederacao">
+            <summary>
+            Enumeração com as Unidades da Federação
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.AC">
+            <summary>
+            Acre
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.AL">
+            <summary>
+            Alagoas
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.AM">
+            <summary>
+            Amazonas
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.AP">
+            <summary>
+            Amapá
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.BA">
+            <summary>
+            Bahia
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.CE">
+            <summary>
+            Ceará
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.DF">
+            <summary>
+            Distrito Federal
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.ES">
+            <summary>
+            Espírito Santo
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.GO">
+            <summary>
+            Goiás 
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.MA">
+            <summary>
+            Maranhão
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.MG">
+            <summary>
+            Minas Gerais
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.MS">
+            <summary>
+            Mato Grosso do Sul
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.MT">
+            <summary>
+            Mato Grosso
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.PA">
+            <summary>
+            Pará
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.PB">
+            <summary>
+            Paraíba
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.PE">
+            <summary>
+            Pernambuco
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.PI">
+            <summary>
+            Piauí
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.PR">
+            <summary>
+            Paraná
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.RJ">
+            <summary>
+            Rio de Janeiro
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.RN">
+            <summary>
+            Rio Grande do Norte
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.RO">
+            <summary>
+            Rondônia
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.RR">
+            <summary>
+            Roraima
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.RS">
+            <summary>
+            Rio Grande do Sul
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.SC">
+            <summary>
+            Santa Catarina
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.SE">
+            <summary>
+            Sergipe
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.SP">
+            <summary>
+            São Paulo
+            </summary>
+        </member>
+        <member name="F:Bematech.UnidadeFederacao.TO">
+            <summary>
+            Tocantins
+            </summary>
+        </member>
+        <member name="T:Bematech.TabelaCaracteres">
+            <summary>
+            Tabelas de caracteres utilizadas pelas impressoras
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaCaracteres.ABICOMP">
+            <summary>
+            ABICOMP
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaCaracteres.CODEPAGE_437">
+            <summary>
+            CODEPAGE 437
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaCaracteres.CODEPAGE_850">
+            <summary>
+            CODEPAGE 850
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaCaracteres.CODEPAGE_858">
+            <summary>
+            CODEPAGE 858
+            </summary>
+        </member>
+        <member name="F:Bematech.TabelaCaracteres.CODEPAGE_860">
+            <summary>
+            CODEPAGE 860
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.ISBN">
+            <summary>
+            Representa um código de barras no padrão ISBN
+            </summary>
+            <remarks>
+            Código com 9 dígitos, composto por dígitos de 0 à 9, "-" (hifen) e "X". O "-" (hifen) e o "X" não são somados. Após o 9º dígito, podem aparecer ainda hifens seguidos por "X" ou algum número com o tamanho de 5 caracteres, não somando o espaço após o "-X" ou após o número. Exemplo: "1-56592-292-X 9000" ou "1-56592-291-1 900000". 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.ISBN.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.ISBN.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.ISBN.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ISBN.TamanhoComando">
+            <summary>
+            Tamanho do comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ISBN.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.UsbAPI">
+            <summary>
+            Classe de encapsulamento das declarações de imports utilizadas
+            na porta USB.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.Open">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.Close">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.Write(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.Read(System.Byte[],System.Int32,System.Int32@,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.Flush(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.ResetBuffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.UsbAPI.GetUSBInterfaceStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaUSB">
+            <summary>
+            Classe de encapsulamento de todas as operações relativas
+            à porta USB)
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.#ctor">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Open">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Close">
+            <summary>
+            Fecha a porta 
+            </summary>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Write(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="numeroBytesEscrever"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Write(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="numeroBytesEscrever"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Write(System.Byte[])">
+            <summary>
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <returns>True se executado com sucesso.</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Read(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            </summary>
+            <param name="buffer">Buffer para receber os dados lidos</param>
+            <param name="numeroBytesLer">Numero de bytes que devem ser lidos</param>
+            <param name="numeroBytesLidos">Numero de bytes lidos</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Read(System.Byte[],System.Int32,System.Int32@,System.Int32)">
+            <summary>
+            </summary>
+            <param name="buffer">Buffer para receber os dados lidos</param>
+            <param name="numeroBytesLer">Numero de bytes que devem ser lidos</param>
+            <param name="numeroBytesLidos">Numero de bytes lidos</param>
+            <param name="timeOut"></param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Read(System.Byte@,System.Int32@)">
+            <summary>
+            </summary>
+            <param name="Byte">parametro de saida para o byte lido</param>
+            <param name="numeroBytesLidos">numero de bytes lido (0 u 1)</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.Purge">
+            <summary>
+            Purge na porta
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaUSB.GetStatus">
+            <summary>
+            Le o status da porta
+            </summary>
+            <returns>Status da porta</returns>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaUSB.IsOpen">
+            <summary>
+            Verifica se a porta está aberta
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Serialization.ObjectWriter">
+            <summary>
+            Classe para escreve um objeto serializado
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Serialization.ObjectReader">
+            <summary>
+            Classe para ler um objeto serializado
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.ITF">
+            <summary>
+            Representa um código de barras no padrão ITF
+            </summary>
+            <remarks>
+            Aceita digitos de 0-9.
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.ITF.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.ITF.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ITF.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ITF.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ITF.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.ITF.TamanhoMaximoGrossa">
+            <summary>
+            tamanho maximo para barras grossas
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.EAN13">
+            <summary>
+            Representa um código de barras no padrão EAN13
+            </summary>
+            <remarks>
+            Aceita dígitos entre 0 à 9, com tamanho FIXO em 12 caracteres. 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN13.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN13.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.EAN13.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.EAN13.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.Mensagens">
+            <summary>
+            Representa uma coleção de mensagens para ser impressa nos relatórios
+            ou na msg promocional do cupom fiscal
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.Mensagens.queue">
+            <summary>
+            FIFO para armazenar as mensagens  
+            </summary>
+        </member>
+        <member name="M:Bematech.Texto.Mensagens.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Texto.Mensagens.PreparaMsgs(Bematech.ModeloImpressora)">
+            <summary>
+            Prepara todas as mensagens da coleção para serem enviadas 
+            para a impressora
+            </summary>
+            <param name="modelo">Modelo da impressora</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Texto.Mensagens.GetEnumerator">
+            <summary>
+            Retorna um enumerador para a coleção
+            </summary>
+            <remarks>enumerdor pode ser varrido dentro de um loop foreach</remarks>
+            <returns>Enumerador para a coleção</returns>
+        </member>
+        <member name="M:Bematech.Texto.Mensagens.Adicionar(Bematech.Texto.IMensagem)">
+            <summary>
+            Adiciona um elemento à coleção de mensagens
+            </summary>
+            <param name="mensagem">Objeto que implemnta a interface IMensagem</param>
+        </member>
+        <member name="M:Bematech.Texto.Mensagens.ToString">
+            <summary>
+            Dump textual com o conteúdo da lista de mensagem
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Texto.Mensagens.Count">
+            <summary>
+            Número de elementos existentes na coleção
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.PDF417">
+            <summary>
+            Representa um código de barras no padrão PDF417
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.PDF417.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.PDF417.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.CodigoFormatado">
+            <summary>
+            Código de barras já formatado para a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.NivelCorrecao">
+            <summary>
+            Ajusta/Retorna o nível de correção para o código
+            </summary>
+            <remarks>Inteiro entre 0 à 8. Quanto mais alto o nível, melhor a leitura do código,
+             maior a impressão e menor o número de informações que poderão ser impressas. </remarks>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.AlturaCaracter">
+            <summary>
+            Ajusta/Retorna a altura do caracter
+            </summary>
+            <remarks>Inteiro entre 1 à 8.Altura do caracter do código (pitch). 
+            1 pitch = 0,125 mm.
+            </remarks>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.LarguraCaracter">
+            <summary>
+            Ajusta/Retorna a largura do caracter
+            </summary>
+            <remarks>Inteiro entre 1 à 4.Largura do caracter do código (pitch).
+             1 pitch = 0,125 mm</remarks>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.PDF417.NumeroColunas">
+            <summary>
+            Ajusta/Retorna o número de colunas
+            </summary>
+            <remarks>Inteiro entre 0 à 30. 0 (zero) utiliza o máximo de colunas que o mecanismo 
+            permite para a largura informada (pitch). Caso não caiba na linha a impressora ajusta,
+             automaticamente, para o máximo de colunas permitido na linha</remarks>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CODE128">
+            <summary>
+            Representa um código de barras no padrão CODE128
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE128.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE128.ValidarCodigo">
+            <summary>
+            Valida o código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE128.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE128.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE128.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE128.TamanhoMaximoGrossa">
+            <summary>
+            tamanho máximo para barras grossas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE128.NullTerminated">
+            <summary>
+            Informação do código é terminada com null ou não
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.UPCE">
+            <summary>
+            Representa um código de barras no padrão UPCA
+            </summary>
+            <remarks>
+            Aceita digitos de 0-9.
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCE.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCE.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCE.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.UPCE.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.TextoFormatado">
+            <summary>
+            Classe utilitaria - impressão livre
+            </summary>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.#ctor">
+            <summary>
+            construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.#ctor(System.String)">
+            <summary>
+            construtor
+            </summary>
+            <param name="texto">texto a ser impresso</param>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.#ctor(System.String,Bematech.Texto.TextoFormatado.TamanhoCaracter)">
+            <summary>
+            construtor
+            </summary>
+            <param name="texto">texto a ser impresso</param>
+            <param name="tamanho">tamanho do caracter do texto</param>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.#ctor(System.String,Bematech.Texto.TextoFormatado.TamanhoCaracter,Bematech.Texto.TextoFormatado.FormatoCaracter)">
+            <summary>
+            construtor
+            </summary>
+            <param name="texto">texto a ser impresso</param>
+            <param name="tamanho">tamanho do caracter do texto</param>
+            <param name="formato">formato / tipo do caracter</param>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.#ctor(System.String,Bematech.Texto.TextoFormatado.TamanhoCaracter,Bematech.Texto.TextoFormatado.FormatoCaracter,Bematech.Texto.TextoFormatado.TipoAlinhamento)">
+            <summary>
+            construtor
+            </summary>
+            <param name="texto">texto a ser impresso</param>
+            <param name="tamanho">tamanho do caracter do texto</param>
+            <param name="formato">formato / tipo do caracter</param>
+            <param name="alinha">tipo do alinhamento a ser executado para esse texto</param>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.Preparar(Bematech.ModeloImpressora)">
+            <summary>
+            Prepara o texto de acordo com a formatação especificada
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Array de bytes na formatação esperada pela impressora</returns>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.Preparar(Bematech.ModeloImpressoraCheque)">
+            <summary>
+            Prepara o texto de acordo com a formatação especificada
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Array de bytes na formatação esperada pela impressora</returns>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.Preparar(Bematech.ModeloImpressoraNaoFiscal)">
+            <summary>
+            Prepara o texto de acordo com a formatação especificada
+            </summary>
+            <param name="modeloImpressora">Modelo da impressora</param>
+            <returns>Array de bytes na formatação esperada pela impressora</returns>
+        </member>
+        <member name="M:Bematech.Texto.TextoFormatado.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Texto.TextoFormatado.Texto">
+            <summary>
+            Retorna ou configura o texto a ser impresso
+            </summary>
+        </member>
+        <member name="P:Bematech.Texto.TextoFormatado.Tamanho">
+            <summary>
+            Retorna ou configura o tamanho do caracter do texto
+            </summary>
+        </member>
+        <member name="P:Bematech.Texto.TextoFormatado.Formato">
+            <summary>
+            Retorna ou configura o formato do caracter
+            </summary>
+        </member>
+        <member name="P:Bematech.Texto.TextoFormatado.Alinhamento">
+            <summary>
+            Retorna ou configura  o alinhamento do texto
+            </summary>
+        </member>
+        <member name="P:Bematech.Texto.TextoFormatado.TabelaCaracteres">
+            <summary>
+            Retorna ou configura a tabela de caracteres usada pela impressora
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.TextoFormatado.TamanhoCaracter">
+            <summary>
+            Enum descrevendo os tamanhos possíveis para o caracter
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TamanhoCaracter.Normal">
+            <summary>
+            Texto normal.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TamanhoCaracter.Condensado">
+            <summary>
+            Texto condensado.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TamanhoCaracter.Elite">
+            <summary>
+            Texto elite.
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.TextoFormatado.FormatoCaracter">
+            <summary>
+            Enum descrevendo os formatos possíveis para o caracter
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.FormatoCaracter.Normal">
+            <summary>
+            Caracter normal.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.FormatoCaracter.Italico">
+            <summary>
+            Caracter itálico.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.FormatoCaracter.Sublinhado">
+            <summary>
+            Caracter sublinhado.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.FormatoCaracter.Negrito">
+            <summary>
+            Carater negrito.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.FormatoCaracter.Expandido">
+            <summary>
+            Caracter expandido.
+            </summary>
+        </member>
+        <member name="T:Bematech.Texto.TextoFormatado.TipoAlinhamento">
+            <summary>
+            Enum descrevendo o alinhamento a ser respeitado na impressora
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TipoAlinhamento.SemAlinhamento">
+            <summary>
+            Texto sem alinhamento.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TipoAlinhamento.Direita">
+            <summary>
+            Texto alinhado a direita.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TipoAlinhamento.Esquerda">
+            <summary>
+            Texto alinhado a esquerda.
+            </summary>
+        </member>
+        <member name="F:Bematech.Texto.TextoFormatado.TipoAlinhamento.Centralizado">
+            <summary>
+            Texto centralizado.
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.PortaParalela">
+            <summary>
+            Classe de encapsulamento de todas as operações relativas
+            à porta paralela( Abertura, fechamento, leitura, escrita, etc)
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaParalela.IOCTL_BEMATECH_PAPER_ON_PRESENTER">
+            <summary>
+            Constante para verificação de papel no presenter
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaParalela.IOCTL_BEMATECH_PAPER_ON_DRAWER">
+            <summary>
+            Constante para verificação de sensor da gaveta
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaParalela.IOCTL_BEMATECH_INFORMATION">
+            <summary>
+            Constante para leitura de status
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaParalela.IOCTL_BEMATECH_DISABLE_VALIDATION">
+            <summary>
+            Constante para desabilitar o modo de autenticação
+            </summary>
+        </member>
+        <member name="F:Bematech.Comunicacao.PortaParalela.handle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Open(System.String)">
+            <summary>
+            Abre a porta paralela
+            </summary>
+            <param name="portName">Porta que será aberta</param>
+            <returns>Erro Porta</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Close">
+            <summary>
+            Fecha a porta paralela
+            </summary>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Write(System.Byte[],System.Int32)">
+            <summary>
+            Escreve dados na porta paralela
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <param name="numeroBytesEscrever">Numero de bytes a ser escrito.</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Write(System.String,System.Int32)">
+            <summary>
+            Escreve dados na porta paralela
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>
+            <param name="numeroBytesEscrever">Numero de bytes a ser escrito.</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Write(System.Byte[])">
+            <summary>
+            Escreve dados na porta paralela
+            </summary>
+            <param name="buffer">Buffer para ser escrito</param>		
+            <returns>true  - sucesso</returns>
+            <returns>false - erro</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Read(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            Lê dados na porta paralela.
+            </summary>
+            <param name="buffer">Buffer para receber os dados lidos</param>
+            <param name="numeroBytesLer">Numero de bytes que devem ser lidos</param>
+            <param name="numeroBytesLidos">Numero de bytes lidos</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Read(System.Byte@,System.Int32@)">
+            <summary>
+            Lê dados na porta paralela.
+            </summary>
+            <param name="Byte">parametro de saida para o byte lido</param>
+            <param name="numeroBytesLidos">numero de bytes lido (0 ou 1)</param>
+            <returns>true  - sucesso</returns>
+            <returns>false - erro de leitura</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.Purge">
+            <summary>
+            Limpa a porta paralela.
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.ReadStatus">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.PortaParalela.DeviceIoControl(System.Int32,System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="ioControlCode"></param>
+            <param name="outBuffer"></param>
+            <param name="numeroBytesLer"></param>
+            <param name="numeroBytesLidos"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.Comunicacao.PortaParalela.IsOpen">
+            <summary>
+            Verifica se a porta está aberta
+            </summary>
+        </member>
+        <member name="T:Bematech.BematechException">
+            <summary>
+            Exception gerada quando houver um erro comum para mais de um equipamento.
+            Exemplo: Erro na criação de código de barras. É comum para as impressoras
+            fiscais e não fiscais.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.m_origem">
+            <summary>
+            origem do erro
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.m_codigo">
+            <summary>
+            codigo do erro
+            </summary>
+        </member>
+        <member name="M:Bematech.BematechException.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe BematechException
+            com a mensagem de erro
+            </summary>
+            <param name="mensagem">Mensagem de erro</param>
+        </member>
+        <member name="M:Bematech.BematechException.#ctor(System.String,System.Exception)">
+            <summary>
+            Inicializa uma nova instância da classe BematechException
+            com mensagem de erro e inner exception
+            </summary>
+            <param name="mensagem">Mensagem de erro</param>
+            <param name="inner">Inner Exception</param>
+        </member>
+        <member name="M:Bematech.BematechException.#ctor(Bematech.BematechException.OrigemException,Bematech.BematechException.CodigoErro,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe BematechException
+            com a origem, o código e a mensagem de erro
+            </summary>
+            <param name="origem">Origem da exception</param>
+            <param name="codigo">Código de erro</param>
+            <param name="mensagem">Mensagem de erro</param>
+        </member>
+        <member name="P:Bematech.BematechException.Origem">
+            <summary>
+            Retorna descrição da origem da exceção ( em qual comando a exceção foi levantada ).
+            </summary>
+        </member>
+        <member name="P:Bematech.BematechException.Codigo">
+            <summary>
+            Código do erro
+            </summary>
+        </member>
+        <member name="P:Bematech.BematechException.Message">
+            <summary>
+            Mensagem descrevendo o erro ocorrido
+            </summary>
+        </member>
+        <member name="T:Bematech.BematechException.OrigemException">
+            <summary>
+            Identifica a origem das exceções
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AberturaCupom">
+            <summary>
+            Erro gerado na abertura do cupom fiscal
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FechamentoCupom">
+            <summary>
+            Erro gerado no fechamento do cupom fiscal
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.VendaItemCupom">
+            <summary>
+            Erro gerado na venda de item
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoItemCupom">
+            <summary>
+            Erro gerado no cancelamento de item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AcrescimoDescontoItemCupom">
+            <summary>
+            Erro gerado no acréscimo ou desconto do item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelaAcrescimoDescontoItemCupom">
+            <summary>
+            Erro gerado no cancelamento de acréscimo ou desconto de um item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SubTotalizacaoCupom">
+            <summary>
+            Erro gerado na subtotalização do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AcrescimoDescontoSubTotalCupom">
+            <summary>
+            Erro gerado no acréscimo ou desconto no subtotal do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoAcrescimoDescontoCupom">
+            <summary>
+            Erro gerado no cancelamento do acréscimo ou desconto do subtotal. 
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.TotalizacaoCupom">
+            <summary>
+            Erro gerado na totalização do cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FormasPagamentoCupom">
+            <summary>
+            Erro gerado na execução das formas de pagamentos.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InicioFechamento">
+            <summary>
+            Erro gerado no inicio do fechamento do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.TerminoFechamento">
+            <summary>
+            Erro gerado no no termino do fechamento do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ReimpressaoCupom">
+            <summary>
+            Erro gerado no reimpressao do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoCupom">
+            <summary>
+            Erro Erro gerado no cancelamento do cupom.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AumentaDescricaoItem">
+            <summary>
+            Erro gerado no aumento da descrição do item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AberturaCupomNF">
+            <summary>
+            Erro criado ao abrir um cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FechamentoCupomNF">
+            <summary>
+            Erro criado ao tentar fechar o cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.RecebimentoCupomNF">
+            <summary>
+            Erro criado ao tentar enviar um recebimento não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoCupomNF">
+            <summary>
+            Erro criado ao tentar cancelar um cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AcrescimoRecebimentoCupomNF">
+            <summary>
+            Erro criado ao tentar dar um acréscimo no recebimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.DescontoRecebimentoCupomNF">
+            <summary>
+            Erro criado ao tentar dar um desconto no recebimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelaAcrescimoRecebimentoCupomNF">
+            <summary>
+            Erro criado ao tentar cancelar o acrécimo do recebimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelaDescontoRecebimentoCupomNF">
+            <summary>
+            Erro criado ao tentar cancelar o desconto do recebimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SubTotalizacaoCupomNF">
+            <summary>
+            Erro criado ao tentar subtotalizar o cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AcrescimoSubTotalCupomNF">
+            <summary>
+            Erro criado ao tentar dar um acréscimo o subtotal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.DescontoSubTotalCupomNF">
+            <summary>
+            Erro criado ao tentar dar um desconto no subtotal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoAcrescimoCupomNF">
+            <summary>
+            Erro criado ao tentar cancelar o acréscimo do subtotal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoDescontoCupomNF">
+            <summary>
+            Erro criado ao tentar cancelar um desconto no subtotal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.TotalizacaoCupomNF">
+            <summary>
+            Erro criado durante a totalização do cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FormasPagamentoCupomNF">
+            <summary>
+            Erro criado durante a forma de pagamento do cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FechamentoCupomCupomNF">
+            <summary>
+            Erro criado durante ao fechamento do cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AberturaVinculado">
+            <summary>
+            Erro criado ao tentar abrir um vinculado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AberturaGerencial">
+            <summary>
+            Erro criado ao tentar abrir um relatório gerencial.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressaoVinculado">
+            <summary>
+            Erro criado ao tentar imprimir no vinculado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressaoGerencial">
+            <summary>
+            Erro criado ao tentar imprimir no relatório gerencial.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FechamentoVinculado">
+            <summary>
+            Erro criado ao tentar fechar o vinculado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.FechamentoGerencial">
+            <summary>
+            Erro criado ao tentar fechar o relatório gerencial.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ReimpressaoVinculado">
+            <summary>
+            Erro criado durante a reimpressão do vinculado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.OperacaoNaoFiscal">
+            <summary>
+            Erro criado durante a operação não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.LeituraInformacoes">
+            <summary>
+            Erro criado durante a leitura de informações da impressora.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InicializacaoImpressora">
+            <summary>
+            Erro criado durante a inicialização da impressora.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.LeituraX">
+            <summary>
+            Erro criado durante a leitura X.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ReducaoZ">
+            <summary>
+            Erro criado durante a redução Z.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.LeituraMemoriaFiscal">
+            <summary>
+            Erro criado durante a leitura da memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressaoCheque">
+            <summary>
+            Erro criado durante a impressão de cheque.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressaoAutenticacao">
+            <summary>
+            Erro criado ao tentar autenticar.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.GavetaDinheiro">
+            <summary>
+            Erro criado ao tentar abrir ou verificar o estado da gaveta de dinheiro.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.Desconhecida">
+            <summary>
+            Erro desconhecido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CodigoBarras">
+            <summary>
+            Erro na criação ou impressão de código de barras
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.Comunicacao">
+            <summary>
+            Erro criado ao tentar comunicar com a impressora fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CupomNaoFiscal">
+            <summary>
+            Erro criado no cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InclusaoCliente">
+            <summary>
+            Erro criado na inserção do cupom fiscal no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InclusaoCupom">
+            <summary>
+            Erro criado na inserção do cupom fiscal no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InclusaoItem">
+            <summary>
+            Erro criado na inserção dos itens do cupom fiscal no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.InclusaoInformacoesDiarias">
+            <summary>
+            Erro criado na inserção das informações diárias no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AtualizacaoCupom">
+            <summary>
+            Erro criado na alteração do cupom fiscal no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.AtualizacaoItem">
+            <summary>
+            Erro criado na alteração dos itens do cupom fiscal no banco de dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.GeracaoDadosSintegra">
+            <summary>
+            Erro gerado durante a manipulação dos dados do sintegra.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.RelatoriosGerenciais">
+            <summary>
+            Erro gerado durante a impressão dos relatórios gerenciais.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoAdministrativa">
+            <summary>
+            Erro na geração da solicitação de transação 
+            TEF administrativa
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoAtivo">
+            <summary>
+            Erro na geração da solicitação TEF de verificação 
+            de gerenciador padrão ativo
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoCancelamento">
+            <summary>
+            Erro na geração da solicitação de cancelamento 
+            de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoCartao">
+            <summary>
+            Erro na geração da solicitação de transação TEF 
+            com cartão
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoCheque">
+            <summary>
+            Erro na geração da solicitação de transação TEF 
+            com cheque
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoConfirmacao">
+            <summary>
+            Erro na geração da solicitação de confirmação 
+            de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoNaoConfirmacao">
+            <summary>
+            Erro na geração da solicitação de não confirmação 
+            da transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.SolicitacaoTEF">
+            <summary>
+            Erro na geração da solicitação de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CancelamentoTEF">
+            <summary>
+            Erro no cancelamento de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ConfirmacaoTEF">
+            <summary>
+            Erro na confirmação de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.NaoConfirmacaoTEF">
+            <summary>
+            Erro na não confirmação de uma transação TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressaoTEF">
+            <summary>
+            Erro na impressão do TEF
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.TransacaoTEF">
+            <summary>
+            Erro gerado durante a transação TEF (envio ou resposta da solicitação)
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.TEF">
+            <summary>
+            Erro em uma operação TEF (configuração ou execução do TEF)
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CortePapel">
+            <summary>
+            Erro gerado durante o corte de papel
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.MiniPrinter">
+            <summary>
+            Erro genérico para a impressora não fiscal
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.LeitorSerial">
+            <summary>
+            Erro genérico para o Leitor Serial
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.Balanca">
+            <summary>
+            Erro genérico para a balança
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.CustomerDisplay">
+            <summary>
+            Erro genérico para o Customer Display
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.ImpressoraCheque">
+            <summary>
+            Erro genérico para a Impressora de Cheques
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.OrigemException.Teclado">
+            <summary>
+            Erro genérico para o Teclado
+            </summary>
+        </member>
+        <member name="T:Bematech.BematechException.CodigoErro">
+            <summary>
+            Enumeracao com todos os erros possiveis retornados pelo framework
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoInexistente">
+            <summary>
+            Erro criado quando a impressora não reconhece o comando recebido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ProtocoloIncorreto">
+            <summary>
+            Erro criado quando o protocolo não está correto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ImpressoraEmErro">
+            <summary>
+            Erro criado quando a impressora está com erro.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNoRelogio">
+            <summary>
+            Erro no relógio da impressora.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroComunicacao">
+            <summary>
+            Erro de comunicação com a impressora.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FimDePapel">
+            <summary>
+            Erro criado quando a impressora está sem papel.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CGCIENaoProgramados">
+            <summary>
+            Erro criado quando o CGC/IE não foram programados.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoNaoPermitido">
+            <summary>
+            Erro criado quando o cancelamento não é permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AliquotasEsgotadas">
+            <summary>
+            Erro criado quando a quantidade de aliquotas programadas da impressora atingiu o maximo possível.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AliquotaNaoProgramada">
+            <summary>
+            Erro criado a tentar utilizar uma aliquota que não está programada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNaCMOS">
+            <summary>
+            Erro na CMOS.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MemoriaFiscalLotada">
+            <summary>
+            Erro criado quando a memória fiscal está lotada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroIncorreto">
+            <summary>
+            Erro criado quando um parametro não é valido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TimeOut">
+            <summary>
+            Erro criado quando a impressora não respondeu em um determidado tempo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroArquivoConfiguracao">
+            <summary>
+            Erro criado quando o arquivo de configuração não valido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SecaoInexistenteArquivoConfiguracao">
+            <summary>
+            Erro criado quando tenta-se ler uma seção inexistente no arquivo de configuracao
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CampoInexistenteArquivoConfiguracao">
+            <summary>
+            Erro criado quando tenta-se ler um campo inexistente no arquivo de configuracao
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroArquivoConfiguracaoCheque">
+            <summary>
+            Erro criado quando o arquivo de configuração do cheque não é valido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoNaoExecutado">
+            <summary>
+            Erro criado quando um comando não foi executado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormasPagamentoEsgotada">
+            <summary>
+            Erro criado quando o numero de formas de pagamentos cadastradas na impressora está no maximo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EmissaoVinculadoNaoPermitida">
+            <summary>
+            Erro criado quando não é possível emitir um vinculado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoInvalido">
+            <summary>
+            Erro criado quando o comando não é valido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RetornoErroDesconhecido">
+            <summary>
+            Erro desconhecido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroParametrosInvalidos">
+            <summary>
+            Erro criado quando o número e parâmetros não é valido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TipoParametroInvalido">
+            <summary>
+            Erro criado quando um parâmetro é invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TotalizadorNaoFiscalJaProgramado">
+            <summary>
+            Erro criado quando o totalizador não fiscal já está programado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomFiscalAberto">
+            <summary>
+            Erro criado para indicar que o cupom fiscal já está aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomFiscalNaoAberto">
+            <summary>
+            Erro criado quando o cupom fiscal não está aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ECFOcupado">
+            <summary>
+            Erro criado quando a impressora está ocupada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ImpressoraCabecaLevantada">
+            <summary>
+            Erro criado quando a cabeça de impressão está levantada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ImpressoraOffLine">
+            <summary>
+            Erro criado quando a impressora está off-line.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TerminadorDeStringFaltando">
+            <summary>
+            Erro criado quando falta o terminador de string.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoDescontoMaiorQueTotalCupomFiscal">
+            <summary>
+            Erro criado quando o acréscimo ou o desconto é maior que o total do cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomFiscalSemItemVendido">
+            <summary>
+            Erro criado quando o cupom fiscal não tem item vendido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoNaoEfetivado">
+            <summary>
+            Erro criado quando um comando não foi efetivado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormaDePagamentoNaoProgramada">
+            <summary>
+            Erro criado ao tentar usar uma forma de pagamento não programada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.IndiceMaiorQueNumeroDeFormasPagamento">
+            <summary>
+            Erro criado quando o indice é maior que o numero de formas de pagamento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormasDePagamentoEncerrada">
+            <summary>
+            Forma de pagamento Encerrada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomNaoTotalizado">
+            <summary>
+            Erro criado quando o cupom não fiscal não foi totalizado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoMaiorQue7f">
+            <summary>
+            Comando maior que 7f.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomFiscalAbertoESemItem">
+            <summary>
+            Erro que indica que o cupom fiscal está aberto mas não teve movimentações.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoNaoImediatamenteApos">
+            <summary>
+            Erro criado quando o cancelamento não é chamando imediatamente após a operação.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoJaEfetuado">
+            <summary>
+            Erro criado quano o cancelamento já foi efetuado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.VinculadoNaoPermitidoOuJaEmitido">
+            <summary>
+            Erro criado quando o comprovante não fiscal vinculado não é permitido ou já foi emitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MeioDePagamentoNaoPermiteTef">
+            <summary>
+            Erro criado quando a forma de pagamento não permite TEF.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomNaoFiscalFechado">
+            <summary>
+            Erro criado quando não existe um cupom não fiscal aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ReimpressaoNaoPermitida">
+            <summary>
+            Erro criado quando a reimpressão não é permitida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TotalizadoNaoFiscalNaoProgramado">
+            <summary>
+            Erro criado quando o totalizador não fiscal não está programado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomNaoFiscalSemItemVendido">
+            <summary>
+            Erro criado quando o comprovante não fiscal está sem item vendido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoDescontoMaiorQueTotalCnf">
+            <summary>
+            Erro criado quando o Acréscimo ou desconto é maior que o total do cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MeioPagamentoNaoIniciado">
+            <summary>
+            Meio de pagamento não iniciado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MeioPagamentoDiferenteDoTotalDoRecebimento">
+            <summary>
+            Meio de pagamento diferente do total recebimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoPermitidoMaisDeUmaSangriaOuSuprimento">
+            <summary>
+            Não permitido mais de uma sangria ou suprimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RelatorioJaProgramado">
+            <summary>
+            Erro criado quando o relatório já foi programado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RelatorioGerencialNaoProgramado">
+            <summary>
+            Erro criado quando o relatório gerencial não foi progamando.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RelatorioGerencialNaoPermitido">
+            <summary>
+            Erro criado quando o relatório gerencial não é permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdNaoInicializada">
+            <summary>
+            Erro criado quando a MFD não foi inicializada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdAusente">
+            <summary>
+            Erro criado quando a MFD está ausente.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdSemNumeroDeSerie">
+            <summary>
+            Erro criado quando a MFD está sem numero de serie.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdJaInicializada">
+            <summary>
+            Erro criado quando a MFD já foi inicializada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdLotada">
+            <summary>
+            Errro criado quando a MFD está lotada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomNaoFiscalAberto">
+            <summary>
+            Erro criado quando o cupom nao fiscal já está aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MemoriaFiscalDesconectada">
+            <summary>
+            Erro criado quando a memória fiscal está desconectada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MemoriaFiscalSemSerialDaMfd">
+            <summary>
+            Erro criado quando a memória fiscal está sem o numero de serie da MFD.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MemoriaFiscalEsgotada">
+            <summary>
+            Erro criado quando a memório fiscal está esgotada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ContadorReducaoZInicialInvalido">
+            <summary>
+            Erro criado quando o contador de redução Z inicial é invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ContadorReducaoZFinalInvalido">
+            <summary>
+            Erro criado quando o contador de redução Z final é invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroDeAlocacao">
+            <summary>
+            Erro de alocação.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DadosDoRtcIncorretos">
+            <summary>
+            Erro criado quando os dados da RTC estão incorretos.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoEmIntervencaoTecnica">
+            <summary>
+            Erro criado quando a impressora não está em intervenção técnica.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ECFEmIntervencaoTecnica">
+            <summary>
+            Erro criado quando a impressoa está em intervenção técnica.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNaMemoriaDeTrabalho">
+            <summary>
+            Erro na memória de trabalho.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.JaHouveMovimentoNoDia">
+            <summary>
+            Erro criado quando já existiu movimento no dia.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.BloqueioPorReducacoZ">
+            <summary>
+            Erro criado quando o ECF está bloqueado por uma redução Z.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormaDePagamentoAberta">
+            <summary>
+            Forma de pagamento aberta.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoPrimeiroProprietario">
+            <summary>
+            Aguardando o primeiro proprietário.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoReducaoZ">
+            <summary>
+            Aguardando redução Z.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EcfOuLojaIgualAZero">
+            <summary>
+            ECF ou Loja igual a zero.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomAdicionalNaoPermitido">
+            <summary>
+            Erro criado quando não é permitido um cupom adicional.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescontoMaiorQueTotalVendidoEmIcms">
+            <summary>
+            Erro criado quando o desconto é maior que o total vendido em ICMS.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RecebimentoNaoFiscalNulo">
+            <summary>
+            Erro criado quando o recebimento não fiscal é nulo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescDescMaiorQueTotalNf">
+            <summary>
+            Erro criado quando o acréscimo ou desconto é maior que o recebimento não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MemoriaFiscalLotadaParaNovoCartucho">
+            <summary>
+            Erro criado quando a memória fiscal está lotada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroDeGravacaoNaMf">
+            <summary>
+            Erro de gravação na memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroDeGravacaoNaMfd">
+            <summary>
+            Erro de gravação na MFD.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DadosDoRtcAnterioresAoUltimoDocArmazenado">
+            <summary>
+            Dados do RTD anteriores ao ultimo documento armazenado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfSemEspacoParaGravarLeiturasDaMfd">
+            <summary>
+            Memória fiscal sem espaço para gravar a leitura da MFD.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfSemEspacoParaGravarVersaoDoSoftwareBasico">
+            <summary>
+            Memória fiscal sem espaço para gravar a versão do software básico.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescricaoIgualADefaultNaoPermitido">
+            <summary>
+            Descrição igual a default não é permitida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ExtrapoladoNumeroDeRepeticoesPermitidas">
+            <summary>
+            Extrapolado o numero de repeditoções permitidas.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SegundaViaCnfvNaoPermitida">
+            <summary>
+            Erro criado quando a segunda via do cupom não fiscal vinculado não é permitida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParcelamentoForaDaSequencia">
+            <summary>
+            Erro criado quando o parcelamento está fora da seqüência.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.VinculadoAberto">
+            <summary>
+            Erro criado quando o cupom não fiscal vinculado já está aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TextoComSequenciaDeEscInvalida">
+            <summary>
+            Texto com sequencia de ESC inválida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TextoComSequenciaDeEscIncompleta">
+            <summary>
+            Texto com sequencia de ESC incompleta.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.VendaComValorNulo">
+            <summary>
+            Erro criado quando a venda foi realizada com um valor nulo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstornoDeValorNulo">
+            <summary>
+            Estorno de valor nulo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormaDePagamentoDiferenteDoTotalDaSangria">
+            <summary>
+            Erro criado quando a forma de pagamento é diferente do total da sangria.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ReducaoNaoPermitidaEmIntervencao">
+            <summary>
+            Redução não pemitida em intervenção técnica.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoReducaoZParaEntradaEmIntervencao">
+            <summary>
+            Aguardando redução Zpara entrada em intervenção técnica.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.PagamentoComValorNulo">
+            <summary>
+            Forma de pagamento com valor nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoDescontoMaiorQueValorDoItem">
+            <summary>
+            Erro criado quando o acréscimo ou o desconto é maior que o valor do item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AutenticacaoNaoPermitida">
+            <summary>
+            Autenticação não permitida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DocumentoNaoInserido">
+            <summary>
+            Documento para autenticação não inserido
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TimeoutNaValidacao">
+            <summary>
+            Timeout na validação.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoNaoExecutadoEmImpressoraBilheteDePassagem">
+            <summary>
+            Comando não executado em impressora de bilhete de passagem.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ComandoNaoExecutadoEmImpressoraDeCupomFiscal">
+            <summary>
+            Comando não executado em impressora de cupom fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroNaoAscII">
+            <summary>
+            Paramêtro não ASCII em campo ASCII.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroNaoAscIINumerico">
+            <summary>
+            Paramêtro não ASCII numérico em campo ASCII numérico.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TipoDeTransporteInvalido">
+            <summary>
+            Tipo de transporte invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DataEHoraInvalida">
+            <summary>
+            Data e hora invalida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SemRelatorioGerencialOuVinculadoAberto">
+            <summary>
+            Sem relatório genrencial ou vinculado aberto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroDoTotalizadorNaoFiscalInvalido">
+            <summary>
+            Numerodo totalizador não fiscal invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroAcresDescInvalido">
+            <summary>
+            Paramêtro acréscimo ou desconto inválido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoDescontoNaoPermitido">
+            <summary>
+            Acrescimo/Desconto não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroDoRelatorioGerencialInvalido">
+            <summary>
+            Numero do relatório gerecial invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormaDePagamentoFonteNaoProgramada">
+            <summary>
+            Forma de pagamento origem não programada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.FormaDePagamentoDestinoNaoProgramada">
+            <summary>
+            Forma de pagamento destino não programada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstornoMaiorQueFormaDePagamentoFonte">
+            <summary>
+            Estorno maior que a forma de pagamento fonte.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CaracterNumericoNaCodificacaoGrandeTotal">
+            <summary>
+            Caracter numérico na codificação GT não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNaInicializacaoDaMemoriaFiscal">
+            <summary>
+            Erro na inicialização da memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NomeDoTotalizadorEmBranco">
+            <summary>
+            Nome do totalizador em branco ou não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DataHoraAnterioresUltimoDocumentoArmazenado">
+            <summary>
+            Data/Hora anterior ao ultimo documento armazenado
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroAcrescimoDescontoInvalido">
+            <summary>
+            Parâmetro acréscimo ou desconto invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ItemAnteriorAos300Ultimos">
+            <summary>
+            Item anterior aos 300 ultimos.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ItemNaoExisteOuJaCancelado">
+            <summary>
+            Item não existem ou já foi cancelado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CodigoComEspacosNaoPermitido">
+            <summary>
+            Codigo com espaços não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescricaoSemCaracterAlfabetico">
+            <summary>
+            Descrição sem caracter alfabetico não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoMaiorQueValorDoItem">
+            <summary>
+            Acréscimo maior que o valor do item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescontoMaiorQueValorDoItem">
+            <summary>
+            Desconto maior que o valor do item.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoEmItemJaEfetuado">
+            <summary>
+            Acréscimo em item já efetuado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescontoEmItemJaEfetuado">
+            <summary>
+            Desconto em item já efetuado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNaMfChamarCredenciado">
+            <summary>
+            Erro na memória fiscal chamar credenciado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoGravacaoNaMf">
+            <summary>
+            Aguardado gravação na memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CaracterRepetidoNaCodificacaoDoGrandeTotal">
+            <summary>
+            Caracter repedito na codificaçãodo grande total.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.VersaoJaGravadaNaMf">
+            <summary>
+            Versão já gravada na memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstouroDeCapacidadeNoCheque">
+            <summary>
+            Estouro de capacidade no cheque.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TimeoutNaLeituraDoCheque">
+            <summary>
+            Timeout na leitura do cheque.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MesInvalido">
+            <summary>
+            Mês invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CoordenadaInvalida">
+            <summary>
+            Coordenada invalida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTexto">
+            <summary>
+            Sobreposição de texto.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoValor">
+            <summary>
+            Sobreposição de texto no valor.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoExtenso">
+            <summary>
+            Sobreposição de texto no extenso.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoFavorecido">
+            <summary>
+            Sobreposição de texto no favorecido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNaLocalidade">
+            <summary>
+            Sobreposição de texto na localidade.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoOpcional">
+            <summary>
+            Sobreposição de texto no opcional.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoDia">
+            <summary>
+            Sobreposição de texto no dia.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoMes">
+            <summary>
+            Sobreposição de texto no mês.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SobreposicaoDeTextoNoAno">
+            <summary>
+            Sobreposição de texto no ano.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.UsandoMfdDeOutroEcf">
+            <summary>
+            Usando MFD de outro ECF.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.PrimeiroDadoDiferenteDeEscOu1c">
+            <summary>
+            Primeiro dado diferente de ESC ou 1C
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoPermitidoAlterarSemIntervencaoTecnica">
+            <summary>
+            Não permitido alterar sem intervenção técnica.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DadosDaUltimaReducaoZCorrompidos">
+            <summary>
+            Dados da ultima redução Z estão corrompidos.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CmdNaoPermitidoNoModoInicializacao">
+            <summary>
+            Comando não permitido no modo inicialização.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoAcertarRelogio">
+            <summary>
+            Aguardando acertar o relógio.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MfdJaInicializadaParaOutraMf">
+            <summary>
+            MFD já inicializada para outra memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoAcertoDoRelogioOuDesbloqueioPeloTeclado">
+            <summary>
+            Aguardando acerto do relógio ou desbloqueio pelo teclado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ValorFormaDePagamentoMaiorQueMaxPermitido">
+            <summary>
+            Valor da forma de pagamento maior que o maximo permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.RazaoSocialEmBranco">
+            <summary>
+            Razão social em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NomeDeFantasiaEmBranco">
+            <summary>
+            Nome fantasia em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EnderecoEmBranco">
+            <summary>
+            Endereço em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstornoDeComprovanteDeCreditoNaoPermitido">
+            <summary>
+            Estorno de CDC não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DadosDoProprietarioIguaisAoAtual">
+            <summary>
+            Dados do proprietário iguais ao atual.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstornoDeFormaDePagamentoNaoPermitido">
+            <summary>
+            Estorno de forma de pagamento não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescricaoFormaDePagamentoJaProgramada">
+            <summary>
+            Descrição da forma de pagamento igual a uma já programada.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcertoHorarioVeraoSomenteReducaoZ">
+            <summary>
+            Acerto de horário de verão só imediatamente após a redução Z.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.IntervencaoTecnicaNaoPermitida">
+            <summary>
+            Intervenção Tecnica não permitida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SenhaCnpjInvalida">
+            <summary>
+            Senha CNPJ invalida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TimeoutInicializacaoNovaMf">
+            <summary>
+            Timeout de inicialização da nova memória fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoEncontradoDadosNaMfd">
+            <summary>
+            Não encontrado dados na MFD.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.SangriaOuSuprimentoDevemSerUnicosNoCnf">
+            <summary>
+            Sangria ou suprimento devem ser unicos no cupom não fiscal.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.IndiceFormaDePagamentoNulo">
+            <summary>
+            Indice da forma de pagamento nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.UfDestinoInvalida">
+            <summary>
+            Unidade da federação destino invalida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TipoDeTransporteIncompativelComUfDestino">
+            <summary>
+            Tipo de transporte incompativel com a unidade da federação destino. 
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescricaoDoPrimeiroItemDiferenteDeTarifa">
+            <summary>
+            Descrição do primeiro item do bilhete de passagem diferente de tarifa.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AguardandoImpressaoDeChequeOuAutenticacao">
+            <summary>
+            Aguardando impressão de cheque ou autenticação.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ProgramacaoCnpjIeComEspacosEmBranco">
+            <summary>
+            Não permitido programação CNPJ ou IE com espeços em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ProgramacaoUfComEspacosEmBranco">
+            <summary>
+            Não permitido programação da unidade da federação com espaços em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroDeImpressoesNestaItEsgotado">
+            <summary>
+            Numero de impressões nesta intervenção técnica está esgotado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomFiscalJaSubtotalizado">
+            <summary>
+            Cupom fiscal já subtotalizado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomNaoSubtotalizado">
+            <summary>
+            Cupom não subtotalizado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoEmSubtotalJaEfetuado">
+            <summary>
+            Acréscimo em subtotal já efetuado.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescontoEmSubtotalJaEfetuado">
+            <summary>
+            Desconto nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.AcrescimoNuloNaoPermitido">
+            <summary>
+            Acréscimo nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DescontoNuloNaoPermitido">
+            <summary>
+            Desconto nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoDeSubtotalNaoPermitido">
+            <summary>
+            Cancelamento de subtotal não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DataInvalida">
+            <summary>
+            Data invalida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ValorDoChequeNuloNaoPermitido">
+            <summary>
+            Valor do cheque nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ValorDoChequeInvalido">
+            <summary>
+            Valor do cheque invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ChequeSemLocalidadeNaoPermitido">
+            <summary>
+            Cheque sem localidade não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoAcrescimoEmItemNaoPermitido">
+            <summary>
+            Cancelamento do acréscimo no item não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoDescontoEmItemNaoPermitido">
+            <summary>
+            Cancelamento do desconto no item não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroMaximoDeItensAtingido">
+            <summary>
+            Numero maximo de itens atingido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NumeroDeItemNuloNaoPermitido">
+            <summary>
+            Numero de item nulo não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MaisQueDuasAliqDiferentesNoBpNaoPermitido">
+            <summary>
+            Mais que duas aliquotas diferentes no bilhete de passagem não é permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CancelamentoAcresDescEmItemNaoPermitido">
+            <summary>
+            Cancelamento do acréscimo ou desconto no item não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ClicheJaImpresso">
+            <summary>
+            Cliche já impresso.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TextoOpcionalExcedeuMaximoDeLinhasPermitido">
+            <summary>
+            Texto Opcional execedeu o maximo de linhas permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ImpressaoAutomaticaNoVersoNaoDisponivelNoMecanismo">
+            <summary>
+            Impressão automatica no verso não disponivel no mecanismo.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TimeoutNaInsercaoDoCheque">
+            <summary>
+            Timeou na inserção do cheque.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.EstouroNaCapacidadeDeTextoNoComprovanteDeCredito">
+            <summary>
+            Estouro na capacidade de texto no comprovante de credito.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CupomSpacingMenorQue4NaoPermitido">
+            <summary>
+            Cupom spacing menor que quatro não é permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.MecanismoNaoPossuiLeitorCheque">
+            <summary>
+            Mecanismo não possui leitor de cheque.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ProgramacaoComAliquotaZeroNaoPermitido">
+            <summary>
+            Programação com aliquota zero não permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ParametroBaudrateInvalido">
+            <summary>
+            Parametro baudrate invalido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ConfiguracaoPermitidaSomentePelaPortaDoFisco">
+            <summary>
+            Configuração permitida somente pela porta do fisco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ValorTotalDoItemExcede11Digitos">
+            <summary>
+            Valor total do item excede onze digitos.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ProgramacaoMoedaComEspacosEmBranco">
+            <summary>
+            Não permitido programação de moeda com espaçoes em branco.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CasasDecimaisDeveSerProgramadaCom2Ou3">
+            <summary>
+            Casas decimais deve ser programada com dois ou três.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoPermiteProgramarUsuariosDiferentesNaMesmaMfd">
+            <summary>
+            Não permite programar usuarios diferentes na mesma MFD.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.IdentificacaoDoConsumidorNaoPermitidoParaSangriaOuSuprimento">
+            <summary>
+            Identificação do consumidor não é permitido sem sangria ou suprimento.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CasasDecimaisQuantidadeMaiorQuePermitido">
+            <summary>
+            Numero de casas decimais da quantidade é maior que o permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.CasasDecimaisValorUnitarioMaiorQuePermitido">
+            <summary>
+            Numero de casas decimais do valor unitário é maior que o permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.PosicaoReservadaParaIcms">
+            <summary>
+            Posição reservada para ICMS.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.PosicaoReservadaParaIss">
+            <summary>
+            Posição reservada para ISS.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TodasAliquotasComMesmaVinculacao">
+            <summary>
+            Todas as aliquotas com a mesma viculação não é permitido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.DataEmbarqueAnteriorDataEmissao">
+            <summary>
+            Data de embarque anterior a data da emissão.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ErroNaLeituraDoCMC7">
+            <summary>
+            Erro na leitura do CMC7.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.ImpressoraDesconhecida">
+            <summary>
+            Impressora desconhecida.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.Desconhecido">
+            <summary>
+            Erro desconhecido.
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.InclusaoDadosSintegra">
+            <summary>
+            Erro gerado na inclusão dos dados do sintegra
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.GeracaoDataSet">
+            <summary>
+            Geração do Data set
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.GeracaoRegistroSintegra">
+            <summary>
+            Erro gerado durante a criação de um registro
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.GeracaoRelatorioGerencial">
+            <summary>
+            Erro gerado durante a impressão de relatório gerencial
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.TransacaoNaoConfirmada">
+            <summary>
+            Erro gerado quando há uma transação não confirmada
+            e tenta-se criar uma nova solicitação cheque ou cartão
+            </summary>
+        </member>
+        <member name="F:Bematech.BematechException.CodigoErro.NaoHaItensIniciarFechamentoNaoPermitido">
+            <summary>
+            Não há itens iniciar fechamento não permitido.
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.CODE93">
+            <summary>
+            Representa um código de barras no padrão CODE93
+            </summary>
+            <remarks>
+            Aceita caracteres ASC de 0x01 à 0x7f ( 1 a 127) 
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE93.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.CODE93.ValidarCodigo">
+            <summary>
+            Valida o código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE93.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE93.TamanhoMaximoFina">
+            <summary>
+            tamanho maximo para barras finas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE93.TamanhoMaximoMedia">
+            <summary>
+            tamanho maximo para barras medias
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE93.TamanhoMaximoGrossa">
+            <summary>
+            tamanho máximo para barras grossas
+            </summary>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.CODE93.NullTerminated">
+            <summary>
+            Informação do código é terminada com null ou não
+            </summary>
+        </member>
+        <member name="T:Bematech.CodigosDeBarras.UPCA">
+            <summary>
+            Representa um código de barras no padrão UPCA
+            </summary>
+            <remarks>
+            Aceita digitos de 0-9.
+            </remarks>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCA.#ctor">
+            <summary>
+            Construtor simples
+            </summary>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCA.ValidarCodigo">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bematech.CodigosDeBarras.UPCA.ValidarTamanhoCodigo">
+            <summary>
+            Valida o tamanho do código passado 
+            </summary>
+            <returns> true se código válidado com sucesso</returns>
+        </member>
+        <member name="P:Bematech.CodigosDeBarras.UPCA.ByteComando">
+            <summary>
+            byte de comando
+            </summary>
+        </member>
+    </members>
+</doc>

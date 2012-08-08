@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bubblesort.Comunicacao.Pdv
 {
-    public class Class1
+    public class ConfiguracoesImpressora
     {
     }
 }

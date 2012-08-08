@@ -1,0 +1,1531 @@
+A DarumaFramework é uma única biblioteca que pode ser utilizada em qualquer um de nossos produtos Fiscais ou não-fiscais, modem, terminal TA2000 e também possui o módulo Genérico onde o usuário pode enviar e receber comandos para qualquer dispositivo utilizando a porta serial.
+Nossa biblioteca também pode ser utilizada em Linux ou Windows, 32 ou 64 Bits.
+Também possuimos Wrappers Java JNA (Windows, Linux), Java JNI (Windows, Linux), PHP (Windows, Linux), OCX (Windows) e OPOS (Windows) que facilitam ainda mais o porte e desenvolvimento para a DarumaFramework.
+
+Para mais informações sobre os métodos da DarumaFramework acesso nosso Help Online no link 
+http://www.desenvolvedoresdaruma.com.br/home/downloads/Site_2011/Help/DarumaFrameworkHelpOnline/Daruma_Framework.htm
+
+Arquivos existentes no pacote:
+DarumaFramework - Biblioteca utilizada para trabalhar com as impressoras fiscais, não fiscais, modem, TA2000 e tambem modo genérico
+
+lebin - Biblioteca utilizada para as funções de geração de relatório, cálculo de MD5 e RSA
+
+LeituraMFDBin - Biblioteca utilizada nas funções de geração de relatório para fazer o download dos binários da MF e MFD da impressora FISCAL
+
+hwinterface.sys - Utilizado quando estamos trabalhando com impressora não fiscal conectada a porta paralela.
+
+-----------------------------------------------------------------------
+
+DarumaFramework.dll
+
+Data de liberação: 01/08/2012
+
+Versão Arquivo: 07.10.00
+
+Versão do Produto: ECF 6.80, DUAL 4.50, MODEM 3.22, TA2000 4.05 GENERICO 1.01, DSP 1.04
+
+Implementações / Novas Implementações:
+
+Implementação - XML/ Registy - Quando estiver com Tipo Registro = 0 que é o valor default criado pela DLL, ela não irá criar e nem usar informação do Registry caso exista. Será utilizado apenas XML.
+
+Implementação - iImprimirTexto_DUAL_DarumaFramework - alteração no funcionamento da TAG <tc>C</tc> que ao ser enviada no final de um bloco não estava sendo executada por completo, fazendo com que o conteúdo seguinte a ela (no mesmo bloco) não fosse impresso. 
+
+Implementação - eBuscarPortaVelocidade_ECF_Daruma - Quando utilizada a USB da impressora não estava localizando a impressora.
+
+Implementação - rGerarRelatorio_ECF_Daruma - feita modificação na leitura dos arquivos binários da memória, para resolver problemas quando existem cupons grandes (mais de 50 itens). **Importante: para esta implementação ter 100% de efeito utilize a lebin.dll também atualizada - versão 0.8.7.1.
+ 
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Retirado os espaços em branco do inicio e fim do campo CNPJ e Nome do Cliente do registro C460.
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - perfil B - revista a rotina de montagem do arquivo pois em alguns casos estava sendo repetido o registro C425 de um mesmo item.
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro C490 estava colocanco o valor 090 no campo 2 fazendo com que a aliquota acima de 20,00% não fosse informada corretamente neste registro.
+
+Nova Implementação - DUAL - nova chave criada no XML <FormataTexto>, que irá indicar se os comandos de formatação utilizados no método iImprimirTexto_DUAL_DarumaFramework para Centralizar, Alinhamento à Direita e Italico serão os comandos nativos das impressoras (de versão igual ou superior à 2.20.00) ou serão feitos pela DLL como sempre foi (menos itálico que não possuimos nas versões anteriores à 2.20.00)
+
+Nova Implementação - rTotalSms_MODEM_DarumaFramework - criado método que retorna em inteiro qual o número de Mensagens contidas no chip, de acordo com o tipo de mensagem solicitada: Todas, Lidas e Não Lidas.
+
+Nova Implementação - ECF - Quando ECF for FS600 e versão igual ou menor a 01.04.00, a DLL mostrará logo no startup a mensagem solicitando a atualização da impressora, e não será possível nem ler informações desta impressora, devido a versão não ser compatível com a DarumaFramework.
+
+Nova Implementação - rGerarRelatorio_ECF_Daruma - SPED - Quando solicitada geração de SPED agora teremos como saída do método 3 arquivos: SPED_DRM (contendo todos os registros), SPED_DRM_A (perfil A), SPED_DRM_B (perfil B). Antes tinhamos apenas o SPED_DRM e SPED_DRM_B.
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 10/07/2012
+
+Versão Arquivo: 07.05.16
+
+Versão do Produto: ECF 6.64, DUAL 4.43, MODEM 3.21, TA2000 4.05, GENERICO 1.01, DSP 1.04
+
+Implementações / Novas Implementações:
+ 
+Implementação - Startup DLL - Agora quando a chave ECF\EncontrarECF estiver =1 a DLL está buscando a velocidade da impressora corretamente.
+
+Implementação - arquivo SPED - Passou a calcular os valores de PIS e COFINS quando a porcentagem é menor que 01,00%
+
+Implementação - arquivos AtoCotepe (NFP, NFPTDM, MF, MFD e TDM) - Na linha E01 agora informa corretamente o número sequencial do ECF que estava aparecendo sempre como 001.
+
+Implementação - Startup DLL  - Quando XML já está configurado para produto = DUAL, não é mais necessário chamar o eDefinirProduto para que funcione a comunicação.
+
+Implementação - regAlterarValor_Daruma - Quando produto = DUAL, e utilizamos o regAlterarValor para configuração da Velocidade não é mais necessário chamar novamente o comando eDefinirProduto_Daruma para que funcione a comunicação.
+
+Implementação - arquivo Sintegra - quando Sintegra Federal, não gera mais o registro 60R de códigos de produto com quantidade e valores zerados, pois estava causando "Alerta". Para Sintegra PR (Paraná) o registro permanece para não gerar erros.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 03/07/2012
+
+Versão Arquivo: 07.05.07
+
+Versão do Produto: ECF 6.57, DUAL 4.42, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - rGerarRelatorio_ECF_Daruma - Arquivos AtoCotepe (NFP, NFPTDM, MFD, TDM) - não considera mais os caracteres Nulos enviados na identificação do consumidor, o que causava problemas de falta de dados no arquivo, não validando o mesmo.
+
+Implementação - Observer - Adicionados índices para Observer, dos comandos: rLerDecimaisInt_ECF_Daruma, rLerDecimaisStr_ECF_Daruma, regCFCupomAdicionalDllConfig_ECF_Daruma, eDefinirModoregistro_Daruma, tEnviarDadosGprs_MODEM_DarumaFramework, eReiniciar_MODEM_DarumaFramework.
+
+Implementação - Observer - Alterado local do comando eDefinirProduto_Daruma, agora fica no grupo de comandos Geral.
+
+Implementação - iEnviarBMP_DUAL_Daruma - agora está ok para comunicação Paralela também.
+
+Implementação - Comandos de impressão para DUAL e ECF - passou a aceitar o texto "NULL" em qualquer parte do parametro. Não causando mais Erro no verificador de comunicação.
+
+Nova Implementação - rRetornarVendaLiquida_ECF_Daruma - Criado método que retorna o valor de Venda Líquida atual.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 25/06/2012
+
+Versão Arquivo: 07.05.02
+
+Versão do Produto: ECF 6.54, DUAL 4.40, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - iImprimirTexto_DUAL_Daruma - Criada a tag <xl> para fazer fonte Extra Grande. Formatação usada isoladamente, não aceita outras formatações junto com ela. 
+
+Implementação - Auditoria_ECF - retirado registro de método da DUAL que não é utilizado quando ECF.
+
+Implementação - Modificação na rotina interna de Aguardar Compactação, onde passamos a aguardar o fim de impressão e não o retorno de Data/ Hora da impressora para saber se ela está disponível e terminou de compactar.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 20/06/2012
+
+Versão Arquivo: 07.03.05
+
+Versão do Produto: ECF 6.52, DUAL 4.34, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+
+Implementação - Tag DUAL - <AtivaRota> - Para produto DUAL, quando chave <AtivaRota> está ativa (valor =1) não ocorrem mais problemas de comunicação, tanto ao abrir a aplicação quanto ao trocar de porta (rota) durante execução do aplicativo.
+
+Implementação - Tag DUAL - <TamanhoBobina> - Está permitindo alterar configuração durante a execução, não precisa mais ser apenas com software fechado. Para alterar configuração utilize o método regAlterarValor_Daruma.
+
+Implementação - regAlterarValor_Daruma e Tags ECF - <MensagemApl1> e <MensagemApl2> - Quando utilizado o método regAlterarValor_Daruma para configurar uma destas 2 mensagens, agora está alterando na hora no XML e na impressora.
+
+Implementação - regAlterarValor_Daruma e Tag <Velocidade> - Quando utilizado o comando regAlterarValor_Daruma para mudar a tag <Velocidade> voltou a alterar no XML e também na impressora.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 08/06/2012
+
+Versão Arquivo: 07.03.04
+
+Versão do Produto: ECF 6.51, DUAL 4.32, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - Modificada rotina interna da DLL de Aguardar Compactação, para que ao invés de aguardar mudança do relógio da impressora, aguarde mudança do relógio do pc 1,5 segundos.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 06/06/2012
+
+Versão Arquivo: 07.03.02
+
+Versão do Produto: ECF 6.49, DUAL 4.32, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - rLerArqRegistroPAF_ECF_Daruma - Agora possibilita identificação de mais de um ECF por arquivo.
+
+Implementação - rRetornarInformacao_ECF_Daruma -  Alteração para linguagens como VB6 e VisualFoxPro, para retornar mais de uma informação, quando solicitadas de uma vez só.
+
+Implementação - Retorno de Aviso - Quando impressora com tampa aberta não estava retornando este aviso.
+
+Implementação - iEstornarPagamento_ECF_Daruma - Quando o meio de pagamento é estornado agora também é gravado no XML, possibilitando o uso do comando iCCDAbrirPadrao, sem causar erros.
+
+Implementação - rGerarRelatorio_ECF_Daruma - Arquivo MF quando gerado sozinho, agora apresenta o número sequencial do ECF no E01. 
+
+Implementação - DarumaFramework - DLL não ocupa mais a porta quando ECF configurada para porta COM1 por exemplo e tiver um outro equipamento que não seja o ECF Daruma.
+
+Implementação - Modificada rotina interna da DLL de Aguardar Compactação, para que ao invés de aguardar mudança do relógio da impressora, aguarde mudança do relógio do pc.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 24/05/2012
+
+Versão Arquivo: 07.03.00
+
+Versão do Produto: ECF 6.47, DUAL 4.32, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - XML - Alteração da tag <Bobina57mm> para <TamanhoBobina>, onde agora configuramos o número de colunas que serão utilizadas para impressão.
+
+Implementação - Versão DLL - inclusão de File Version na descrição da DLL, pois quando consultada via comando não estava retornando corretamente, mesmo que no windows apareça a versão correta.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 23/05/2012
+
+Versão Arquivo: 07.01.11
+
+Versão do Produto: ECF 6.46, DUAL 4.30, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - eEjetarCheque_ECF_Daruma - Ajustado tempo de time out para 20 segundos. Este valor pode também ser determinado através da chave <TimeOutEjetarCheque> no xml.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 21/05/2012
+
+Versão Arquivo: 07.01.10
+
+Versão do Produto: ECF 6.45, DUAL 4.30, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+Implementação - rGerarRelatorioOffline_ECF_Daruma - Não estava ocorrendo a geração dos arquivos do SPED, quando no parametro de tipo de relatório havia "+SPED[PIS;COFINS]" só estava gerando quando era o primeiro tipo solicitado.
+
+Implementação - Ocupação de portas - Quando produto configurado para MODEM por exemplo, a dll não ocupa mais as outras portas definidas no XML quando é carregada. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 18/05/2012
+
+Versão Arquivo: 07.01.08
+
+Versão do Produto: ECF 6.43, DUAL 4.30, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+
+Implementação - iCFEfetuarFormaPagamento e iCF EfetuarPagamentoFormatado - As formas de pagamento não precisam ser enviadas de forma identicas ao que está no ECF (letra maiuscula/ minuscula), a DLL só diferencia maiúsculas de minúsculas dos Meios de Pagamento quando existe letra acentuada nele. Exemplo: está cadastrado "Cartão" e for enviado "CARTÃO" sairá Dinheiro, já se for enviado "CARTãO" sairá a forma cadastrada na impressora Cartão;
+ 
+Implementação - para JNA - Acertada as assinaturas para geracao dos wrappers.
+
+Implementação - rRetornarInformacao_ECF_Daruma - Quando a impressora esta sem papel agora a resposta é retornada com sucesso. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 15/05/2012
+
+Versão Arquivo: 07.01.03
+
+Versão do Produto: ECF 6.39, DUAL 4.30, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+
+Implementação - iImprimirTexto_DUAL_DarumaFramework - Estava apresentando erro quando enviado um buffer grande de impressão várias vezes seguidas.
+
+Implementação - rConsultaStatusImpressora_DUAL_DarumaFramework - Agora está retornando os status normalmente quando impressora em erro ou fora de linha.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 10/05/2012
+
+Versão Arquivo: 07.01.02
+
+Versão do Produto: ECF 6.39, DUAL 4.29, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+ 
+
+Implementação - iImprimirTexto_DUAL_DarumaFramework - TAG <txtl> - agora aceita a utilização de tags de formatação de texto dentro dela. 
+
+
+Nova Implementação - rConsultaStatusImpressora_DUAL_DarumaFramework - Método que retorna alguns status da impressora, de acordo com o índice informado.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 09/05/2012
+
+Versão Arquivo: 07.01.01
+
+Versão do Produto: ECF 6.39, DUAL 4.28, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - Auditoria_ECF - Quando a chave ECF\Auditoria está configurada para valor =2, o arquivo Auditoria_ECF.txt não estava informando a versão da biblioteca e dos produtos.
+
+Implementação - para JNA - Para funcionamento correto do driver foi adicionado ByRef na assinatura dos métodos rCMEfetuarCalculo, rRGVerificarStatus e rRetornarVendaBruta.
+
+Implementação - eDefinirProduto_Daruma - Soluicionado problema para utilização em Delphi, quando passamos o parametro do método em branco (nulo).
+
+Nova Implementação - Geração de Arquivos - Quando o código do item é enviado para o ECF com espaços em branco na frente do código, os relatórios gerados que contenham essa informação agora apresentam o código sem os espaços em branco na frente.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 07/05/2012
+
+Versão Arquivo: 07.00.38
+
+Versão do Produto: ECF 6.38, DUAL 4.27, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - confCadastrar_ECF_Daruma - Quando existir alíquota 00,00% cadastrada no ECF, aceitar cadastro e leitura de outras alíquotas após ela. 
+
+Implementação - rGerarRelatorio_ECF_Daruma - MFD, TDM, NFP, NFPTDM - Quando emitiu Sangria/ Suprimento e possui cupons com troco, o valor calculado para o campo 08 do registro E18 para TROCO estava saindo incorreto.
+
+Implementação - confModoPAF - Quando ativado está encerrando a aplicação durante a geração do Espelho da Leitura da Memória Fiscal.
+
+Nova Implementação - eDefinirProduto_Daruma - Permitir que o método eDefinirProduto_Daruma aceite NULO(VAZIO/ SEM NADA PREENCHIDO).
+
+Nova Implementação - rGerarRelatorio_ECF_Daruma - SPED - implementação de parametros opcionais para PIS e COFINS, quando indicados o arquivo é gerado com os devidos valores nos registros C410, C425, C460 e C470.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 03/05/2012
+
+Versão Arquivo: 07.00.34
+
+Versão do Produto: ECF 6.34, DUAL 4.27, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - Quando tem uma forma de pagamento cadastrada com acento "Á Prazo" por exemplo, a dll só faz leitura das formas anteriores. Possibilitar leitura de todas as formas de pagamento.
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFPTDM - Registro E16, quando emiti um CCD não vem o GNF.
+
+Implementação - rStatusGaveta_ECF_Daruma, rCFVerificarStatus_ECF_Daruma, em VB6 está apresentando problemas devido à diferença de tamanho da variável inteira em C e VB.
+
+Implementação - iMFLerSerial_ECF_Daruma - Quando o confModoPAF_ECF_Daruma está ativado derruba a aplicação na geração do arquivo de Leitura Memoria Fiscal.
+
+Implementação - regAlterarValor_ECF_Daruma - Quando altera MensagemAPL1 ou MensagemAPL2 o codigo de aviso sempre vem 1, sinalizando pouco papel mesmo com o ECF com a bobina cheia.
+
+Implementação - iImprimirTexto_DUAL - problemas na impressão de buffer com mais de 1024 caracteres, usando porta paralela.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 18/04/2012
+
+Versão Arquivo: 07.00.29
+
+Versão do Produto: ECF 6.29, DUAL 4.26, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo gerado registro C490
+
+Implementação - rGerarRelatorio_ECF_Daruma - TDM, MF - Não estão sendo mostrados todas as RZs do periodo solicitado, o problema ocorre quando a impressora tem mais de 2000 reduções na MF
+
+Implementação - Quando usa o metodo iRGAbrir_ECF_Daruma com um nome que nao existe da erro porque nao existe, porem cadastra CupomAdicional no RG
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 11/04/2012
+
+Versão Arquivo: 07.00.25
+
+Versão do Produto: ECF 6.25, DUAL 4.26, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Quando a UF é PR os totais de registros que são informados no registro 090 esta vindo incorreto
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Registros 60D e 60R estão vindo com valor negativo
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 05/04/2012
+
+Versão Arquivo: 07.00.22
+
+Versão do Produto: ECF 6.22, DUAL 4.26, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - iCFVender_ECF_Daruma - Quando envio a quantidade de 0,22 é impresso 0,022.
+
+Implementação - rGerarRelatorio_ECF_Daruma - Quando temos estorno de pagamento no registro R07 do VIVANOTA esta saindo caracteres [NULL] no registro
+
+Implementação - rGerarRelatorio_ECF_Daruma - VIVANOTA - Não esta sendo gerado o registro R06 para CNF Sangria e Suprimento
+
+Implementação - rGerarRelatorio_ECF_Daruma - VIVANOTA - Registro R06 não esta trazendo o valor do GNF quando o documento é um CCD
+
+Implementação - DUAL - Quando o controle automatico esta com o valor "1" não esta sendo logado a saida do método iImprimirTexto_DUAL_DarumaFramework
+
+Implementação - eBuscarPortaVelocidade_ECF_Daruma - Retorna 1 (OK) mas não encontra o ECF
+
+Nova Implementação - Implementar tags PeriodoInicial e PeriodoFinal dentro de ECF\REDUCAOZ - Quando as duas tags estiverem preenchidas os relatórios selecionados
+                      em ECF\REDUCAOZ\Relatorios devem ser gerados com o periodo informado nas duas tags. Se for informado somente a data inicial, a DFW deve pegar 
+					  como data final o movimento da ultima RZ
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 04/04/2012
+
+Versão Arquivo: 07.00.15
+
+Versão do Produto: ECF 6.16, DUAL 4.26, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - iCCDAbrirPadrao_ECF_Daruma - Quando é método é chamado após a emissão de um CNF, esta dando o erro "Informações sobre pagamento não disponíveis"
+
+Implementação - Quando a chave ECF\Auditoria esta com o valor "0", esta sendo gerado o arquivo Auditoria_ECF.txt somente com as informações de versionamento da dll. Quando a chave esta com o valor "0" nenhum arquivo deve ser gerado
+
+Implementação - iImprimirTexto_DUAL - Com a impressora DR700L a impressão de buffers grandes esta apresentando o retorno -50.
+
+Nova Implementação - Adicionada tag ECF\REDUCAOZ\TimeOutReducaoZ, essa tag recebe o tempo em segundos e é criado com o valor default de 30
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 29/03/2012
+
+Versão Arquivo: 07.00.12
+
+Versão do Produto: ECF 6.14, DUAL 4.25, MODEM 3.20, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - Melhorar log do linux, hoje esta sendo mostrado varias vezes os métodos internos como de abertura de serial e escrita da serial, o que faz aumentar o log e dificultar a analise
+
+Implementação - rGerarRelatorio_ECF_Daruma - TDM e Sintegra  - os documentos emitidos antes das 02:00hs mesmo já sendo de outro dia de movimento, estão ficando no dia anterior, como se a RZ tivesse sido emitida as 02hs.
+
+Implementação - rGerarRelatorio_ECF_Daruma - esta retornando -102 ao fazer a leitura do Daruma.inf
+
+Implementação - eInicializar_MODEM esta retornando -3 no Linux
+
+Implementação - eBuscarPortaVelocidade_ECF_Daruma - Quando temos uma placa de modem para conexão discada instalado na maquina o método esta retornando 1 (OK) mas não consegue se comunicar com o ECF
+
+Implementação - iImprimirTexto_DUAL_DarumaFramework - Em algum momentos esta sendo mostrando erro de comunicação com a impressora
+
+Implementação - Logar os parâmetros que a dll envia para o método iCCDAbrirPadrao
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 23/03/2012
+
+Versão Arquivo: 07.00.05
+
+Versão do Produto: ECF 6.11, DUAL 4.22, MODEM 3.17, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - MF, TDM - o valor do GT mostrado nos registros E02 e E11 estão diferentes do valor do GT impresso na redução Z, no relatório esta sendo mostrado um valor maior que na redução Z
+
+Implementação - confHabilitarHorarioVerao_ECF_Daruma e confDesabilitarHorarioVerao_ECF_Daruma - Quando um dos dois métodos são chamados o Observer esta sendo encerrado
+
+Implementação - iRGImprimirTexto_ECF_Daruma - Esta sendo retornado erro 24 quando do checksum é null
+
+Implementação - iCFAbrir_ECF_Daruma - Quando enviamos o CPF, mas o campo Nome ou endereço estão em branco, em Delphi esta saindo impresso o texto "(null)"
+
+Nova Implementação - Implementado módulo DSP para trabalhar com o Display do produto Daruma PDV TouchW@y
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 15/03/2012
+
+Versão Arquivo: 06.04.08
+
+Versão do Produto: ECF 6.08, DUAL 4.22, MODEM 3.17, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - o binário da MFD é lido  e a janela de erro informado que a aplicação sera fechada esta sendo mostrada
+
+Implementação - iCCDAbrirPadrao_ECF_Daruma - esta retornando o erro "Entre com digitos numericos somente" e o CCD não é aberto
+
+Implementação - iReducaoZ_ECF_Daruma - Impressora MACH1 - o comando esta retornando -1 mas a redução z é impressa
+
+Implementação - rStatusImpressora_ECF_Daruma - Quando a impressora esta na USB, se desligar a impressora e chamar o método o mesmo retorna -6 (impressora desligada) e quando ela é ligada novamente o método continua retornando -6
+
+Nova Implementação - iReducaoZ_ECF_Daruma - quando a chave ECF\REDUCAOZ\AvisarReducao estiver com o valor 1, se a diferença entre a primeira e a segunfa chamado do método for maior que 10 minutos deve mostrar novamente a mensagem de bloqueio do ECF.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 14/03/2012
+
+Versão Arquivo: 06.04.04
+
+Versão do Produto: ECF 6.04, DUAL 4.22, MODEM 3.17, TA2000 4.05
+
+Implementações / Novas Implementações:
+
+Implementação - iCFEmitirCupomAdicional_ECF_Daruma - Quando emitido após um CCD, o valor da forma de pagamento vinculada esta errado
+
+Implementação - eAcionarGuilhotina_ECF_Daruma - Quando a impressora esta com a guilhotina configurada como Corte Parcial o método retorna o erro "Guilhotina não habilitada" e o acionamento não é feito.
+
+Implementação - TA2000 - iEnviarDadosFormatados_TA2000_DarumaFramework - Quando digito uma quantidade de casas, apago, e digito uma quantidade menor, esta vindo sujeira no resultado
+
+Implementação - eRetornarPortasCOM_ECF_Daruma - em VB6 e Visual FoxPro o método é executado com sucesso (retorno 1) mas não esta trazendo as portas COM
+
+Nova Implementação - Quando a tag ECF\REDUCAOZ\AvisarReducaoZ esta com o valor 1 e o método iReducaoZ_ECF_Daruma for chamado a DFW vai verificar se a redução z vai bloquear a impressora, se bloquear deve mostrar um retorno avisando o bloqueio, e se realmente o cliente quiser imprimir a RZ o método deve ser chamado novamente
+
+Nova Implementação - Implementar rotas de IP/COM para o módulo DUAL, a tag de rota deve conter a porta COM (serial) que sera mapeada e o IP que a impressora esta conectada. Quando o usuário chamar na aplicação a porta COM que foi configurada na rota, a dll vai mandar os comandos para o IP configurado e não para a COM
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 09/03/2012
+
+Versão Arquivo: 06.03.01
+
+Versão do Produto: ECF 6.00, DUAL 4.21, MODEM 3.19, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED – Quando o mês não teve movimento logo no primeiro dia o arquivo é gerado apenas com os registros 0200
+
+Nova Implementação - rInfoEstendida_MODEM_Daruma - O comando deve retornar o indice do SMS quando a mensagem for enviada com sucesso
+
+Nova Implementação - Criar no módulo MODEM do XML a tag ListarSMS, essa tag pode aceitar 3 valores(0, 1 e 2). Quando estiver com o valor "0" o comando rListarSMS deve listar
+					 todos os SMS, com o valor 1 o comando rListarSMS deve listar somente as mensagens lidas e com o valor 2 o comando deve listar somente as mensagens não lidas.
+
+Nova Implementação - Implementar rotinas de execução automática de relatórios e retornos de informação antes ou após a redução Z.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 02/03/2012
+
+Versão Arquivo: 06.02.01
+
+Versão do Produto: ECF 5.98, DUAL 4.21, MODEM 3.17, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - DUAL - Quando enviamos um buffer muito grande  através da conexão socket a impressão não esta sendo completada
+
+Implementação - DUAL - Quando alteramos as configurações de porta no módulo DUAL em tempo de execução, a configuração não entra em vigor até que o comando eDefinirProduto_Daruma seja chamado
+
+Implementação - DUAL - quando a DFW não consegue comunicação socket com a impressora, o retorno demorando cerca de dois minutos para responder o erro de comunicação
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Registro 60I - Campo 11 (base de cálculo do ICMS) deve mostrar o valor total do item, hoje estamos mostrando o valor unitário do produto
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro 0000 não esta sendo gerado
+
+Nova Implementação - criar tag ECF\Wine no XML DarumaFrameWork.xml- Quando a chave estiver com o valor "1" a velocidade da impressora deve ser alterada para 38400, essa alteração deve ser feita porque as bibliotecas do Wine não permitem que o download de binários seja feito em alta velocidade na serial
+
+Nova Implementação - organização das tags internas do XML  por produtos por ordem alfabética
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 24/02/2012
+
+Versão Arquivo: 06.01.02
+
+Versão do Produto: ECF 5.96, DUAL 4.20, MODEM 3.17, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iReducaoZ_ECF_Daruma - Com a impressora MACH1 o comando esta retornando -1 mas a redução Z é impressa
+
+Implementação - rTipoUltimoDocumentoInt_ECF_Daruma e rTipoUltimoDocumentoStr_ECF_Daruma - Se estou com um Cupom fiscal ou um cupom não fiscal aberto e envio o método iRGFechar_ECF_Daruma a dll retorna que o ultimo documento emitido foi um Relatório Gerencial
+
+Nova Implementação - eApagarSms_MODEM_DarumaFramework - quando o parâmetro informado for “ 0 ”, todas as mensagens do chip são apagadas
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 13/02/2012
+
+Versão Arquivo: 06.00.01
+
+Versão do Produto: ECF 5.94, DUAL 4.20, MODEM 3.16, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarEspelhoMFD_ECF_Daruma - Quando o tipo de intervalo é DATAM(3), e o periodo solicitado não tem movimento, a dll não esta retornando o método com o valor -106 (não possui movimento no periodo solicitado)
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, TDM - registro E15 - quando é dado desconto em porcentagem (%) no item, essa informação não esta aparecendo na posição 14 do registro
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, TDM - Registro E15 - Campo 16 - Valor total liquido esta vindo negativo
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, TDM - Registro E21 - quando o documento emitido for um Cupom Fiscal, o campo 08 (GNF) deve vir zerado
+
+Implementação - rListarSMS_MODEM_DarumaFramework - a dll esta listando as mensagens armazenadas no modem e não no sim card, o correto é listar as mensagens do sim card
+
+Nova Implementação - rReceberSMSIndice_MODEM_DarumaFramework - O comando deve permitir que o usuário informe o índice do SMS que ele deseja fazer a leitura
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 07/02/2012
+
+Versão Arquivo: 05.31.04
+
+Versão do Produto: ECF 5.90, DUAL 4.20, MODEM 3.15, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - Quando a impressora é desligada logo após o envio do método, a dll lebin esta sendo chamada em vez de sair do método com o retorno -6
+
+Implementação - tEnviarSMSOperadora_MODEM_DarumaFramework não esta sendo mostrado no Observer
+
+Implementação - eBuscarPortaVelocidade_MODEM_DarumaFramework não esta sendo mostrado no Observer
+
+Nova Implementação - Implementado o parâmetro VIVANOTA no método rGerarRelatorio_ECF_Daruma
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 06/02/2012
+
+Versão Arquivo: 05.30.00
+
+Versão do Produto: ECF 5.86, DUAL 4.20, MODEM 3.15, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo gerado os registros C425 de todos os dias no perfil B do SPED (SPED_DRM_B.TXT)
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, TDM - registro E15 - quando é dado desconto em valor ($) no item, essa informação não esta aparecendo na posição 14 do registro.
+
+Implementação - iRGImprimirTexto_ECF_Daruma - quando o texto "<<<Comprovante>>> " é enviado o método retorna -1 e o texto não é impresso
+
+Implementação - rGerarRelatorio_ECF_Daruma - Quando selecionamos apenas um dia de movimento, somente o registro 0200 do SPED esta sendo gerado
+
+Nova Implementação - implementar troca de velocidade do modem. Quando o usuário alterar o valor da tag MODEM\Velocidade a velocidade do modem tambem deve ser reconfigurada e a dll deve permanecer conectada
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 31/01/2012
+
+Versão Arquivo: 05.28.03
+
+Versão do Produto: ECF 5.84, DUAL 4.20, MODEM 3.14, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Somente os registros 0200 estão sendo gerados
+
+Implementação - rGerarRelatorio_ECF_Daruma - a dll fica travada fazendo a leitura dos eventos do arquivo binário e retorna access violation
+
+Implementação - rGerarRelatorio_ECF_Daruma - MF, TDM, NFPTDM - Registro E10 não esta sendo gerado, o registro deve ser gerado quando a fita detalhe é impressa
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, TDM - Registro E17 - Gerar o registro E17 mesmo que o totalizador esteja com o valor zerado (0,00).
+
+Nova Implementação - Organizar os métodos na treeview do Observer seguindo a mesma lógica de organização do exemplo em Delphi7, essa organização não deve alterar os índices dos métodos
+
+Nova Implementação - eBuscarPortaVelocidade_MODEM_DarumaFramework para o módulo MODEM, o comando deve encontar a porta e velocidade que o modem esta configurado. 
+
+Nova Implementação - Nos comando eRSAAssinarArquivo, rGerarRelatorio e rRSA a dll deve aceitar a string com a chave e tambem o arquivo .key (como é hoje)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+DarumaFramework.dll
+
+Data de liberação: 23/01/2012
+
+Versão Arquivo: 05.26.17
+
+Versão do Produto: ECF 5.76, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iTEFFechar_ECF_Daruma - Quando o comando é chamado sem ter um CCD ou RG em aberto, o comando rStatusUltimoCMD esta trazendo erro 0 em vez de 84
+
+Implementação - Cupom Adicional - Se o valor do cupom fiscal é 0,10 , o campo da forma de pagamento só esta mostrando o valor " ,10".
+
+Nova Implementação - eRetornarAvisoErroUltimoCMD_ECF_Daruma(Str_Aviso, Str_Erro) - O método deve retornar o texto referente ao erro e aviso do ultimo comando executado
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 20/01/2012
+
+Versão Arquivo: 05.26.16
+
+Versão do Produto: ECF 5.75, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - MFD, TDM, NFP, NFPTDM - Registro E15 - Quando temos um desconto no item e depois um desconto no cupom fiscal, o valor mostrado no campo 14 (desconto sobre item) esta saindo errado. Em vez de mostrar o valor de 4,20 esta mostrando 42000000
+
+Implementação - rGerarRelatorio_ECF_Daruma - MFD, TDM, NFP, NFPTDM, Registro E21 - Esta sendo mostrado 2 registros na mesma linha
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro 0000 - O campo 6 (Nome da empresa) esta saindo com espaços no inicio, a dll deve tirar os espaços do inicio e final do campo
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 17/01/2012
+
+Versão Arquivo: 05.26.10
+
+Versão do Produto: ECF 5.70, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - não esta sendo gerado o registro 0000
+
+Implementação - iTEFImprimirResposta ou iTEFImprimirRespostaCartao - esta retornando -99 quando o CCD não esta aberto
+
+Implementação - rCodigoModeloFiscal_ECF_Daruma - quando estamos com a impressora MACH 2, o código nacional de identificação do ECF esta retornando o valor 0814
+
+Implementação - iCFIdentificarConsumidor_ECF_Daruma - Somente o campo CNPJ deve ser obrigatório, caso o campo nome e/ou endereço esteja em branco a dll deve aceitar e executar o comando
+
+Implementação - rGerarRelatorio_ECF_Daruma - MFD, TDM, NFPTDM, NFP - Registro E16 - Não esta sendo gerado registro para toda Leitura X e relatório gerencial que foi impresso
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro 0000 - Não esta mostrando a UF no campo 9 
+
+Implementação - iRGImprimirTexto_ECF_Daruma - quando o texto tem o caracter < a impressão não esta sendo feita, a dll esta reconhecendo como uma tag
+
+Implementação - rGerarRelatorio_ECF_Daruma - MF - Registro E02 - Não estão sendo mostradas as informações do cliche da impressora, como CNPJ, nome, endereco
+
+Implementação - iCFVender_ECF_Daruma - no Delphi, quando algum parâmetro não foi enviado a dll não esta mostrando o retorno -99
+
+Implementação - iCCDImprimirArquivo_ECF_Daruma - não está funcionando quando o arquivo enviado tem mais de 68 caracteres a impressão não esta sendo realizada
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - C470 - Quando for alíquota de ISS o campo 7 deve ficar com o valor 090 e o campo alíquota com o valor 00,00
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - C460 - Quando o cupom é cancelado o campo CPF deve ficar em branco
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - C460 - tirar a formatação do campo de CPF do cliente, informar somente os números
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - C490 - Gerar o registro C490 mesmo quando a aliquota for de ISS, informar o campo aliquota com o valor de 0,00 e o campo de valor com o mesmo valor que esta no registro C420 correspondente
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 29/12/2011
+
+Versão Arquivo: 05.26.03
+
+Versão do Produto: ECF 5.63, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Registro 60I - O valor liquido da mercadoria esta saindo errado devido a configuração de decimais da impressora. no cupom esta como 0,93 mas no arquivo esta saindo somente 9
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 29/12/2011
+
+Versão Arquivo: 05.26.02
+
+Versão do Produto: ECF 5.62, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - rRetornarInformacao_ECF_Daruma - O usuário pode solicitar mais de um índice por vez, para isso os indices devem ser contatenados com o caracter "+"
+
+Nova Implementação - rGerarRelatorio_ECF_Daruma - Implementada a tag LMFC (leitura da memória fiscal completa em arquivo) e LMFS (leitura da memoria fiscal simplificado em arquivo)
+
+Nova Implementação - rGerarRelatorioOffLine_ECF_Daruma - O método tambem deve aceitar o binário bruto (.dat) e fazer a geração dos relatórios com base nesse arquivo
+
+Implementação - rGerarRelatorio_ECF_Daruma - quando selecionamos algum relatório de baixo nivel e pedimos para assinar todos os arquivos (tag [EAD]) o método esta retornando erro
+
+Implementação - rGerarEspelhoMFD_ECF_Daruma - Quando a impressora esta a 115200 o espelho esta sendo criado incompleto e a dll fica travada, mesmo depois que a impressora ja respondeu. Quando a impressora esta a 9600 ou 38400 o problema não ocorre
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro 0200 - Em alguns registros a descrição do produto esta saindo com um espaço em branco antes
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro C460 - Campo 3 esta vindo com o valor 07 quando ocorre cancelamento de algum item, mas o correto é colocar como 00
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro C420 - o campo 4 deve ficar em branco quando aliquota for F, I, N, CAN-T, DT, DS, AT, AS
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro C470 - o campo ALIQ_ICMS deve vir com o valor 0,00 quando o campo CST_ICMS for igual a 040 ou 060
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro 0200 e C470 - no campo de aliquota devemos colocar o valor com 2 decimais, exemplo, 17,00
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - registro 0200 e C470 - Quando a descrição do item tem mais de 60 posições, o campo de unidade esta sendo preenchido com lixo, pegando os ultimos caracteres do campo anterior
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - registro C460 - Quando o cupom é cancelado somente os 4 primeiros campos devem ser preenchidos, o restante deve ser colocado em branco, hoje o campo de PIS e COFINS estão sendo preenchido com 0,00
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFP, NFPTDM, MFD, MF, TDM - Quando temos uma redução Z sem movimento a dll esta retornando -106 (indicanco que não tem movimento no periodo selecionado) e não gera os relatórios com as informações que ela possui
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 16/12/2011
+
+Versão Arquivo: 05.25.01
+
+Versão do Produto: ECF 5.42, DUAL 4.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - Quando a tag [EAD] esta selecionada, todos os relatórios devem ser assinados
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - O valor do item no registro C470 esta saindo com as casas decimais erradas
+
+Implementação - rGerarRelatorio_ECF_Daruma - NFPTDM, TDM - Registro E14 - quando ocorre cancelamento de cupom fiscal o campo CCF esta saindo com o valor errado, esta vindo como CCF+1
+
+Implementação - rGerarRelatorio_ECF_Daruma - MFD, TDM, NFP - Registro E21 esta sendo gerado com [NULL] no final da linha
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 14/12/2011
+
+Versão Arquivo: 05.24.16
+
+Versão do Produto: ECF 5.39, DUAL 4.01, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rLeituraX_ECF_Daruma - com a impressora na porta USB o arquivo de saída foi gerado incompleto
+
+Implementação - rLeituraX_ECF_Daruma - se o comando for chamado mais de uma vez, as informações do arquivo estão sendo concatenadas, o arquivo não esta sendo zerado
+
+Implementação - rGerarRelatorio - SPED - Registro C490 - Retirado o valor 2D do campo 8 desse registro. o Campo deve ficar vazio
+
+Implementação - rRetornarInformacao_ECF_Daruma - Mehoria no tempo de execução do comando
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 07/12/2011
+
+Versão Arquivo: 05.24.11
+
+Versão do Produto: ECF 5.35, DUAL 4.01, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iCFEmitirCupomAdicional_ECF_Daruma - Não esta sendo emitido cupom adicional após a impressão de um cupom de bilhete de passagem
+
+Implementação - iCFBPAbrir_ECF_Daruma - O comando não esta funcionando quando os parâmetros de Nome, endereco e documento são informados
+
+Implementação - O primeiro cupom fiscal de bilhete de passagem esta saindo com os valores errados.
+
+Implementação - iCFCancelar_ECF_Daruma - Quando o CCD esta em aberto o comando não esta fazendo o estorno do CCD e o cancelamento do cupom
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 05/12/2011
+
+Versão Arquivo: 05.24.07
+
+Versão do Produto: ECF 5.32, DUAL 4.01, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rTipoUltimoDocumentoInt_ECF_Daruma e rTipoUltimoDocumentoStr_ECF_Daruma estão retornando valor errado quando o ultimo documento chamado foi iSangria_ECF_Daruma e iSuprimento_ECF_Daruma
+
+Implementação - iSuprimento_ECF_Daruma - Não esta sendo permitido que o usuário envie o parâmetro de texto livre em branco
+
+Implementação - iSangria_ECF_Daruma - Não esta sendo permitido que o usuário envie o parâmetro de texto livre em branco
+
+Implementação - iCFBPAbrir_ECF_Daruma não esta aceitando os parametros de nome, endereco e documento em branco
+
+Implementação - iCCDEstornar_ECF_Daruma - não esta aceitando os parametros de nome, endereco e documento em branco
+
+Implementação - iCCDAbrir_ECF_Daruma - Os campos de nome, endereco e documento estão sendo impressos com o texto "(null)" quando o usuário não informa essas informações
+
+Implementação - rStatusImpressora_ECF_Daruma esta retornando -6 quando a tag ECF\RetornarAvisoErro esta com o valor 0
+
+Implementação - rInfoEstendida_ECF_Daruma - Não esta sendo retornada a informação de abertura de cupom fiscal (iCFAbrir_ECF_Daruma)
+
+Implementação - eApagarSMS_ECF_Daruma - esta trazendo o retorno 1 mesmo quando não temos mensagem para ser apagada no modem
+
+Nova Implementação - Implementada comunicação com impressora não fiscal DR700 Ethernet
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 30/11/2011
+
+Versão Arquivo: 05.24.02
+
+Versão do Produto: ECF 5.29, DUAL 4.00, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iReducaoZ_ECF_Daruma - quando o redução tem mais de 20 PDFs a aplicação esta sendo encerrada
+
+Implementação - rVerificarImpressoraLigada_ECF_Daruma e eBuscarPortaVelocidade_ECF_Daruma estão trazendo valor inválido em erro e aviso
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 29/11/2011
+
+Versão Arquivo: 05.24.01
+
+Versão do Produto: ECF 5.28, DUAL 4.00, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - campo 10 Registro 60I - deve mostrar o valor liquido do produto e não do item
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Registro C490 - Quando o campo CST_ICMS for 30,40,41,50 ou 60 o campo 06 tambem deve vir com o valor zero
+
+Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - registro 60D e 60I - quando o código do produto tem mais de um espaço a dll esta colocando somente 1 no arquivo. exemplo: código = teste    4, no arquivo do SINTEGRA aparece como teste 1 (somente com 1 espaço).
+
+Implementação - rGerarEspelhoMFD_ECF_Daruma - Quando a data atual da impressora é passada como parametro, a dll esta retornando que a data é maior que a emissão da ultima RZ
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 22/11/2011
+
+Versão Arquivo: 05.23.08
+
+Versão do Produto: ECF 5.25, DUAL 3.24, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo feito o rateio do acréscimo colocado no final do cupom quando os produtos são vendidos com a mesma alíquota
+
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - O registro 0200 gera as aliquotas com vírgula e no C270 esta gerando no formato sem virgula, colocar os 2 registros com a mesma formatação
+
+Implementação - Alterar a mensagem de Cupom Mania para "CUPOM MANIA, CONCORRA A PRÊMIOS" na linha 1 e "ENVIE SMS P/ 6789: 99999999ddmmaa888888777" na linha 2. onde  “99999999” representa o número da Inscrição Estadual do contribuinte usuário do ECF, impresso no cabeçalho do Cupom Fiscal, com 8 dígitos; Quando flag ECF\CF\CupomMania=2 a mensagem deve ser impressa na penultima e ultima linha da mensagem promocional.
+ “ddmmaa” representa a data de emissão do Cupom Fiscal impressa em seu cabeçalho, no formato dia, mês e os dois últimos dígitos do ano;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 11/11/2011
+
+Versão Arquivo: 05.23.03
+
+Versão do Produto: ECF 5.20, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - Quando ocorre ao na geração de relatórios a dll não esta voltando a velocidade da impressora para a que o usuário estava utilizando
+
+Implementação - iRGImprimirTexto_ECF_Daruma - Não esta sendo impresso o texto e o BMP quando a tag <bmp> esta sendo colocada no final da string de comando
+
+Implementação - rStatusUltimoCMDInt_ECF_Daruma - em VB6 em modo debug o retorno de erro e aviso sempre vem com 0 (sem erro e sem aviso) mesmo quando temos algum erro na impressora
+
+Implementação - tag <bmp> só esta funcionando quando mandamos algum texto junto com a tag, exemplo <bmp>1</bmp>teste
+
+Implementação - rVerificarImpressoraLigada_ECF_Daruma - esta retornando -6 (impressora desligada) quando a tag ECF\ControleAutomatico esta com o valor 1
+
+Nova Implementação - eAcionarGuilhotina_ECF_Daruma - Quando temos algum documento em aberto e tentamos acionar a guilhotina é retornado o erro avisando que a guilhotina esta desabilitada 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 31/10/2011
+
+Versão Arquivo: 05.22.20
+
+Versão do Produto: ECF 5.12, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - Minas Legal - Alterado a formatação do texto do Minas Legal devido a alteração na legislação, agora esta sendo colocada as casas decimais
+do valor total do cupom e tambem foram colocados espaços entre o CNPJ, data e valor do cupom
+
+Nova Implementação - Implementado valor 3 na tag ECF\Auditoria, com esse valor o arquivo gerado fica bloqueado para visualização ou edição enquanto a dll não for encerrada
+
+Implementação - iMFLerSerial_ECF_Daruma - Quando a impressora esta na porta USB o arquivo esta sendo gerado incompleto
+
+Implementação - iMFLerSerial_ECF_Daruma - A aplicação esta entrando em loop durante a geração do arquivo quando a impressora esta na porta USB
+
+Nova Implementação - Implementado rCalcularMD5_ECF_Daruma no Observer
+
+Implementação - eAcionarGuilhotina_ECF_Daruma - esta retornando 0 mesmo quando o comando é executado com sucesso
+
+Implementação - eInterpretarRetorno_ECF_Daruma - Quando o índice é -106 o texto retornado esta errado, o correto é "Não possui movimento no periodo solicitado"
+
+Nova Implementação - Implementado tag <sl> no módulo ECF, com esta tag é possível realizar o salto de linhas de 01 a 99 no relatório gerencial e no CCD
+
+Implementação - rGerarRelatorio_ECF_Daruma - TDM e MF - registro E09 - Quando o reinicio de operação ocorre durante o horário de verão, a hora mostrada no campo 
+07 do registro esta vindo errada
+
+Implementação - quando o papel acaba, coloco nova bobina, chama o comando rVerificarImpressoraLigada e depois rRetornarInformacao com indice 56.
+A aplicação java esta caindo e retornando AccessViolation na JVM
+
+Implementação - Nova Implementação do comando  rRetornarVendaBruta_ECF_Daruma
+
+Implementação - Quando pedimos para gerar o relatório do dia de hoje (dia aberto) a dll não esta retornando o erro -105 (data informada é maior que a ultima redução Z)
+
+Implementação - eBuscarPortaVelocidade_ECF_Daruma - Quando temos mais de 2 portas COM o comando esta retornando -6 (impressora desligada)
+
+Implementação - iRGAbrir_ECF_Daruma - a descrição do RG esta como case sensitive, mas deve aceitar sendo maiusculo ou minusculo
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 18/10/2011
+
+Versão Arquivo: 05.22.04
+
+Versão do Produto: ECF 4.97, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iCCDImprimirTexto_ECF_Daruma - Não esta aceitando tags de código de barras, o comando retornar 1 mas nada é impresso
+Implementação - iRGImprimirTexto_ECF_Daruma - quando coloco um \n no final da linha do texto, a dll esta colocando uma linha em branco logo abaixo do texto
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 14/10/2011
+
+Versão Arquivo: 05.22.03
+
+Versão do Produto: ECF 4.96, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - confCadastrar_ECF_Daruma e confCadastrarPadrao_ECF_Daruma - o cadastro de alíquota esta sendo feito na ultima posição
+Implementação - eInterpretarAviso, eInterpretarErro e eInterpretarRetorno não estão sendo logados
+Implementação - confCadastrar_ECF_Daruma e confCadastrarPadrao_ECF_Daruma - não estão logando os parâmetros informados
+Nova Implementação - MinasLegal - Quando a tag ECF\CF\MinasLegal estiver habilitada o texto deve ser impresso na ultima linha da mensagem promocional
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 10/10/2011
+
+Versão Arquivo: 05.21.00
+
+Versão do Produto: ECF 4.92, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - DUAL - tag <sn> - esta emitindo o sinal sonoro mas esta pulando uma linha
+Implementação - iRGImprimirTexto_ECF_Daruma - Quando o relatório gerencial é fechado automaticamente após 2 minutos, o comando
+	não esta abrindo o relatório gerencial
+Implementação - iCFEncerrarPadrao_ECF_Daruma e iCFEncerrarResumido_ECF_Daruma - Quando colocamos um texto com tags de formatação
+	no XML o texto esta sendo impresso duas vezes no final do cupom, sendo que uma vez ele esta formatado e outra não
+Implementação - tag <bmp> não esta funcionando corretamente, a imagem só é impressa quando mandamos algum texto junto com a tag
+Implementação - rStatusUltimoCMDInt_ECF_Daruma e rConsultaStatusImpressoraStr_ECF_Daruma estão travando o Observer
+Implementação - rConsultaStatusImpressoraInt_ECF_Daruma não esta trazendo o retorno
+Implementação - eMemoriaFiscal_ECF_Daruma não esta funcionando no Observer
+Nova Implementação - Implementada a tag ECF\CF\MensagemFormaPagamento
+Nova Implementação - Implementada a tag Observer\Latencia
+Nova Implementação - Implementado tratamento de retorno do fim de papel
+Nova Implementação - Implementado no Observer os métodos:
+eAcionarGuilhotina_ECF_Daruma,
+rStatusGaveta_ECF_Daruma, 
+rAssinarRSA_ECF_Daruma, 
+rGerarMF_ECF_Daruma, 
+rGerarMFD_ECF_Daruma,
+rGerarNFP_ECF_Daruma, 
+rGerarSINTEGRA_ECF_Daruma, 
+rGerarSPED_ECF_Daruma, 
+rGerarTDM_ECF_Daruma, 
+rRetornarGTCodificado_ECF_Daruma, 
+rVerificarGTCodificado_ECF_Daruma,
+eInterpretarRetorno_ECF_Daruma, 
+rInfoEstendida_ECF_Daruma, 
+rLerDecimais_ECF_Daruma, 
+rLerMeiosPagto_ECF_Daruma, 
+rLerRG_ECF_Daruma, 
+rMinasLegal_ECF_Daruma, 
+rRetornarDadosReducaoZ_ECF_Daruma, 
+confDesabilitarModoPreVenda_ECF_Daruma, 
+confHabilitarModoPreVenda_ECF_Daruma, 
+confProgramarIDLoja_ECF_Daruma, 
+confProgramarOperador_ECF_Daruma
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 03/10/2011
+
+Versão Arquivo: 05.17.01
+
+Versão do Produto: ECF 4.87, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - Implementado as tags para impressão de código de barras no encerramento do cupom e relatório gerencial
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo gerado todos os registros C470 referente aos itens vendidos no dia
+Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo colocado o caracter CR no final dos registros 0200
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 22/09/2011
+
+Versão Arquivo: 05.16.38.0
+
+Versão do Produto: ECF 4.85, DUAL 3.21, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - Implementado registros 0000 e 0200 no SPED perfil A e perfil B gerados pelo comando rGerarRelatorio_ECF_Daruma
+Nova Implementação - ECF - Retirado do log as chamadas internas do comando eXMLAlterarValor no start up da dll e colocado o texto do XML
+Nova Implementação - DUAL - Retirado do log as chamadas internas do comando eXMLAlterarValor no start up da dll e colocado o texto do XML
+Implementação - rGerarRelatorio_ECF_Daruma MFD e TDM - No registro E21 não esta mostrando o valor estornado da forma de pagamento
+Implementação - iCFVender_ECF_Daruma - Se tenho alguma alíquota cadastrada fora de ordem o comando esta retornando o erro -3 (aliquota não encontrada)
+Implementação - iCFIdentificarConsumidor_ECF_Daruma - comando não esta disponível para o Observer
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 20/09/2011
+
+Versão Arquivo: 05.16.31.0
+
+Versão do Produto: ECF 4.80, DUAL 3.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iEstornarPagamento_ECF_Daruma - Não esta aceitando a descrição da forma de pagamento, somente o índice
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 13/09/2011
+
+Versão Arquivo: 05.16.30.0
+
+Versão do Produto: ECF 4.78, DUAL 3.20, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - iCFEmitirCupomAdicional_ECF_Daruma - Quando o comando é chamado mais de uma vez em seguida, o número do COO do cupom de origem esta sendo alterado, sendo que deveria continuar o mesmo
+Implementação - iCFEncerrar_ECF_Daruma - Mesmo quando a tag ECF\CF\MINASLEGAL esta com o valor "0" a dll esta chamando internamente o comando rMinasLegal_ECF_Daruma
+Implementação - O comando não esta encontrando a impressora, mesmo quando a impressora esta ligada o comando esta retornando -6.
+Nova Implementação - Criada a tag <bm></bm> para ser utilizada nas impressoras DR700BM
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 06/09/2011
+
+Versão Arquivo: 05.16.27.0
+
+Versão do Produto: ECF 4.77, DUAL 3.19, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rRetornarInformacaoSeparador_ECF_Daruma - Quando o comando é chamado direto esta retornando Access Violation
+Nova Implementação - rGerarMF_ECF_Daruma
+Nova Implementação - rGerarMFD_ECF_Daruma
+Nova Implementação - rGerarTDM_ECF_Daruma
+Nova Implementação - rGerarSPED_ECF_Daruma
+Nova Implementação - rGerarSINTEGRA_ECF_Daruma
+Nova Implementação - rGerarNFP_ECF_Daruma
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 02/09/2011
+
+Versão Arquivo: 05.16.26.0
+
+Versão do Produto: ECF 4.76, DUAL 3.19, MODEM 3.09, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rConsultaStatusImpressoraBinario_ECF_Daruma - Zerado os avisos e erros do comando porque o mesmo não pega essa informação do ECF
+Implementação - rListarSMS_MODEM_DarumaFramework - a aplicação esta sendo fechada quando o método é executado
+Implementação - tEnviarSMS_MODEM_DarumaFramework - Quando o modem esta ligado na porta USB o comando esta retornando o erro -3
+Nova Implementação - tEnviarSMSOperadora_MODEM_DarumaFramework - Comando para enviar o SMS pelo chip selecionado pelo usuário
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 29/08/2011
+
+Versão Arquivo: 05.16.21.0
+
+Versão do Produto: ECF 4.73, DUAL 3.19, MODEM 3.07, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - rRetornarInformacaoSeparador_ECF_Daruma, quando chamamos o comando mais de uma vez em seguida esta dando access violation
+Implementação - iCFEncerrarPadrao_ECF_Daruma e iCFEncerrarResumido_ECF_Daruma esta retornando access violation quando o valor total do cupom é menor ou igual a 0,09
+Implementação - eDefinirProduto_Daruma esta retornando -40 quando o produto é definido como DUAL, MODEM, TA2000 ou GENERICO
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 25/08/2011
+
+Versão Arquivo: 05.16.16.0
+
+Versão do Produto: ECF 4.69, DUAL 3.18, MODEM 3.07, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - rMinasLegal_ECF_Daruma
+Nova Implementação - criada a tag ECF\CF\MinasLegal no xml de configuração DarumaFramework.xml
+Nova Implementação - criado o alias rInfoEstendida_ECF_Daruma para o comando rInfoEstentida_ECF_Daruma
+Implementação - eDefinirProduto_Daruma, se a impressora esta desligada o comando esta retornando 1 em vez de -6
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 22/08/2011
+
+Versão Arquivo: 05.16.11.0
+
+Versão do Produto: ECF 4.64, DUAL 3.18, MODEM 3.07, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Implementação - Quando o produto esta definido para FISCAL ou ECF e depois alteramos para DUAL, esta retornando erro -1 no comando iImprimirTexto_DUAL_Daruma
+Nova Implementação - eReiniciar_MODEM_Daruma
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 17/08/2011
+
+Versão Arquivo: 05.16.08.0
+
+Versão do Produto: ECF 4.64, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - eInterpretarAviso e eInterpretarErro, quando for o indice 0 escrever a mensagem "Sem Aviso" para o aviso e "Sem erro" para o erro
+Implementação – Quando a tag ECF\ControleAutomatico esta com o valor 1, a dll esta prendendo todas as portas COM do computador
+Implementação - eBuscarPortaVelocidade - se o comando é chamado mais de uma vez, esta sendo retornado impressora desligada
+Implementação - iCFVender_ECF_Daruma - quando a impressora tem uma aliquota de ISS de 5,00 e não tem a mesma aliquota em ICMS, quando mando o parâmetro de alíquota como I5,00 a impressora esta vendendo sem dar erro e esta mostrando a aliquota de ISS 5,00, sendo que deveria retornar o erro -3(Aliquota não cadastrada)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 16/08/2011
+
+Versão Arquivo: 05.16.05.0
+
+Versão do Produto: ECF 4.61, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - Comando eInterpretarRetorno_ECF_Daruma, retorna o texto referente aos possíveis retorno dos métodos
+Nova Implementação - eRetornarPortasCOM_ECF_Daruma, retorna as portas COMs que foram reconhecidas pelo Windows
+Implementação – eInterpretarErro_ECF_Daruma esta retornando o texto "Erro geral ou erro de comunicação" quando o índice do erro é igual a 0
+Implementação - rGerarEspelhoMFD_ECF_Daruma, mesmo quando a impressora tem movimento a dll esta retornando -106 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 11/08/2011
+
+Versão Arquivo: 05.16.00.0
+
+Versão do Produto: ECF 4.56, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+Nova Implementação - Agora a DLL busca apenas as portas COMs já startadas pelo Windows e equaliza o baud rate
+Nova Implementação – Sinal sonora no comando eBuscarPortaVelocidade quando a impressora é encontrada
+Nova Implementação – rUltimoCMDEnviado_ECF_Daruma
+Nova Implementação – rTipoUltimoDocumentoStr_ECF_Daruma
+Nova Implementação – rTipoUltimoDocumentoInt_ECF_Daruma
+Implementação – eBuscarPortaVelocidade não localiza a impressora quando a mesma esta na porta COM10 ou maior
+Implementação – rVerificarImpressoraLigada_ECF_Daruma esta retornando -6 mesmo quando a impressora esta comunicando
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 09/08/2011
+
+Versão Arquivo: 05.15.12.0
+
+Versão do Produto: ECF 4.50, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - Erro no comando iCCDFechar_ECF_Daruma com impressora MACH1 quando é chamado o comando eAcionarGuilhotina
+- Implementação - Retorno -1 no comando iReducaoZ_ECF_Daruma com impressora modelo MACH1 e MACH2.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 08/08/2011
+
+Versão Arquivo: 05.15.9.0
+
+Versão do Produto: ECF 4.47, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - rGerarRelatorio_ECF_Daruma - Em Java a aplicação esta sendo encerrado quando pedimos para gerar qualquer relatório
+- Nova Implementação - Criada a tag ECF\CF\BMP no arquivo XML de configuração, esta tag habilita a impressão automática de logotipo no encerramento do cupom fiscal, por
+padrão o valor desta chave é 0 (Impressão automática de logo desabilitada). Para que o logo seja impresso automaticamente no final do cupom, deve ser informado
+o número do índice em que a imagem foi carregada, esse número pode ser 1,2,3,4 ou 5. 
+- Implementação - Alterado o valor padrão das tags OBSERVER\PathEntrada para c:\Daruma.cmd e OBSERVER\PathSaida para c:\Daruma.ret
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 03/08/2011
+
+Versão Arquivo: 05.15.2.0
+
+Versão do Produto: ECF 4.41, DUAL 3.17, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - Se o produto esta como DUAL e depois alteramos para TA2000 a dll não esta liberando a porta que esta configurada no módulo DUAL
+- Implementação - DUAL - Quando a tag Termica do XML esta com o valor 0 o comando iImprimirTexto_DUAL_DarumaFramework retorna Access Violation
+- Implementação - DUAL - Comando iAutenticarDocumento esta retornando Access Violation
+- Implementação - Comandos iCFAbrir_ECF_Daruma e iCFIdentificarConsumidor não esta aceitando tags de formatação de texto
+- Nova Implementação - TAG ECF\IdentificaConsumidorFormatado que vai formatar a identificação do consumidor de acordo com o informado na tag
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 02/08/2011
+
+Versão Arquivo: 05.14.13.0
+
+Versão do Produto: ECF 4.39, DUAL 3.15, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - Comando rDataHoraImpressora_ECF_Daruma esta retornando data em branco quando a mesma é chamada varias vezes
+- Implementação - Audiotoria_ECF - Retirado o texto comReceberByte que estava sendo repetido
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 01/08/2011
+
+Versão Arquivo: 05.14.10.0
+
+Versão do Produto: ECF 4.34, DUAL 3.15, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Nova Implementação - rStatusImpressoraBinario_ECF_Daruma
+- Nova Implementação - rConsultaStatusImpressoraInt_ECF_Daruma
+- Nova Implementação - rConsultaStatusImpressoraStr_ECF_Daruma
+- Nova Implementação - Modo Genérico - eAbrirSerial_Daruma
+- Nova Implementação - Modo Genérico - eFecharSerial_Daruma
+- Nova Implementação - Modo Genérico - rReceberDados_Daruma
+- Nova Implementação - Modo Genérico - tEnviarDados_Daruma
+- Nova Implementação - iRelatorioConfiguracao_ECF_Daruma
+- Implementação - Incluída a versão da dll no início do arquivo Auditoria e também no
+início dos arquivos de continuação da auditoria.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 28/07/2011
+
+Versão Arquivo: 05.14.8.0
+
+Versão do Produto: ECF 4.34, DUAL 3.15, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - eBuscarPortaVelocidade_ECF_Daruma não esta encontrando a impressora quando a velocidade esta a 115200
+- Implementação - Quando o produto esta para DUAL e depois altero para FISCAL a dll não esta conseguindo se comunicar com a ECF.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 27/07/2011
+
+Versão Arquivo: 05.14.6.0
+
+Versão do Produto: ECF 4.32, DUAL 3.15, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - confCFBPProgramarUF_ECF_Daruma não esta funcionando no Observer
+- Implementação - rLerRG_ECF_Daruma não esta retornar as informações no arquivo Daruma.ret do Observer
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 25/07/2011
+
+Versão Arquivo: 05.14.4.0
+
+Versão do Produto: ECF 4.32, DUAL 3.15, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+- Implementação - iCFCancelar_ECF_Daruma - Quando o cupom fiscal tem mais de um CCD vinculado
+a ele, é feito o estorno do primeiro CCD e retornado o erro "Cancelar CCDs". O restante
+dos CCD referentes ao cupom não são estornados e o cupom fiscal não é cancelado
+- Implementação - iCCDImprimirTexto_ECF_Daruma - Quando é passada a tag <bmp> o comando
+retorna 1 (OK) mas a imagem não é impressa, se for colocado um texto junto com a
+tag o mesmo também não é impresso.
+- Implementação - rGerarRelatorio_ECF_Daruma - SPED - Não esta sendo colocado o texto
+"|C420|" quando o totalizador é CAN-T
+- Implementação - Tags de formatação de texto junto com BMP - Quando estava sendo enviada
+a tag <bmp> as tags de formatação de texto não estavam sendo reconhecidas
+- Implementação - DUAL - iImprimirTexto_DUAL_Daruma - Quando é enviada a tag <s> e no
+mesmo comando as tags de código de barras, a impressora só imprime o texto que foi
+passado entre a tag <s>, não imprime o código de barras e a impressora fica travada.
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 21/07/2011
+
+Versão Arquivo: 05.14.2.0
+
+Versão do Produto: ECF 4.31, DUAL 3.14, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+  - Implementação - iCFCancelar_ECF_Daruma - Quando o CF tem mais de um CCD vinculado a ele, é feito o estorno do primeiro CCD e é retornado o erro "Cancelar CCDs" e não é feito o estorno do segundo CCD e tambem não é feito o cancelamento do CF
+  
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+Data de liberação: 21/07/2011
+
+Versão Arquivo: 05.14.1.0
+
+Versão do Produto: ECF 4.30, DUAL 3.14, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+  - Nova Implementação - Criado comando rRetornarInformacaoSeparador_ECF_Daruma - Este método possibilita retornar do ECF mais de 170 informações diferentes ja formatadas
+  e sepadadas de acordo com separador informado
+ 
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+Data de liberação: 20/07/2011
+
+Versão Arquivo: 05.13.3.0
+
+Versão do Produto: ECF 4.28, DUAL 3.14, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+ - Implementação - rGerarRelatorio_ECF_Daruma - TDM, NFPTDM, MF - Venda bruta diária no registro E12 esta vindo com valor negativo quando o valor do item passa os 8 digitos
+ - Implementação - tag <bmp> não esta funcionando no campo de texto livre referente ao comando iCFEncerrar_ECF_Daruma
+ - Nova Implementação - Criada as tags OBSERVER\PathEntrada e OBSERVER\PathSaida, essas duas tags são utilizadas somente pelo Observer
+ 
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+Data de liberação: 19/07/2011
+
+Versão Arquivo: 05.12.43.0
+
+Versão do Produto: ECF 4.25, DUAL 3.14, MODEM 3.06, TA2000 4.04
+
+Implementações / Novas Implementações:
+
+ - Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Casas decimais na quantidade configurada para 3 e valor líquido configurado para 2 
+ - Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Totalizador de cancelamento de item e cancelamento de cupom
+ - Implementação - rGerarRelatorio_ECF_Daruma - MFD, MF, TDM, NFP e NFPTDM - campo 10 do registro E01 esta vindo sempre com o valor 001 e não o número sequencial real do ECF
+ - Implementação - rLeituraX_ECF_Daruma e rLeituraXCustomizada_ECF_Daruma - O comando retorna OK mas a leitura X não esta sendo gerada em arquivo
+ - Implementação - TA2000 - Qualquer comando de display esta retornando o erro -999
+ 
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+Data de liberação: 15/07/2011
+
+Versão Arquivo: 05.12.39.0
+
+Versão do Produto: ECF 4.22, DUAL 3.14, MODEM 3.06, TA2000 4.03
+
+Implementações / Novas Implementações:
+
+ - Implementação - rGerarRelatorio_ECF_Daruma - SINTEGRA - Registro 60D esta mostrando valor negativo no campo produto e base de calculo
+ - Implementação - rGerarRelatorio_ECF_Daruma - SPED - No arquivo do SPED perfil A a soma dos registros C470 de um determinado totalizador não bate com o valor informado no registro C420
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+Data de liberação: 12/07/2011
+
+Versão Arquivo: 05.12.37.0
+
+Versão do Produto: ECF 4.20, DUAL 3.14, MODEM 3.06, TA2000 4.03
+
+Implementações / Novas Implementações:
+
+ - Implementação - confCadastrar_ECF_Daruma e confCadastrarPadrao_ECF_Daruma - quando não tem mais espaço para cadastrar TNF o método esta retornando -1  e o erro retorna 0 em vez 35
+ - Implementação - confCadastrar_ECF_Daruma e confCadastrarPadrao_ECF_Daruma - quando não tem mais espaço para cadastrar aliquota o método esta retornando -1 e o erro retorna 0 em vez de 34
+ - Implementação - iCFEncerrar_ECF_Daruma - tags de formatação condensado, enfatizado, negrito, sublinhado e dupla altura não estão funcionando no campo de mensagem promocional
+ - Implementação - confCadastrar_ECF_Daruma e confCadastrarPadrao_ECF_Daruma - esta retornando índice invalido ao Cadastrar o primeiro TNF
+ - Implementação - iImprimirCodigoBarras_ECF_Daruma - Em Delphi esta dando Access Violation e o código não é impresso
+ - Implementação - iImprimirCodigoBarras_ECF_Daruma - Quando não tem CCD ou relatório gerencial aberto o comando esta retornando OK
+ - Implementação - iCFEfetuarPagamento_ECF_Daruma, iCFEfeturarPagamentoFormatado_ECF_Daruma - Esta pulando linha quando é informado um espaço no parametro de texto livre
+ - Implementação - iCFEfetuarPagamento_ECF_Daruma, iCFEfeturarPagamentoFormatado_ECF_Daruma - Esta imprimindo o texto "(null)" quando não é informado o parametro texto livre
+ - Implementação - iCFEncerrar_ECF_Daruma - com impressora FS600 a tag negrito não esta sendo encerrado no campo de texto livre
+ 
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Data de liberação: 07/07/2011
+
+Versão Arquivo: 05.12.29.0
+
+Versão do Produto: ECF 4.12, DUAL 3.14, MODEM 3.06, TA2000 4.03
+
+Implementações / Novas Implementações:
+
+ - Nova Implementação - rGerarRelatorio_ECF_Daruma - SPED - Geração do relatório SPED no perfil A (SPED_DRM.txt) e no perfil B (SPED_DRM_B.txt)
+ - Implementação - rRetornarInformacao_ECF_Daruma - Indice 140 - A aplicação é encerrada quando a impressora esta a 9600
+ - Implementação - tag XML ECF\ControleAutomatico não esta funcionando, a porta não é liberada mesmo quando a tag esta com o valor 1
+ - Implementação - Quando a tag ECF\ModoGaveta esta com o valor 1, o comando rStatusGaveta sempre retorna "Gaveta Aberta"
+ - Implementação - Quando a tag ECF\ControleAutomatico esta com o valor 1, e a impressora esta desligada, o comando rRetornarInformacao_ECF_Daruma esta retornando 1 (OK) em vez de -6 (Impressora desligada)
+ - Implementação - iMFLerSerial_ECF_Daruma - Estouro da variável que recebe o path configurado na tag START\LocalArquivos
+ - Implementação - eBuscarPortaSerial_ECF_Daruma - Não esta fechando a porta quando a tag ECF\ControleAutomatico esta com o valor 1
+ - Implementação - MODEM - Não esta fazendo a confirmação de entrega de SMS quando o modem esta na velocidade de 115200
+ - Implementação - iMFLerSerial_ECF_Daruma - Quando solicitado um intervalo por CRZ maior que 100, o arquivo não é gerado
+ - Implementação - Retorno de erro 140 quando é enviado 2 comandos de impressão no mesmo segundo para a impressora
+ - Implementação - Alteração da velocidade da impressora pela tag ECF\Velocidade não esta funcionando quando a chave ECF\ControleAutomatico esta com o valor 1
+ - Implementação - Comando rGerarRelatorio_ECF_Daruma retorna -1 quando a impressora esta com a velocidade de 9600
+ - Implementação - confCadastrarPadrao_ECF_Daruma e confCadastrar_ECF_Daruma - TNF (totalizador não fiscal) esta sendo cadastrado na posição 20
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 29/06/2011
+
+Versão Arquivo: 05.12.13.0
+
+Versão do Produto: ECF 3.98, DUAL 3.14, MODEM 2.9, TA2000 4.2
+
+Implementações / Novas Implementações:
+
+ - Implementação - rGerarRelatorio_ECF_Daruma - SPED - não esta vindo o valor líquido no registro C470
+ - Implementação - iCFVender_ECF_Daruma - Quando é informada uma alíquota que não esta cadastrada na ECF retorna Access Violation
+ - Implementação - rGerarEspelhoMFD_ECF_Daruma - COO - Esta dando retorno -1 quando tento gerar o espelho de um COO pequeno, como 000001 ou 000010 por exemplo
+ - Implementação - DUAL - Impressão de texto na lateral do código de barras quando o mesmo esta na vertical
+ - Implementação - rLerAliquotas_ECF_Daruma, rLerMeiosPagto_ECF_Daruma, rLerRG_ECF_Daruma, rLerCNF_ECF_Daruma - se eu chamar os comandos com a impressora ligada, as informações são retornadas sem problemas, mas se eu desligar a impressora e chamar os comandos, a dll retorna "1" no método e tambem mostra dos valores
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 28/06/2011
+
+Versão Arquivo: 05.12.8.0
+
+Versão do Produto: ECF 3.94, DUAL 3.13, MODEM 2.9, TA2000 4.2
+
+Implementações / Novas Implementações:
+
+ - Implementação - Retorno -12 nos métodos mesmo quando a tag NaoAvisarPoucoPapel esta com o valor 1
+ - Implementação - Não retorna -6 quando a impressora é desligada no meio do CCD
+ - Implementação - Não retorna -6 quando a impressora é desligada no meio da impressão do relatório gerencial e a aplicação fica travada
+ - Nova Implementação - Tag EncontrarECF - responsável por fazer o auto detect na inicialização da dll, 
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 24/06/2011
+
+Versão Arquivo: 5.11.18.0
+
+Versão do Produto: ECF 3.87, DUAL 3.13, MODEM 2.9, TA2000 4.2
+
+Implementações / Novas Implementações:
+
+ - Implementação - rLerAliquotas_ECF_Daruma, rLerMeiosPagto_ECF_Daruma, rLerRG_ECF_Daruma, rLerCNF_ECF_Daruma - se a impressora esta desligada a aplicação para de responder e é encerrada
+ - Nova Implementação - Sempre equalizar a velocidade na inicialização da dll
+ - Nova Implementação - Alterar a velocidade da impressora ao chamar o comando regAlterarValor com o parâmetro "ECF\Velocidade"
+ - Nova Implementação - Quando enviar o comando rGerarRelatorio_ECF_Daruma, alterar a velocidade da impressora para 115200 para gerar os relatórios, após a geração voltar a velocidade da impressora para a que estava configurada antes
+
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data de liberação: 22/06/2011
+
+Versão Arquivo: 5.11.14.0
+
+Versão do Produto: ECF 3.84, DUAL 3.13, MODEM 2.9, TA2000 4.2
+
+Implementações / Novas Implementações:
+
+ - Implementação - ConfCadastrar_ECF_Daruma - FPGTO - Não estava cadastrando a forma de pagamento
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Data de liberação: 21/06/2011
+
+Versão Arquivo: 5.11.1.0
+
+Versão do Produto: ECF 3.83, DUAL 3.13, MODEM 2.9, TA2000 4.2
+
+Implementações / Novas Implementações:
+
+ - Implementação - RZ sendo impressa automaticamente mesmo se a tag ECF\ReducaoZAutomatica esta com o valor 0.
+ - Implementação - Quando a tag ECF\RetornarAvisoErro esta com o valor 1, os métodos não estão retornando -12 quando ocorre algum erro ou aviso.
+ - Implementação - rRetornarDadosReducaoZ_ECF_Daruma com a impressora desligada esta retornando 1, agora quando a impressora esta desligada retorna -6.
+ - Implementação - Quando a chave ECF\ControleAutomatico esta com o valor 1, e a impressora esta desligada, o comando rRetornarInformacao_ECF_Daruma esta retornando 1 (OK) em vez de -6 (impressora desligada)
+ - Implementação - Se a impressora esta a 9600 e a tag ECF\Velocidade a 115200, esta dando Access Violation.
+ - Implementação - Mesmo com a chave ECF\ControleAutomatico=1, o comando rGerarRelatorio_ECF_Daruma não esta liberando a porta de comunicação
+ - Nova Implementação - Alterado para 0 o valor default da tag ECF\ControleAutomatico.
+ - Nova Implementação - Na tag START\Produto a dll deve aceitar ECF e FISCAL.
+ - Nova Implementação - comando eMemoriaFiscal_ECF(char* ParamI, char* ParamF, bool Completa, char *Tipo).
+ - Nova Implementação - Implementado leitura de baixo nivel da MFD no comando rGerarRelatorio_ECF_Daruma
+ 

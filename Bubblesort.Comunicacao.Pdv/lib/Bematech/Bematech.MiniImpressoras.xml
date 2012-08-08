@@ -1,0 +1,1082 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bematech.MiniImpressoras</name>
+    </assembly>
+    <members>
+        <member name="T:Bematech.MiniImpressoras.ImpressaoBitmap">
+            <summary>
+            Configura o bitmap para impressão
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressaoBitmap.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressaoBitmap
+            com o bitmap a ser impresso
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressaoBitmap.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressaoBitmap 
+            com o nome do arquivo bitmap a ser impresso
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressaoBitmap.LoadBitmap(System.String)">
+            <summary>
+            Carrega o bitmap do arquivo
+            </summary>
+            <param name="fileName">nome do arquivo</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressaoBitmap.GetBitmapDithered">
+            <summary>
+            Retorna o bitmap com o dithering aplicado
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressaoBitmap.GirarImagem(System.Int32)">
+            <summary>
+            Gira a imagem.
+            </summary>
+            <param name="graus">Grau de rotação da imagem</param>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressaoBitmap.Bitmap">
+            <summary>
+            Retorna a imagem bitmap
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressaoBitmap.Dithering">
+            <summary>
+            Retorna ou configura o algoritmo de dithering 
+            usado para impressão do bitmap
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressaoBitmap.AjustaImagemAoPapel">
+            <summary>
+            Retorna ou configura se a imagem será ajustada
+            ao tamanho do papel durante a impressão
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressaoBitmap.FormatoPaisagem">
+            <summary>
+            Retorna ou configura se a impressão
+            é no formato retrato ou paisagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressaoBitmap.QualidadeImpressao">
+            <summary>
+            Retorna ou configura a qualidade de impressão do bitmap
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.ErrorDiffusionDithering">
+            <summary>
+            Base class for error diffusion dithering
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.IFilter">
+            <summary>
+            Filter interface
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.PortaNaoFiscalSerial">
+            <summary>
+            Implementa a comunicação com as impressoras não fiscais seriais
+            </summary>
+        </member>
+        <member name="T:Bematech.Comunicacao.IComunicacaoNaoFiscal">
+            <summary>
+            Representa a porta de comunicação com a impressora
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.Open(System.String)">
+            <summary>
+            Abre a porta de comunicação
+            </summary>
+            <param name="porta">Nome da porta a ser aberta</param>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.Close">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.ReadByte">
+            <summary>
+            Le um byte na porta de comunicação
+            </summary>
+            <returns>Byte lido</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.Write(System.Byte[])">
+            <summary>
+            Escreve um buffer de dados na porta de comunicação
+            </summary>
+            <param name="buffer">Dados a serem escritos</param>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.WriteByte(System.Byte)">
+            <summary>
+            Escreve um byte na porta de comunicação
+            </summary>
+            <param name="buffer">Dados a serem escritos</param>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.GetStatus">
+            <summary>
+            Lê o status da impressora não fiscal
+            </summary>
+            <returns>Byte de status</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.GetStatusGaveta">
+            <summary>
+            Lê o status da gaveta de dinheiro
+            </summary>
+            <returns>Byte de status</returns>
+        </member>
+        <member name="M:Bematech.Comunicacao.IComunicacaoNaoFiscal.AutenticarDocumento(System.Byte[],System.Int32)">
+            <summary>
+            Autentica documentos
+            </summary>
+            <param name="buffer">Dados para autenticação</param>
+            <param name="timeout">Timeout para inserção do documento</param>
+        </member>
+        <member name="P:Bematech.Comunicacao.IComunicacaoNaoFiscal.IsOpen">
+            <summary>
+            Retorna se a porta de comunicação está aberta
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.#ctor(Bematech.Comunicacao.BaudRate,Bematech.Comunicacao.Parity,Bematech.Comunicacao.DataBits,Bematech.Comunicacao.StopBits,Bematech.Comunicacao.Handshake)">
+            <summary>
+            Inicializa uma nova instância da classe PortaNaoFiscalSerial
+            </summary>
+            <param name="baudRate">Baud rate</param>
+            <param name="parity">Paridade</param>
+            <param name="dataBits">Data bits</param>
+            <param name="stopBits">Stop bits</param>
+            <param name="handShake">Handshake</param>
+            <returns>ErroPorta</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.Open(System.String)">
+            <summary>
+            Abre a porta serial
+            </summary>
+            <param name="nomePorta">Nome da porta. Ex: COM1, COM2, etc</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de abertura da porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.GetStatus">
+            <summary>
+            Lê o status da impressora
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.GetStatusGaveta">
+            <summary>
+            Lê o status da gaveta
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.AutenticarDocumento(System.Byte[],System.Int32)">
+            <summary>
+            Autentica documentos
+            </summary>
+            <param name="buffer">Dados para autenticação</param>
+            <param name="timeout">Timeout para inserção do documento, em segundos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação ou Documento não inserido</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.Write(System.Byte[])">
+            <summary>
+            Escreve um buffer na porta serial.
+            </summary>
+            <param name="buffer">Dados a serem escritos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.WriteByte(System.Byte)">
+            <summary>
+            Escreve um byte na porta serial.
+            </summary>
+            <param name="buffer">Byte a ser escrito </param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.Purge">
+            <summary>
+            Limpa a porta serial.
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.ReadByte">
+            <summary>
+            Le um byte da serial.
+            </summary>
+            <returns>Byte lido</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de leitura na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.Close">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro ao fechar a porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalSerial.Bematech#Comunicacao#IComunicacaoNaoFiscal#get_IsOpen">
+            <summary>
+            Implementa a comunicação com as impressoras não fiscais seriais
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.PortaNaoFiscalUSB">
+            <summary>
+            Implementa a comunicação com as impressoras não fiscais USB
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.Open(System.String)">
+            <summary>
+            Abre a porta USB
+            </summary>
+            <param name="nomePorta">Nome da porta. Ex: USB</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de abertura da porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.GetStatus">
+            <summary>
+            Lê o status da impressora
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.GetStatusGaveta">
+            <summary>
+            Lê o status da gaveta
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.AutenticarDocumento(System.Byte[],System.Int32)">
+            <summary>
+            Autentica documentos
+            </summary>
+            <param name="buffer">Dados para autenticação</param>
+            <param name="timeout">Timeout para inserção do documento, em segundos</param>
+            <remarks>O método não possui implementação porque só as impressoras térmicas 
+            possuem comunicação USB e essas impressoras não possuem autenticação</remarks>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.ReadByte">
+            <summary>
+            Le um byte na porta
+            </summary>
+            <returns>Byte lido</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de leitura na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.Write(System.Byte[])">
+            <summary>
+            Escreve um buffer na porta USB.
+            </summary>
+            <param name="buffer">Dados a serem escritos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.WriteByte(System.Byte)">
+            <summary>
+            Escreve um buffer na porta USB.
+            </summary>
+            <param name="buffer">Byte a ser escrito </param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.Purge">
+            <summary>
+            Limpa a porta USB.
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.Close">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro ao fechar a porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalUSB.Bematech#Comunicacao#IComunicacaoNaoFiscal#get_IsOpen">
+            <summary>
+            Implementa a comunicação com as impressoras não fiscais USB
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.PortaNaoFiscalParalela">
+            <summary>
+            Implementa a comunicação com as impressoras não fiscais paralelas
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.Open(System.String)">
+            <summary>
+            Abre a porta paralela
+            </summary>
+            <param name="porta">Nome da porta. Ex: LPT1, LPT2, etc</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de abertura da porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.ReadByte">
+            <summary>
+            Le um byte da serial.
+            </summary>
+            <returns>Byte lido</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de leitura na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.Write(System.Byte[])">
+            <summary>
+            Escreve um buffer na porta paralela
+            </summary>
+            <param name="buffer">Dados a serem escritos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.WriteByte(System.Byte)">
+            <summary>
+            Escreve um byte na porta serial.
+            </summary>
+            <param name="buffer">Byte a ser escrito </param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de escrita na porta de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.GetStatus">
+            <summary>
+            Lê o status da impressora
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.GetStatusGaveta">
+            <summary>
+            Lê o status da gaveta
+            </summary>
+            <returns>Byte de status</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.AutenticarDocumento(System.Byte[],System.Int32)">
+            <summary>
+            Autentica documentos
+            </summary>
+            <param name="buffer">Dados para autenticação</param>
+            <param name="timeout">Timeout para inserção do documento, em segundos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação ou Documento não inserido</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.PortaNaoFiscalParalela.Close">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro ao fechar a porta de comunicação</exception>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.PortaNaoFiscalParalela.IsOpen">
+            <summary>
+            Retorna se a porta está aberta
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.FloydSteinbergDithering">
+            <summary>
+            Dithering using Floyd-Steinberg error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.SierraDithering">
+            <summary>
+            Dithering using Sierra error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.BitmapDithering">
+            <summary>
+            Especifica os algoritmos de dithering que podem ser aplicados no bitmap
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.Bayer">
+            <summary>
+            Algoritmo Bayer
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.Burkes">
+            <summary>
+            Algoritmo Burkes
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.FloydSteinberg">
+            <summary>
+            Algoritmo FloydSteinberg
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.JarvisJudiceNinke">
+            <summary>
+            Algoritmo JarvisJudiceNinke
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.Sierra">
+            <summary>
+            Algoritmo Sierra
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.StevensonArce">
+            <summary>
+            Algoritmo StevensonArce
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.BitmapDithering.Stucki">
+            <summary>
+            Algoritmo Stucki
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.QualidadeImpressao">
+            <summary>
+            Especifica a qualidade de impressão
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.QualidadeImpressao.Alta">
+            <summary>
+            Qualidade de impressão alta
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.QualidadeImpressao.Baixa">
+            <summary>
+            Qualidade de impressão baixa
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.QualidadeImpressao.Normal">
+            <summary>
+            Qualidade de impressão normal da impressora
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.QualidadeImpressao.MuitoAlta">
+            <summary>
+            Qualidade de impressão muito alta
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.QualidadeImpressao.MuitoBaixa">
+            <summary>
+            Qualidade de impressão muito baixa
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.CaracterGrafico">
+            <summary>
+            Classe que implementa o caracter gráfico
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.CaracterGrafico.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe CaracterGrafico
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.CaracterGrafico.GetComando">
+            <summary>
+            Retorna o comando para programação do caracter gráfico
+            </summary>
+            <returns>bytes para programação do caracter</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.CaracterGrafico.SetarCaracter(System.Byte[0:,0:])">
+            <summary>
+            Inicializa a matriz (linha, coluna) que representa o caracter.
+            </summary>
+            <param name="matrizCaracter">Matriz de 2 linhas e 9 colunas.</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Parâmetro inválido</exception>
+            <example>
+            			0 1 2 3 4 5 6 7 8
+            bit7 = 128	* * * * * * * * *
+            bit6 = 64 	*               *
+            bit5 = 32 	* *             *
+            bit4 = 16 	* * *           *
+            bit3 = 8  	* * * *         *
+            bit2 = 4  	* * * * *       *
+            bit1 = 2  	* * * * * *     *
+            bit0 = 1  	* * * * * * *   *
+            bit7 = 128	* * * * * * * * *
+            Para criar o caracter acima:
+            
+            byte[,] caracter = new byte[2,9]{{255,191,159,143,135,131,129,128,255},
+            								{128,128,128,128,128,128,128,128,128}};
+            CaracterGrafico caracterGrafico = new CaracterGrafico();
+            caracterGrafico.SetarCaracter(caracter);
+            </example>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.CaracterGrafico.SetarColuna(System.Int32,System.Byte,System.Byte)">
+            <summary>
+            Inicializa uma coluna da matriz que representa o caracter.
+            </summary>
+            <param name="coluna">Indice da coluna [0-8].</param>
+            <param name="byte1">Valor para o primeiro byte que 
+            corresponde as agulhas de 1 a 8. </param>
+            <param name="byte2">Valor para o segundo byte que 
+            corresponde a nona agulha.</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Parâmetro inválido</exception>
+            <example>
+            						0 1 2 3 4 5 6 7 8
+            		 _	bit7 = 128	* * * * * * * * *
+            		|	bit6 = 64 	*               *
+            		|	bit5 = 32 	* *             *
+            		|	bit4 = 16 	* * *           *
+            Byte1 -	|	bit3 = 8  	* * * *         *
+            		|	bit2 = 4  	* * * * *       *
+            		|	bit1 = 2  	* * * * * *     *
+            		|_	bit0 = 1  	* * * * * * *   *
+            Byte2 ----	bit7 = 128	* * * * * * * * *
+            	
+            Para setar a coluna 0 do caracter acima:
+            
+            CaracterGrafico caracterGrafico = new CaracterGrafico();
+            caracterGrafico.SetarColuna(0, 255, 128);
+            </example>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Rotate">
+            <summary>
+            Rotaciona uma imagem
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Rotate.#ctor">
+            <summary>
+            Inicializa uma nova instância da Classe Rotate
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Rotate.#ctor(System.Single)">
+            <summary>
+            Inicializa uma nova instância da Classe Rotate
+            com o anglo de rotação
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Rotate.#ctor(System.Single,Bematech.MiniImpressoras.InterpolationMethod)">
+            <summary>
+            Inicializa uma nova instância da Classe Rotate
+            com o anglo de rotação e o método de interpolação
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Rotate.#ctor(System.Single,Bematech.MiniImpressoras.InterpolationMethod,System.Boolean)">
+            <summary>
+            Inicializa uma nova instância da Classe Rotate
+            com o anglo de rotação, o método de interpolação e
+            um flag indicando se o tamanho da imagem deve ser 
+            mantido
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Rotate.Apply(System.Drawing.Bitmap)">
+            <summary>
+            Aplica o redimencionamento a imagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Rotate.Angle">
+            <summary>
+            Retorna ou configura o angulo de rotação da imagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Rotate.Method">
+            <summary>
+            Retorna ou configura o método de interpolação
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Rotate.KeepSize">
+            <summary>
+            Retorna se o tamanho da imagem deve ser mantido durante
+            o redimencionamento
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Rotate.FillColor">
+            <summary>
+            Retorna ou configura a cor de preenchimento
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.InterpolationMethod">
+            <summary>
+            Especifica os métodos de interpolação que podem ser aplicados a imagem
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.InterpolationMethod.NearestNeighbor">
+            <summary>
+            Interpolação nearest neighbor
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.InterpolationMethod.Bilinear">
+            <summary>
+            Interpolação bilinear
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.InterpolationMethod.Bicubic">
+            <summary>
+            Interpolação Bicubic
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Interpolation">
+            <summary>
+            Interpolation
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Interpolation.BiCubicKernel(System.Single)">
+            <summary>
+            BiCubic kernel
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.BurkesDithering">
+            <summary>
+            Dithering using Burkes error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Win32">
+            <summary>
+            Windows API functions and structures
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Image">
+            <summary>
+            Core functions
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Image.IsGrayscale(System.Drawing.Bitmap)">
+            <summary>
+            Check if the image is grayscale
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Image.CreateGrayscaleImage(System.Int32,System.Int32)">
+            <summary>
+            Create and initialize grayscale image
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Image.SetGrayscalePalette(System.Drawing.Bitmap)">
+            <summary>
+            Set pallete of the image to grayscale
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Image.Clone(System.Drawing.Bitmap,System.Drawing.Imaging.PixelFormat)">
+            <summary>
+            Clone image
+            Note: It looks like Bitmap.Clone() with specified PixelFormat does not
+            produce expected result
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Image.FormatImage(System.Drawing.Bitmap@)">
+            <summary>
+            Format an input image
+            Convert it to 24 RGB or leave untouched if it's a grayscale image
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.StuckiDithering">
+            <summary>
+            Dithering using Stucki error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.JarvisJudiceNinkeDithering">
+            <summary>
+            Dithering using Jarvis, Judice and Ninke error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.GrayscaleRMY">
+            <summary>
+            Makes an images grayscale using R-Y algorithm
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Grayscale">
+            <summary>
+            Base class for image grayscaling
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Grayscale.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Inicializa uma nova instância da classe Grayscale
+            </summary>
+            <param name="cr">Color red</param>
+            <param name="cg">Color green</param>
+            <param name="cb">Color blue</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Grayscale.Apply(System.Drawing.Bitmap)">
+            <summary>
+            Aplica o filtro a imagem
+            </summary>
+            <param name="srcImg">Imagem a ser convertida para tom de cinza</param>
+            <returns>Uma nova imagem em tom de cinza</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.GrayscaleRMY.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe GrayscaleRMY
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.OrderedDithering">
+            <summary>
+            OrderedDithering - binarization with thresholds matrix
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.Resize">
+            <summary>
+            Redimenciona uma imagem
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Resize.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe Resize
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Resize.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe Resize
+            com a largura e altura especificadas.
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Resize.#ctor(System.Int32,System.Int32,Bematech.MiniImpressoras.InterpolationMethod)">
+            <summary>
+            Inicializa uma nova instância da classe Resize
+            com a largura, altura, e o método de interpolação
+            especificados.
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.Resize.Apply(System.Drawing.Bitmap)">
+            <summary>
+            Aplica o redimensionamento a imagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Resize.NewWidth">
+            <summary>
+            Retorna ou configura a nova largura da imagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Resize.NewHeight">
+            <summary>
+            Retorna ou configura a nova altura da imagem
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.Resize.Method">
+            <summary>
+            Retorna ou configura o método de interpolação 
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.ImpressoraNaoFiscal">
+            <summary>
+            Classe de controle da impressora não fiscal
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.#ctor(Bematech.ModeloImpressoraNaoFiscal,System.String,Bematech.Comunicacao.BaudRate,Bematech.Comunicacao.Parity,Bematech.Comunicacao.DataBits,Bematech.Comunicacao.StopBits,Bematech.Comunicacao.Handshake)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressoraNaoFiscal
+            com o modelo da impressora, a porta de comunicação, Baudrate,
+            Paridade, DataBits, StopBits e Handshake
+            </summary>
+            <param name="modelo">Modelo da impressora</param>
+            <param name="nomePorta">Nome da porta de comunicação onde 
+            a impressora está conectada</param>
+            <param name="baudRate">Velocidade de comunicação</param>
+            <param name="parity">Paridade</param>
+            <param name="dataBits">DataBits</param>
+            <param name="stopBits">StopBits</param>
+            <param name="handshake">Handshake</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.#ctor(Bematech.ModeloImpressoraNaoFiscal,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressoraNaoFiscal
+            com o modelo da impressora e a porta de comunicação
+            </summary>
+            <param name="modelo">Modelo da impressora</param>
+            <param name="nomePorta">Nome da porta de comunicação onde 
+            a impressora está conectada</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.#ctor(Bematech.ModeloImpressoraNaoFiscal)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressoraNaoFiscal
+            com o modelo da impressora.
+            </summary>
+            <param name="modelo">Modelo da impressora</param>
+            <remarks>Será utilizada a porta COM1 como default.</remarks>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe ImpressoraNaoFiscal
+            com a porta de comunicação
+            </summary>
+            <param name="nomePorta">Nome da porta de comunicação onde 
+            a impressora está conectada</param>
+            <remarks>Será utilizado o modelo MP20CI como default.</remarks>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe ImpressoraNaoFiscal
+            com a porta de comunicação
+            </summary>
+            <remarks>Será utilizada a porta COM1 e o modelo MP20CI 
+            como default.</remarks>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.AbrirPorta">
+            <summary>
+            Abre a porta de comunicação
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro na abertaura da porta</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.FecharPorta">
+            <summary>
+            Fecha a porta de comunicação
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro no fechamento da porta</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.CriarPorta">
+            <summary>
+            Cria a porta de comunicação
+            </summary>
+            <returns>Objeto que implementa a interface IPortaComunicacao</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.ConverterAcentuacao(System.String)">
+            <summary>
+            Converte os caracteres acentuados para a tabela
+            de caracteres selecionada
+            </summary>
+            <param name="texto">Texto a ser convertido</param>
+            <returns>Texto convertido</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.ValidarTabelaCaracteres(Bematech.TabelaCaracteres)">
+            <summary>
+            Valida se a tabela de caracteres selecionada é suportada
+            pelo modelo de impressora configurada
+            </summary>
+            <param name="tabela">Tabela de caracteres selecionada</param>
+            <returns>True - se tabela for suportada pela impressora. 
+            False - se tabela não for suportada.</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.SelecionarTabelaCaracteres(Bematech.ModeloImpressoraNaoFiscal)">
+            <summary>
+            Retorna a tabela de caracteres default para a
+            impressora informada.
+            </summary>
+            <param name="modelo">Modelo da impressora</param>
+            <returns>Tabela de caracteres default para a impressora indicada</returns>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.ConfigurarTabelaCaracteres">
+            <summary>
+            Configura a tabela de caracteres na impressora
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Imprimir(System.String)">
+            <summary>
+            Imprime texto não formatado
+            </summary>
+            <param name="texto">Texto a ser impresso</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro durante a impressão</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Imprimir(Bematech.Texto.IMensagemImpressoraNaoFiscal)">
+            <summary>
+            Imprime dados utilizando a interface IMensagemImpressoraNaoFiscal 
+            que permite a impressão de texto com ou sem formatação, código de barras 
+            e a impressão customizada.
+            </summary>
+            <param name="dados">Dados a serem impressos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro durante a impressão</exception>
+            <exception cref="T:Bematech.BematechException">Parâmetro inválido ou 
+            código de barras inexistente para o modelo de impressora</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Imprimir(Bematech.MiniImpressoras.CaracterGrafico)">
+            <summary>
+            Imprime o caracter gráfico
+            </summary>
+            <param name="caracter">Caracter gráfico a ser impresso</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro durante a impressão</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Imprimir(Bematech.MiniImpressoras.ImpressaoBitmap)">
+            <summary>
+            Imprime imagens do tipo bitmap
+            </summary>
+            <param name="bitmap">Imagem bitmap a ser impressa</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.LerStatus">
+            <summary>
+            Lê o status da impressora
+            </summary>
+            <returns>Objeto do tipo StatusMiniImpressora</returns>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro na leitura do status</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.LerStatusGaveta">
+            <summary>
+            Lê o status da gaveta. Será retornado "1" para 
+            sensor aberto e "0" para sensor fechado.
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro na leitura do status</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.AbrirGaveta">
+            <summary>
+            Abre a gaveta de dinheiro
+            </summary>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro na abertura da gaveta</exception>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.CortarPapel(System.Boolean)">
+            <summary>
+            Corta o papel. Permite corte parcial ou total
+            </summary>
+            <param name="corteParcial">True para corte parcial ou 
+            false para corte total</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação com a impressora ou
+            Comando inexistente</exception>
+            <remarks>Esse método só funciona nas impressoras que possuem guilhotina</remarks>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ImpressoraNaoFiscal.AutenticarDocumento(System.String,System.Int32)">
+            <summary>
+            Autentica documentos
+            </summary>
+            <param name="texto">Texto de autenticação</param>
+            <param name="timeout">Timeout para inserção do documento, em segundos</param>
+            <exception cref="T:Bematech.MiniImpressoras.MiniImpressoraException">Erro de comunicação ou Documento não inserido</exception>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.NomePorta">
+            <summary>
+            Configura ou retorna o nome da porta de comunicação ao qual
+            a impressora está conectada.
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Modelo">
+            <summary>
+            Retorna ou configura o modelo da impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.TabelaCaracteres">
+            <summary>
+            Retorna ou configura a tabela de caracteres usada pela impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.BaudRate">
+            <summary>
+            Retorna ou configura o baudrate de comunicação com a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.Parity">
+            <summary>
+            Retorna ou configura a paridade de comunicação com a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.StopBits">
+            <summary>
+            Retorna ou configura os bits de parada (StopBits) na comunicação com a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.HandShake">
+            <summary>
+            Retorna ou configura o handshake de comunicação com a impressora
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.ImpressoraNaoFiscal.DataBits">
+            <summary>
+            Retorna ou configura o número de bits (DataBits) na comunicação com a impressora
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.StevensonArceDithering">
+            <summary>
+            Dithering using Stevenson and Arce error diffusion
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.StatusMiniImpressora">
+            <summary>
+            Classe de representação do status da impressora não fiscal
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.StatusMiniImpressora.op_Implicit(Bematech.MiniImpressoras.StatusMiniImpressora)~Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus">
+            <summary>
+            Conversão implicita de um tipo StatusMiniImpressora para InfoStatus
+            permitindo que se faça comparação direta dos dois tipos. 
+            </summary>
+            <param name="statusImpressora">Status da impressora</param>
+            <returns></returns>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.StatusMiniImpressora.OffLine">
+            <summary>
+            Indica quando a impressora está off-line
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.StatusMiniImpressora.SemPapel">
+            <summary>
+            Indica quando a impressora está sem papel
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.StatusMiniImpressora.PoucoPapel">
+            <summary>
+            Indica quando a impressora está com pouco papel
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.StatusMiniImpressora.HeadUp">
+            <summary>
+            Indica quando a cabeça de impressão está levantada
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus">
+            <summary>
+            Enumeração com todos os status possíveis da mini-impressora
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus.OK">
+            <summary>
+            Impressora OK
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus.OffLine">
+            <summary>
+            Off line
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus.SemPapel">
+            <summary>
+            Sem papel
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus.HeadUp">
+            <summary>
+            HeadUp
+            </summary>
+        </member>
+        <member name="F:Bematech.MiniImpressoras.StatusMiniImpressora.InfoStatus.PoucoPapel">
+            <summary>
+            Pouco Papel
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.MiniImpressoraException">
+            <summary>
+            Classe que implementa as exceptions geradas pelas mini-impressoras
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.MiniImpressoraException.#ctor(Bematech.BematechException.OrigemException,Bematech.BematechException.CodigoErro,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe MiniImpressoraException
+            com a origem, o código e a mensagem de erro
+            </summary>
+            <param name="origem">Origem da exception</param>
+            <param name="codigo">Código de erro</param>
+            <param name="mensagem">Mensagem de erro</param>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.RGB">
+            <summary>
+            RGB components
+            Note: PixelFormat.Format24bppRgb actually means BGR format
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.RGB.#ctor">
+            <summary>
+            Inicializa uma nova instância da Classe RGB
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.RGB.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Inicializa uma nova instância da Classe RGB
+            com as cores vermelha, verde e azul
+            </summary>
+        </member>
+        <member name="P:Bematech.MiniImpressoras.RGB.Color">
+            <summary>
+            Retorno ou configura a cor
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.HSL">
+            <summary>
+            HSL components
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.HSL.#ctor">
+            <summary>
+            Inicializa uma nova instância da Classe HSL
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.HSL.#ctor(System.Int32,System.Double,System.Double)">
+            <summary>
+            Inicializa uma nova instância da Classe HSL com 
+            a matiz, saturazação e a luminozidade
+            </summary>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.ColorConverter">
+            <summary>
+            Color converter - converts colors from different color spaces
+            </summary>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ColorConverter.RGBToHSL(Bematech.MiniImpressoras.RGB,Bematech.MiniImpressoras.HSL)">
+            <summary>
+            Converte a cor de RGB para HSL
+            </summary>
+            <param name="rgb">RGB</param>
+            <param name="hsl">HSL</param>
+        </member>
+        <member name="M:Bematech.MiniImpressoras.ColorConverter.HSLToRGB(Bematech.MiniImpressoras.HSL,Bematech.MiniImpressoras.RGB)">
+            <summary>
+            Converte a cor de HSL para RGB
+            </summary>
+            <param name="hsl">HSL</param>
+            <param name="rgb">RGB</param>
+        </member>
+        <member name="T:Bematech.MiniImpressoras.BayerDithering">
+            <summary>
+            BayerOrderedDithering - ordered dithering with Bayer matrix
+            </summary>
+        </member>
+    </members>
+</doc>

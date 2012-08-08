@@ -1,0 +1,76 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%MS%
+ClassGUID={4d36e97d-e325-11ce-bfc1-08002be10318}
+Class=System Devices
+                                        ; see DDK Doc.
+DriverVer=10/5/2005
+
+[DestinationDirs]
+DefaultDestDir   = 12
+
+;
+; Driver information
+;
+
+[Manufacturer]
+%MS%   = MS.Mfg
+
+[MS.Mfg]
+%MS.DeviceDesc0% = disk, LPTENUM\BematechRawPort
+
+[disk.NT]
+CopyFiles=bema_CopyFiles
+
+[bema_CopyFiles]
+bemapar.sys
+;
+; Service Installation
+;
+
+[disk.NT.Services]
+AddService = BematechClassService, 0x00000002 , disk_Service_Inst
+
+[disk_Service_Inst]
+DisplayName    = %disk.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_SYSTEM_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\bemapar.sys
+LoadOrderGroup = Extended base
+Dependencies   = +Parallel arbitrator,parport
+
+;
+; Source file information
+;
+
+[SourceDisksNames]
+1 = %DiskId1%
+
+[SourceDisksFiles]
+bemapar.sys = 1
+
+
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+MS.DeviceDesc0 = "Bematech Class Driver"
+DiskId1 = "Bematech class driver installation disk"
+MS = "Bematech International"
+disk.SvcDesc="Bematech Parallel Port Printer"
+
